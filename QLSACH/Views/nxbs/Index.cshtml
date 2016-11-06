@@ -1,0 +1,52 @@
+﻿@model IEnumerable<QLSACH.Models.nxb>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tennxb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dchi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sdt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tonkho)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tennxb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dchi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sdt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tonkho)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.manxb }) |
+            @Html.ActionLink("Details", "Details", new { id=item.manxb }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.manxb })
+        </td>
+    </tr>
+}
+
+</table>

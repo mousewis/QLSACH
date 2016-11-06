@@ -1,0 +1,151 @@
+﻿@model Models.phieunhapVM
+@{
+    ViewBag.Title = "Thêm phiếu nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    var i = 0;
+    $('#form_them').submit(function () {
+        $(this).find('input:text').each(function () {
+            $(this).val($.trim($(this).val()));
+        });
+    });
+</script>
+<div class="component">
+    <div class="sticky-wrap">
+        <h2 class="text-center">THÊM PHIẾU NHẬP</h2>
+        @using (Html.BeginForm("Phieunhap", "Home", FormMethod.Post,new { @id ="form_them"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <h2 class="text-center">Mã số: @ViewBag.maso</h2>
+                        <input type="hidden" name="phieunhap.maso" id="phieunhap.maso" value="@ViewBag.maso" />
+                    </td>
+                </tr>
+                <tr>
+                    <th width="25%">Người giao:</th>
+                    <td>
+                        <input type="text" name="phieunhap.nguoigiao" id="phieunhap.nguoigiao" required />
+                        @Html.ValidationMessage("phieunhap.nguoigiao", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>Ngày giao:</th>
+                    <td>
+                        <input type="date" name="phieunhap.tgian" id="phieunhap.tgian" required/>
+                        @Html.ValidationMessage("phieunhap.tgian", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td colspan="2" class="text-center">Thông tin nhà xuất bản</td>
+                </tr>
+                <tr>
+                    <th width="25%">Mã nhà xuất bản:</th>
+                    <td>
+                        <input type="text" name="nxb.manxb" id="nxb.manxb" onchange="manxb()" required>
+                        @Html.ValidationMessage("nxb.manxb", "", new { @class = "text-danger" })
+                        @*<a href="#" onclick="checknxb()">Kiểm tra</a>*@
+                        <input type="hidden" name="phieunhap.manxb" id="phieunhap.manxb">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tên nhà xuất bản:</th>
+                    <td>
+                        <input type="text" name="nxb.tennxb" id="nxb.tennxb" required>
+                        @Html.ValidationMessage("nxb.tennxb", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>Địa chỉ:</th>
+                    <td>
+                        <input type="text" name="nxb.dchi" id="nxb.dchi" required>
+                        @Html.ValidationMessage("nxb.dchi", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại:</th>
+                    <td>
+                        <input type="tel" name="nxb.sdt" id="nxb.sdt" required>
+                        @Html.ValidationMessage("nxb.sdt", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td colspan="2" class="text-center">Thông tin sách</td>
+                </tr>
+                <tr>
+                    <th width="25%">Mã sách</th>
+                    <td>
+                        <input type="text" name="masach" id="masach">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tên sách</th>
+                    <td><input type="text" name="tensach" id="tensach" ></td>
+                </tr>
+                <tr>
+                    <th>Lĩnh vực</th>
+                    <td>
+                        @{
+                            IEnumerable<SelectListItem> linhvucs = (IEnumerable<SelectListItem>)ViewBag.linhvuc;
+                        }
+                        <select name="linhvuc" id="linhvuc">
+                            @foreach (var i in linhvucs)
+                            {
+                                <option value="@i.Value.Trim()">@i.Text</option>
+                            }
+                        </select>
+                    </td>
+                    @*<td>@Html.DropDownList("linhvuc", linhvucs)</td>*@
+                </tr>
+                <tr>
+                    <th>Số lượng</th>
+                    <td><input type="number" name="sluong" id="sluong" min="1"></td>
+                </tr>
+                <tr>
+                    <th>Giá</th>
+                    <td><input type="number" name="gia" id="gia" min="1000"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a href="#ds-sach" onclick="themctphieunhap()" class="ui-button-text">Thêm sách</a></td>
+                </tr>
+            </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td colspan="5" class="text-center"><h4>Danh sách sách</h4></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">@Html.ValidationMessage("ctphieunhap", "", new { @class = "text-danger" })</td>
+                            </tr>
+                            <tr>
+                                <th width="25%">Mã sách</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                                <th>Thành tiền</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ds-sach"></tbody>
+                    </table>
+                    <table>
+                        <tr>
+                            <td><h2>Tổng tiền:</h2></td>
+                            <td>
+                                <input type="text" name="phieunhap.tongtien" id="phieunhap.tongtien" value="0" readonly="readonly"/>
+                                <input type="hidden" name="nxb.tonkho" id="nxb.tonkho" value="0" />
+                            </td>
+                            <td><h2>VND</h2></td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Lưu phiếu nhập" class="button turquoise" />
+                            }
+    </div>
+</div>

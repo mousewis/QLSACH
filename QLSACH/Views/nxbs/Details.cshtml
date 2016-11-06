@@ -1,0 +1,51 @@
+﻿@model QLSACH.Models.nxb
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>nxb</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tennxb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tennxb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dchi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dchi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sdt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sdt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tonkho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tonkho)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.manxb }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

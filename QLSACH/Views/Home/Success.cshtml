@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="component">
+    <div class="sticky-wrap">
+        @if (ViewBag.error == null)
+        {
+            <h2 class="text-center">LƯU DỮ LIỆU THÀNH CÔNG</h2>
+        }
+        else
+        {
+            <h2 class="text-center">LỖI KHI LƯU DỮ LIỆU</h2>
+            <br>
+            @ViewBag.error
+        }
+        @Html.ActionLink("Trở về trang chủ", "Index", "Home", new { @class="text-center" })
+    </div>
+</div>

@@ -1,0 +1,896 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLSACHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ctphieunhap">
+          <Key>
+            <PropertyRef Name="maso" />
+            <PropertyRef Name="masach" />
+          </Key>
+          <Property Name="maso" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="masach" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="soluong" Type="int" Nullable="false" />
+          <Property Name="gia" Type="int" Nullable="false" />
+          <Property Name="thanhtien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctphieuxuat">
+          <Key>
+            <PropertyRef Name="maso" />
+            <PropertyRef Name="masach" />
+          </Key>
+          <Property Name="maso" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="masach" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="soluong" Type="int" Nullable="false" />
+          <Property Name="gia" Type="int" Nullable="false" />
+          <Property Name="thanhtien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cttkdl">
+          <Key>
+            <PropertyRef Name="maso" />
+            <PropertyRef Name="masach" />
+          </Key>
+          <Property Name="maso" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="masach" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="sluong" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="daily">
+          <Key>
+            <PropertyRef Name="madl" />
+          </Key>
+          <Property Name="madl" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="tendl" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="dchi" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="sdt" Type="nchar" MaxLength="32" Nullable="false" />
+          <Property Name="tonkho" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hdondl">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="madl" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="ngay" Type="date" Nullable="false" />
+          <Property Name="sotien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hdonnxb">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="manxb" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="ngay" Type="date" Nullable="false" />
+          <Property Name="sotien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="linhvuc">
+          <Key>
+            <PropertyRef Name="malv" />
+          </Key>
+          <Property Name="malv" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="tenlv" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nxb">
+          <Key>
+            <PropertyRef Name="manxb" />
+          </Key>
+          <Property Name="manxb" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="tennxb" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="dchi" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="sdt" Type="nchar" MaxLength="32" Nullable="false" />
+          <Property Name="tonkho" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="phieunhap">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="manxb" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="nguoigiao" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="tgian" Type="date" Nullable="false" />
+          <Property Name="tongtien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="phieuxuat">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="madl" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="nguoinhan" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="tgian" Type="date" Nullable="false" />
+          <Property Name="tongtien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sach">
+          <Key>
+            <PropertyRef Name="masach" />
+          </Key>
+          <Property Name="masach" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="tensach" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="linhvuc" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="sluong" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tkdl">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="madl" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="ngay" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ctphieunhap_phieunhap">
+          <End Role="phieunhap" Type="Self.phieunhap" Multiplicity="1" />
+          <End Role="ctphieunhap" Type="Self.ctphieunhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieunhap">
+              <PropertyRef Name="maso" />
+            </Principal>
+            <Dependent Role="ctphieunhap">
+              <PropertyRef Name="maso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctphieunhap_sach">
+          <End Role="sach" Type="Self.sach" Multiplicity="1" />
+          <End Role="ctphieunhap" Type="Self.ctphieunhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sach">
+              <PropertyRef Name="masach" />
+            </Principal>
+            <Dependent Role="ctphieunhap">
+              <PropertyRef Name="masach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctphieuxuat_phieuxuat">
+          <End Role="phieuxuat" Type="Self.phieuxuat" Multiplicity="1" />
+          <End Role="ctphieuxuat" Type="Self.ctphieuxuat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieuxuat">
+              <PropertyRef Name="maso" />
+            </Principal>
+            <Dependent Role="ctphieuxuat">
+              <PropertyRef Name="maso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctphieuxuat_sach">
+          <End Role="sach" Type="Self.sach" Multiplicity="1" />
+          <End Role="ctphieuxuat" Type="Self.ctphieuxuat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sach">
+              <PropertyRef Name="masach" />
+            </Principal>
+            <Dependent Role="ctphieuxuat">
+              <PropertyRef Name="masach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cttkdl_sach">
+          <End Role="sach" Type="Self.sach" Multiplicity="1" />
+          <End Role="cttkdl" Type="Self.cttkdl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sach">
+              <PropertyRef Name="masach" />
+            </Principal>
+            <Dependent Role="cttkdl">
+              <PropertyRef Name="masach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cttkdl_tkdl">
+          <End Role="tkdl" Type="Self.tkdl" Multiplicity="1" />
+          <End Role="cttkdl" Type="Self.cttkdl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tkdl">
+              <PropertyRef Name="maso" />
+            </Principal>
+            <Dependent Role="cttkdl">
+              <PropertyRef Name="maso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_daily_tkdl">
+          <End Role="daily" Type="Self.daily" Multiplicity="1" />
+          <End Role="tkdl" Type="Self.tkdl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="daily">
+              <PropertyRef Name="madl" />
+            </Principal>
+            <Dependent Role="tkdl">
+              <PropertyRef Name="madl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdondl_daily">
+          <End Role="daily" Type="Self.daily" Multiplicity="1" />
+          <End Role="hdondl" Type="Self.hdondl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="daily">
+              <PropertyRef Name="madl" />
+            </Principal>
+            <Dependent Role="hdondl">
+              <PropertyRef Name="madl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdonnxb_nxb">
+          <End Role="nxb" Type="Self.nxb" Multiplicity="1" />
+          <End Role="hdonnxb" Type="Self.hdonnxb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nxb">
+              <PropertyRef Name="manxb" />
+            </Principal>
+            <Dependent Role="hdonnxb">
+              <PropertyRef Name="manxb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phieunhap_nxb">
+          <End Role="nxb" Type="Self.nxb" Multiplicity="1" />
+          <End Role="phieunhap" Type="Self.phieunhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nxb">
+              <PropertyRef Name="manxb" />
+            </Principal>
+            <Dependent Role="phieunhap">
+              <PropertyRef Name="manxb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phieuxuat_daily">
+          <End Role="daily" Type="Self.daily" Multiplicity="1" />
+          <End Role="phieuxuat" Type="Self.phieuxuat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="daily">
+              <PropertyRef Name="madl" />
+            </Principal>
+            <Dependent Role="phieuxuat">
+              <PropertyRef Name="madl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sach_linhvuc">
+          <End Role="linhvuc" Type="Self.linhvuc" Multiplicity="1" />
+          <End Role="sach" Type="Self.sach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="linhvuc">
+              <PropertyRef Name="malv" />
+            </Principal>
+            <Dependent Role="sach">
+              <PropertyRef Name="linhvuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="TimkiemDaily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="s" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="TimkiemNXB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="s" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="TimkiemSach" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="s" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="QLSACHModelStoreContainer">
+          <EntitySet Name="ctphieunhap" EntityType="Self.ctphieunhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctphieuxuat" EntityType="Self.ctphieuxuat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cttkdl" EntityType="Self.cttkdl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="daily" EntityType="Self.daily" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hdondl" EntityType="Self.hdondl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hdonnxb" EntityType="Self.hdonnxb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="linhvuc" EntityType="Self.linhvuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nxb" EntityType="Self.nxb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="phieunhap" EntityType="Self.phieunhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="phieuxuat" EntityType="Self.phieuxuat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sach" EntityType="Self.sach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tkdl" EntityType="Self.tkdl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ctphieunhap_phieunhap" Association="Self.FK_ctphieunhap_phieunhap">
+            <End Role="phieunhap" EntitySet="phieunhap" />
+            <End Role="ctphieunhap" EntitySet="ctphieunhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctphieunhap_sach" Association="Self.FK_ctphieunhap_sach">
+            <End Role="sach" EntitySet="sach" />
+            <End Role="ctphieunhap" EntitySet="ctphieunhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctphieuxuat_phieuxuat" Association="Self.FK_ctphieuxuat_phieuxuat">
+            <End Role="phieuxuat" EntitySet="phieuxuat" />
+            <End Role="ctphieuxuat" EntitySet="ctphieuxuat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctphieuxuat_sach" Association="Self.FK_ctphieuxuat_sach">
+            <End Role="sach" EntitySet="sach" />
+            <End Role="ctphieuxuat" EntitySet="ctphieuxuat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cttkdl_sach" Association="Self.FK_cttkdl_sach">
+            <End Role="sach" EntitySet="sach" />
+            <End Role="cttkdl" EntitySet="cttkdl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cttkdl_tkdl" Association="Self.FK_cttkdl_tkdl">
+            <End Role="tkdl" EntitySet="tkdl" />
+            <End Role="cttkdl" EntitySet="cttkdl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_daily_tkdl" Association="Self.FK_daily_tkdl">
+            <End Role="daily" EntitySet="daily" />
+            <End Role="tkdl" EntitySet="tkdl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdondl_daily" Association="Self.FK_hdondl_daily">
+            <End Role="daily" EntitySet="daily" />
+            <End Role="hdondl" EntitySet="hdondl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdonnxb_nxb" Association="Self.FK_hdonnxb_nxb">
+            <End Role="nxb" EntitySet="nxb" />
+            <End Role="hdonnxb" EntitySet="hdonnxb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phieunhap_nxb" Association="Self.FK_phieunhap_nxb">
+            <End Role="nxb" EntitySet="nxb" />
+            <End Role="phieunhap" EntitySet="phieunhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phieuxuat_daily" Association="Self.FK_phieuxuat_daily">
+            <End Role="daily" EntitySet="daily" />
+            <End Role="phieuxuat" EntitySet="phieuxuat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sach_linhvuc" Association="Self.FK_sach_linhvuc">
+            <End Role="linhvuc" EntitySet="linhvuc" />
+            <End Role="sach" EntitySet="sach" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLSACHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ctphieunhap">
+          <Key>
+            <PropertyRef Name="maso" />
+            <PropertyRef Name="masach" />
+          </Key>
+          <Property Name="maso" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="masach" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="soluong" Type="Int32" Nullable="false" />
+          <Property Name="gia" Type="Int32" Nullable="false" />
+          <Property Name="thanhtien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="phieunhap" Relationship="Self.FK_ctphieunhap_phieunhap" FromRole="ctphieunhap" ToRole="phieunhap" />
+          <NavigationProperty Name="sach" Relationship="Self.FK_ctphieunhap_sach" FromRole="ctphieunhap" ToRole="sach" />
+        </EntityType>
+        <EntityType Name="ctphieuxuat">
+          <Key>
+            <PropertyRef Name="maso" />
+            <PropertyRef Name="masach" />
+          </Key>
+          <Property Name="maso" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="masach" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="soluong" Type="Int32" Nullable="false" />
+          <Property Name="gia" Type="Int32" Nullable="false" />
+          <Property Name="thanhtien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="phieuxuat" Relationship="Self.FK_ctphieuxuat_phieuxuat" FromRole="ctphieuxuat" ToRole="phieuxuat" />
+          <NavigationProperty Name="sach" Relationship="Self.FK_ctphieuxuat_sach" FromRole="ctphieuxuat" ToRole="sach" />
+        </EntityType>
+        <EntityType Name="cttkdl">
+          <Key>
+            <PropertyRef Name="maso" />
+            <PropertyRef Name="masach" />
+          </Key>
+          <Property Name="maso" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="masach" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="sluong" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sach" Relationship="Self.FK_cttkdl_sach" FromRole="cttkdl" ToRole="sach" />
+          <NavigationProperty Name="tkdl" Relationship="Self.FK_cttkdl_tkdl" FromRole="cttkdl" ToRole="tkdl" />
+        </EntityType>
+        <EntityType Name="daily">
+          <Key>
+            <PropertyRef Name="madl" />
+          </Key>
+          <Property Name="madl" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tendl" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dchi" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sdt" Type="String" MaxLength="32" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tonkho" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tkdls" Relationship="Self.FK_daily_tkdl" FromRole="daily" ToRole="tkdl" />
+          <NavigationProperty Name="hdondls" Relationship="Self.FK_hdondl_daily" FromRole="daily" ToRole="hdondl" />
+          <NavigationProperty Name="phieuxuats" Relationship="Self.FK_phieuxuat_daily" FromRole="daily" ToRole="phieuxuat" />
+        </EntityType>
+        <EntityType Name="hdondl">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="madl" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="sotien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="daily" Relationship="Self.FK_hdondl_daily" FromRole="hdondl" ToRole="daily" />
+        </EntityType>
+        <EntityType Name="hdonnxb">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="manxb" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="sotien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="nxb" Relationship="Self.FK_hdonnxb_nxb" FromRole="hdonnxb" ToRole="nxb" />
+        </EntityType>
+        <EntityType Name="linhvuc">
+          <Key>
+            <PropertyRef Name="malv" />
+          </Key>
+          <Property Name="malv" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tenlv" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="saches" Relationship="Self.FK_sach_linhvuc" FromRole="linhvuc" ToRole="sach" />
+        </EntityType>
+        <EntityType Name="nxb">
+          <Key>
+            <PropertyRef Name="manxb" />
+          </Key>
+          <Property Name="manxb" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tennxb" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dchi" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sdt" Type="String" MaxLength="32" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tonkho" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="hdonnxbs" Relationship="Self.FK_hdonnxb_nxb" FromRole="nxb" ToRole="hdonnxb" />
+          <NavigationProperty Name="phieunhaps" Relationship="Self.FK_phieunhap_nxb" FromRole="nxb" ToRole="phieunhap" />
+        </EntityType>
+        <EntityType Name="phieunhap">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="manxb" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nguoigiao" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tgian" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tongtien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ctphieunhaps" Relationship="Self.FK_ctphieunhap_phieunhap" FromRole="phieunhap" ToRole="ctphieunhap" />
+          <NavigationProperty Name="nxb" Relationship="Self.FK_phieunhap_nxb" FromRole="phieunhap" ToRole="nxb" />
+        </EntityType>
+        <EntityType Name="phieuxuat">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="madl" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nguoinhan" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tgian" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tongtien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ctphieuxuats" Relationship="Self.FK_ctphieuxuat_phieuxuat" FromRole="phieuxuat" ToRole="ctphieuxuat" />
+          <NavigationProperty Name="daily" Relationship="Self.FK_phieuxuat_daily" FromRole="phieuxuat" ToRole="daily" />
+        </EntityType>
+        <EntityType Name="sach">
+          <Key>
+            <PropertyRef Name="masach" />
+          </Key>
+          <Property Name="masach" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tensach" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="linhvuc" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="sluong" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ctphieunhaps" Relationship="Self.FK_ctphieunhap_sach" FromRole="sach" ToRole="ctphieunhap" />
+          <NavigationProperty Name="ctphieuxuats" Relationship="Self.FK_ctphieuxuat_sach" FromRole="sach" ToRole="ctphieuxuat" />
+          <NavigationProperty Name="cttkdls" Relationship="Self.FK_cttkdl_sach" FromRole="sach" ToRole="cttkdl" />
+          <NavigationProperty Name="linhvuc1" Relationship="Self.FK_sach_linhvuc" FromRole="sach" ToRole="linhvuc" />
+        </EntityType>
+        <EntityType Name="tkdl">
+          <Key>
+            <PropertyRef Name="maso" />
+          </Key>
+          <Property Name="maso" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="madl" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="cttkdls" Relationship="Self.FK_cttkdl_tkdl" FromRole="tkdl" ToRole="cttkdl" />
+          <NavigationProperty Name="daily" Relationship="Self.FK_daily_tkdl" FromRole="tkdl" ToRole="daily" />
+        </EntityType>
+        <Association Name="FK_ctphieunhap_phieunhap">
+          <End Role="phieunhap" Type="Self.phieunhap" Multiplicity="1" />
+          <End Role="ctphieunhap" Type="Self.ctphieunhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieunhap">
+              <PropertyRef Name="maso" />
+            </Principal>
+            <Dependent Role="ctphieunhap">
+              <PropertyRef Name="maso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctphieunhap_sach">
+          <End Role="sach" Type="Self.sach" Multiplicity="1" />
+          <End Role="ctphieunhap" Type="Self.ctphieunhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sach">
+              <PropertyRef Name="masach" />
+            </Principal>
+            <Dependent Role="ctphieunhap">
+              <PropertyRef Name="masach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctphieuxuat_phieuxuat">
+          <End Role="phieuxuat" Type="Self.phieuxuat" Multiplicity="1" />
+          <End Role="ctphieuxuat" Type="Self.ctphieuxuat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieuxuat">
+              <PropertyRef Name="maso" />
+            </Principal>
+            <Dependent Role="ctphieuxuat">
+              <PropertyRef Name="maso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctphieuxuat_sach">
+          <End Role="sach" Type="Self.sach" Multiplicity="1" />
+          <End Role="ctphieuxuat" Type="Self.ctphieuxuat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sach">
+              <PropertyRef Name="masach" />
+            </Principal>
+            <Dependent Role="ctphieuxuat">
+              <PropertyRef Name="masach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cttkdl_sach">
+          <End Role="sach" Type="Self.sach" Multiplicity="1" />
+          <End Role="cttkdl" Type="Self.cttkdl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sach">
+              <PropertyRef Name="masach" />
+            </Principal>
+            <Dependent Role="cttkdl">
+              <PropertyRef Name="masach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cttkdl_tkdl">
+          <End Role="tkdl" Type="Self.tkdl" Multiplicity="1" />
+          <End Role="cttkdl" Type="Self.cttkdl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tkdl">
+              <PropertyRef Name="maso" />
+            </Principal>
+            <Dependent Role="cttkdl">
+              <PropertyRef Name="maso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_daily_tkdl">
+          <End Role="daily" Type="Self.daily" Multiplicity="1" />
+          <End Role="tkdl" Type="Self.tkdl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="daily">
+              <PropertyRef Name="madl" />
+            </Principal>
+            <Dependent Role="tkdl">
+              <PropertyRef Name="madl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdondl_daily">
+          <End Role="daily" Type="Self.daily" Multiplicity="1" />
+          <End Role="hdondl" Type="Self.hdondl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="daily">
+              <PropertyRef Name="madl" />
+            </Principal>
+            <Dependent Role="hdondl">
+              <PropertyRef Name="madl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phieuxuat_daily">
+          <End Role="daily" Type="Self.daily" Multiplicity="1" />
+          <End Role="phieuxuat" Type="Self.phieuxuat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="daily">
+              <PropertyRef Name="madl" />
+            </Principal>
+            <Dependent Role="phieuxuat">
+              <PropertyRef Name="madl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdonnxb_nxb">
+          <End Role="nxb" Type="Self.nxb" Multiplicity="1" />
+          <End Role="hdonnxb" Type="Self.hdonnxb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nxb">
+              <PropertyRef Name="manxb" />
+            </Principal>
+            <Dependent Role="hdonnxb">
+              <PropertyRef Name="manxb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sach_linhvuc">
+          <End Role="linhvuc" Type="Self.linhvuc" Multiplicity="1" />
+          <End Role="sach" Type="Self.sach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="linhvuc">
+              <PropertyRef Name="malv" />
+            </Principal>
+            <Dependent Role="sach">
+              <PropertyRef Name="linhvuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phieunhap_nxb">
+          <End Role="nxb" Type="Self.nxb" Multiplicity="1" />
+          <End Role="phieunhap" Type="Self.phieunhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nxb">
+              <PropertyRef Name="manxb" />
+            </Principal>
+            <Dependent Role="phieunhap">
+              <PropertyRef Name="manxb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLSACHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ctphieunhaps" EntityType="Self.ctphieunhap" />
+          <EntitySet Name="ctphieuxuats" EntityType="Self.ctphieuxuat" />
+          <EntitySet Name="cttkdls" EntityType="Self.cttkdl" />
+          <EntitySet Name="dailies" EntityType="Self.daily" />
+          <EntitySet Name="hdondls" EntityType="Self.hdondl" />
+          <EntitySet Name="hdonnxbs" EntityType="Self.hdonnxb" />
+          <EntitySet Name="linhvucs" EntityType="Self.linhvuc" />
+          <EntitySet Name="nxbs" EntityType="Self.nxb" />
+          <EntitySet Name="phieunhaps" EntityType="Self.phieunhap" />
+          <EntitySet Name="phieuxuats" EntityType="Self.phieuxuat" />
+          <EntitySet Name="saches" EntityType="Self.sach" />
+          <EntitySet Name="tkdls" EntityType="Self.tkdl" />
+          <AssociationSet Name="FK_ctphieunhap_phieunhap" Association="Self.FK_ctphieunhap_phieunhap">
+            <End Role="phieunhap" EntitySet="phieunhaps" />
+            <End Role="ctphieunhap" EntitySet="ctphieunhaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctphieunhap_sach" Association="Self.FK_ctphieunhap_sach">
+            <End Role="sach" EntitySet="saches" />
+            <End Role="ctphieunhap" EntitySet="ctphieunhaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctphieuxuat_phieuxuat" Association="Self.FK_ctphieuxuat_phieuxuat">
+            <End Role="phieuxuat" EntitySet="phieuxuats" />
+            <End Role="ctphieuxuat" EntitySet="ctphieuxuats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctphieuxuat_sach" Association="Self.FK_ctphieuxuat_sach">
+            <End Role="sach" EntitySet="saches" />
+            <End Role="ctphieuxuat" EntitySet="ctphieuxuats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cttkdl_sach" Association="Self.FK_cttkdl_sach">
+            <End Role="sach" EntitySet="saches" />
+            <End Role="cttkdl" EntitySet="cttkdls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cttkdl_tkdl" Association="Self.FK_cttkdl_tkdl">
+            <End Role="tkdl" EntitySet="tkdls" />
+            <End Role="cttkdl" EntitySet="cttkdls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_daily_tkdl" Association="Self.FK_daily_tkdl">
+            <End Role="daily" EntitySet="dailies" />
+            <End Role="tkdl" EntitySet="tkdls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdondl_daily" Association="Self.FK_hdondl_daily">
+            <End Role="daily" EntitySet="dailies" />
+            <End Role="hdondl" EntitySet="hdondls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phieuxuat_daily" Association="Self.FK_phieuxuat_daily">
+            <End Role="daily" EntitySet="dailies" />
+            <End Role="phieuxuat" EntitySet="phieuxuats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdonnxb_nxb" Association="Self.FK_hdonnxb_nxb">
+            <End Role="nxb" EntitySet="nxbs" />
+            <End Role="hdonnxb" EntitySet="hdonnxbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sach_linhvuc" Association="Self.FK_sach_linhvuc">
+            <End Role="linhvuc" EntitySet="linhvucs" />
+            <End Role="sach" EntitySet="saches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phieunhap_nxb" Association="Self.FK_phieunhap_nxb">
+            <End Role="nxb" EntitySet="nxbs" />
+            <End Role="phieunhap" EntitySet="phieunhaps" />
+          </AssociationSet>
+          <FunctionImport Name="TimkiemDaily" ReturnType="Collection(QLSACHModel.TimkiemDaily_Result)">
+            <Parameter Name="s" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TimkiemNXB" ReturnType="Collection(QLSACHModel.TimkiemNXB_Result)">
+            <Parameter Name="s" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TimkiemSach" ReturnType="Collection(QLSACHModel.TimkiemSach_Result)">
+            <Parameter Name="s" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="TimkiemDaily_Result">
+          <Property Type="String" Name="madl" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="tendl" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="dchi" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="sdt" Nullable="false" MaxLength="32" />
+          <Property Type="Int32" Name="tonkho" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimkiemNXB_Result">
+          <Property Type="String" Name="manxb" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="tennxb" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="dchi" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="sdt" Nullable="false" MaxLength="32" />
+          <Property Type="Int32" Name="tonkho" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimkiemSach_Result">
+          <Property Type="String" Name="masach" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="tensach" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="sluong" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLSACHModelStoreContainer" CdmEntityContainer="QLSACHEntities">
+          <EntitySetMapping Name="ctphieunhaps">
+            <EntityTypeMapping TypeName="QLSACHModel.ctphieunhap">
+              <MappingFragment StoreEntitySet="ctphieunhap">
+                <ScalarProperty Name="maso" ColumnName="maso" />
+                <ScalarProperty Name="masach" ColumnName="masach" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="thanhtien" ColumnName="thanhtien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctphieuxuats">
+            <EntityTypeMapping TypeName="QLSACHModel.ctphieuxuat">
+              <MappingFragment StoreEntitySet="ctphieuxuat">
+                <ScalarProperty Name="maso" ColumnName="maso" />
+                <ScalarProperty Name="masach" ColumnName="masach" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="thanhtien" ColumnName="thanhtien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cttkdls">
+            <EntityTypeMapping TypeName="QLSACHModel.cttkdl">
+              <MappingFragment StoreEntitySet="cttkdl">
+                <ScalarProperty Name="maso" ColumnName="maso" />
+                <ScalarProperty Name="masach" ColumnName="masach" />
+                <ScalarProperty Name="sluong" ColumnName="sluong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dailies">
+            <EntityTypeMapping TypeName="QLSACHModel.daily">
+              <MappingFragment StoreEntitySet="daily">
+                <ScalarProperty Name="madl" ColumnName="madl" />
+                <ScalarProperty Name="tendl" ColumnName="tendl" />
+                <ScalarProperty Name="dchi" ColumnName="dchi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="tonkho" ColumnName="tonkho" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hdondls">
+            <EntityTypeMapping TypeName="QLSACHModel.hdondl">
+              <MappingFragment StoreEntitySet="hdondl">
+                <ScalarProperty Name="maso" ColumnName="maso" />
+                <ScalarProperty Name="madl" ColumnName="madl" />
+                <ScalarProperty Name="ngay" ColumnName="ngay" />
+                <ScalarProperty Name="sotien" ColumnName="sotien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hdonnxbs">
+            <EntityTypeMapping TypeName="QLSACHModel.hdonnxb">
+              <MappingFragment StoreEntitySet="hdonnxb">
+                <ScalarProperty Name="maso" ColumnName="maso" />
+                <ScalarProperty Name="manxb" ColumnName="manxb" />
+                <ScalarProperty Name="ngay" ColumnName="ngay" />
+                <ScalarProperty Name="sotien" ColumnName="sotien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="linhvucs">
+            <EntityTypeMapping TypeName="QLSACHModel.linhvuc">
+              <MappingFragment StoreEntitySet="linhvuc">
+                <ScalarProperty Name="malv" ColumnName="malv" />
+                <ScalarProperty Name="tenlv" ColumnName="tenlv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nxbs">
+            <EntityTypeMapping TypeName="QLSACHModel.nxb">
+              <MappingFragment StoreEntitySet="nxb">
+                <ScalarProperty Name="manxb" ColumnName="manxb" />
+                <ScalarProperty Name="tennxb" ColumnName="tennxb" />
+                <ScalarProperty Name="dchi" ColumnName="dchi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="tonkho" ColumnName="tonkho" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phieunhaps">
+            <EntityTypeMapping TypeName="QLSACHModel.phieunhap">
+              <MappingFragment StoreEntitySet="phieunhap">
+                <ScalarProperty Name="maso" ColumnName="maso" />
+                <ScalarProperty Name="manxb" ColumnName="manxb" />
+                <ScalarProperty Name="nguoigiao" ColumnName="nguoigiao" />
+                <ScalarProperty Name="tgian" ColumnName="tgian" />
+                <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phieuxuats">
+            <EntityTypeMapping TypeName="QLSACHModel.phieuxuat">
+              <MappingFragment StoreEntitySet="phieuxuat">
+                <ScalarProperty Name="maso" ColumnName="maso" />
+                <ScalarProperty Name="madl" ColumnName="madl" />
+                <ScalarProperty Name="nguoinhan" ColumnName="nguoinhan" />
+                <ScalarProperty Name="tgian" ColumnName="tgian" />
+                <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="saches">
+            <EntityTypeMapping TypeName="QLSACHModel.sach">
+              <MappingFragment StoreEntitySet="sach">
+                <ScalarProperty Name="masach" ColumnName="masach" />
+                <ScalarProperty Name="tensach" ColumnName="tensach" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+                <ScalarProperty Name="sluong" ColumnName="sluong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tkdls">
+            <EntityTypeMapping TypeName="QLSACHModel.tkdl">
+              <MappingFragment StoreEntitySet="tkdl">
+                <ScalarProperty Name="maso" ColumnName="maso" />
+                <ScalarProperty Name="madl" ColumnName="madl" />
+                <ScalarProperty Name="ngay" ColumnName="ngay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="TimkiemDaily" FunctionName="QLSACHModel.Store.TimkiemDaily">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLSACHModel.TimkiemDaily_Result">
+                <ScalarProperty Name="madl" ColumnName="madl" />
+                <ScalarProperty Name="tendl" ColumnName="tendl" />
+                <ScalarProperty Name="dchi" ColumnName="dchi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="tonkho" ColumnName="tonkho" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TimkiemNXB" FunctionName="QLSACHModel.Store.TimkiemNXB">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLSACHModel.TimkiemNXB_Result">
+                <ScalarProperty Name="manxb" ColumnName="manxb" />
+                <ScalarProperty Name="tennxb" ColumnName="tennxb" />
+                <ScalarProperty Name="dchi" ColumnName="dchi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="tonkho" ColumnName="tonkho" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TimkiemSach" FunctionName="QLSACHModel.Store.TimkiemSach">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLSACHModel.TimkiemSach_Result">
+                <ScalarProperty Name="masach" ColumnName="masach" />
+                <ScalarProperty Name="tensach" ColumnName="tensach" />
+                <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
+                <ScalarProperty Name="sluong" ColumnName="sluong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

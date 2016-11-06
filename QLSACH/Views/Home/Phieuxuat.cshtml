@@ -1,0 +1,143 @@
+﻿@model Models.phieuxuatVM
+
+@{
+    ViewBag.Title = "Phieuxuat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    var i = 0;
+    $('#form_them').submit(function () {
+        $(this).find('input:text').each(function () {
+            $(this).val($.trim($(this).val()));
+        });
+    });
+</script>
+<div class="component">
+    <div class="sticky-wrap">
+        <h2 class="text-center">THÊM PHIẾU XUẤT</h2>
+        @using (Html.BeginForm("Phieuxuat", "Home", FormMethod.Post, new { @id = "form_them" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <h2 class="text-center">Mã số: @ViewBag.maso</h2>
+                        <input type="hidden" name="phieuxuat.maso" id="phieuxuat.maso" value="@ViewBag.maso" />
+                    </td>
+                </tr>
+                <tr>
+                    <th width="25%">Người giao:</th>
+                    <td>
+                        <input type="text" name="phieuxuat.nguoigiao" id="phieuxuat.nguoigiao" required />
+                        @Html.ValidationMessage("phieuxuat.nguoigiao", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>Ngày giao:</th>
+                    <td>
+                        <input type="date" name="phieuxuat.tgian" id="phieuxuat.tgian" required />
+                        @Html.ValidationMessage("phieuxuat.tgian", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td colspan="2" class="text-center">Thông tin đại lý</td>
+                </tr>
+                <tr>
+                    <th width="25%">Mã đại lý:</th>
+                    <td>
+                        <input type="text" name="daily.madl" id="daily.madl" onchange="madl()" required>
+                        @Html.ValidationMessage("daily.madl", "", new { @class = "text-danger" })
+                        @*<a href="#" onclick="checkdaily()">Kiểm tra</a>*@
+                        <input type="hidden" name="phieuxuat.madl" id="phieuxuat.madl">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tên đại lý:</th>
+                    <td>
+                        <input type="text" name="daily.tendl" id="daily.tendl" required>
+                        @Html.ValidationMessage("daily.tendl", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>Địa chỉ:</th>
+                    <td>
+                        <input type="text" name="daily.dchi" id="daily.dchi" required>
+                        @Html.ValidationMessage("daily.dchi", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại:</th>
+                    <td>
+                        <input type="tel" name="daily.sdt" id="daily.sdt" required>
+                        @Html.ValidationMessage("daily.sdt", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td colspan="2" class="text-center">Thông tin sách</td>
+                </tr>
+                <tr>
+                    <th width="25%">Sách</th>
+                    <td>
+                        @{
+                            IEnumerable<SelectListItem> masachs = (IEnumerable<SelectListItem>)ViewBag.masach;
+                        }
+                        <select name="_masach" id="_masach">
+                            <option value="">Chọn sách...</option>
+                            @foreach (var i in masachs)
+                            {
+                                <option value="@i.Value.Trim()">@i.Text.Trim()</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Số lượng</th>
+                    <td><input type="number" name="sluong" id="sluong" min="1"></td>
+                </tr>
+                <tr>
+                    <th>Giá</th>
+                    <td><input type="number" name="gia" id="gia" min="1000"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a href="#ds-sach" onclick="themctphieuxuat()" class="ui-button-text">Thêm sách</a></td>
+                </tr>
+            </table>
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="5" class="text-center"><h4>Danh sách sách</h4></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">@Html.ValidationMessage("ctphieuxuat", "", new { @class = "text-danger" })</td>
+                    </tr>
+                    <tr>
+                        <th width="25%">Mã sách</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Thành tiền</th>
+                        <th>Tùy chọn</th>
+                    </tr>
+                </thead>
+                <tbody id="ds-sach"></tbody>
+            </table>
+                    <table>
+                        <tr>
+                            <td><h2>Tổng tiền:</h2></td>
+                            <td>
+                                <input type="text" name="phieuxuat.tongtien" id="phieuxuat.tongtien" value="0" readonly="readonly" />
+                                <input type="hidden" name="daily.tonkho" id="daily.tonkho" value="0" />
+                            </td>
+                            <td><h2>VND</h2></td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Lưu phiếu xuất" class="button turquoise" />
+                            }
+    </div>
+</div>

@@ -4811,10 +4811,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .label {
   display: inline;
   padding: .2em .6em .3em;
-  font-size: 75%;
+  font-size: 100%;
   font-weight: bold;
   line-height: 1;
-  color: #ffffff;
+  color:black;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
@@ -4823,7 +4823,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .label[href]:hover,
 .label[href]:focus {
-  color: #ffffff;
+  color: black;
   text-decoration: none;
   cursor: pointer;
 }

@@ -1,0 +1,51 @@
+﻿@model QLSACH.Models.phieunhap
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>phieunhap</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nguoigiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nguoigiao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tgian)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tgian)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tongtien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tongtien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nxb.tennxb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nxb.tennxb)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maso }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
