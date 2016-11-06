@@ -1,34 +1,40 @@
-﻿@model IEnumerable<QLSACH.Models.phieunhap>
+﻿@model IEnumerable<Models.phieunhap>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Phiếu nhập";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>QUẢN LÝ PHIẾU NHẬP</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm phiếu nhập", "Phieunhap","Home")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nguoigiao)
+            Mã số
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tgian)
+           Người giao
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tongtien)
+            Thời gian
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nxb.tennxb)
+            Tổng tiền
+        </th>
+        <th>
+            Nhà xuất bản
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.maso)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.nguoigiao)
         </td>
@@ -42,9 +48,7 @@
             @Html.DisplayFor(modelItem => item.nxb.tennxb)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maso.Trim() }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maso.Trim() }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maso.Trim() })
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.maso.Trim() })
         </td>
     </tr>
 }

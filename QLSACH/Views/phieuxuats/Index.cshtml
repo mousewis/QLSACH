@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QLSACH.Models.phieuxuat>
+﻿@model IEnumerable<Models.phieuxuat>
 
 @{
     ViewBag.Title = "Index";
@@ -8,27 +8,31 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm phiếu xuất", "Phieuxuat","Home")
 </p>
 <table class="table">
     <tr>
+        <th>Mã số</th>
         <th>
-            @Html.DisplayNameFor(model => model.nguoinhan)
+            Người nhận
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tgian)
+            Thời gian
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tongtien)
+            Tổng tiền
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.daily.tendl)
+            Đại lý
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.maso)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.nguoinhan)
         </td>
@@ -42,9 +46,7 @@
             @Html.DisplayFor(modelItem => item.daily.tendl)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maso }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maso }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maso })
+            @Html.ActionLink("Details", "Details", new { id=item.maso })
         </td>
     </tr>
 }

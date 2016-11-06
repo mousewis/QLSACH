@@ -1,34 +1,36 @@
-﻿@model IEnumerable<QLSACH.Models.daily>
+﻿@model IEnumerable<Models.daily>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Đại lý";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>DANH SÁCH ĐẠI LÝ</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.tendl)
+            Mã số
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dchi)
+            Tên đại lý
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sdt)
+            Địa chỉ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tonkho)
+            Số điện thoại
         </th>
-        <th></th>
+        <th>
+            Nợ
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.madl)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.tendl)
         </td>
@@ -40,11 +42,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tonkho)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.madl }) |
-            @Html.ActionLink("Details", "Details", new { id=item.madl }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.madl })
         </td>
     </tr>
 }

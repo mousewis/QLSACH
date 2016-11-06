@@ -1,6 +1,18 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Trang chủ";
 }
 
 <!--login form-->
+<div class="component">
+    <div class="sticky-wrap">
+        <h2>VUI LÒNG CHỌN CHỨC NĂNG MUỐN SỬ DỤNG:</h2>
+        <ul class="codrops-demos padding-right">
+            <li class="text-center">@Html.ActionLink("Phiếu nhập", "Index", "phieunhaps")</li>
+            <li class="text-center">@Html.ActionLink("Phiếu xuất", "Index", "phieuxuats")</li>
+            <li class="text-center">@Html.ActionLink("Sách", "Index", "sachs")</li>
+            <li class="text-center">@Html.ActionLink("Nhà xuất bản", "Index", "nxbs")</li>
+            <li class="text-center">@Html.ActionLink("Đại lý", "Index", "dailes")</li>
+        </ul>
+        </div>
+    </div>

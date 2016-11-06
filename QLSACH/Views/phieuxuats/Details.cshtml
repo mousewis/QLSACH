@@ -1,51 +1,97 @@
-﻿@model QLSACH.Models.phieuxuat
+﻿@model Models.phieuxuatVM
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết phiếu xuất";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="component">
+    <div class="sticky-wrap">
+        <h2 class="text-center">CHI TIẾT PHIẾU XUẤT</h2>
+        <table>
+            <tr>
+                <td colspan="2">
+                    <h2 class="text-center">Mã số: @Html.DisplayFor(model => model.phieuxuat.maso)</h2>
+                </td>
+            </tr>
+            <tr>
+                <th width="25%">Người giao:</th>
+                <td>
+                    @Html.DisplayFor(model => model.phieuxuat.nguoinhan)
+                </td>
+            </tr>
+            <tr>
+                <th>Ngày giao:</th>
+                <td>
+                    @Html.DisplayFor(model => model.phieuxuat.tgian)
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td colspan="2" class="text-center">Thông tin đại lý</td>
+            </tr>
+            <tr>
+                <th width="25%">Mã đại lý:</th>
+                <td>
+                    @Html.DisplayFor(model => model.daily.madl)
+                </td>
+            </tr>
+            <tr>
+                <th>Tên đại lý:</th>
+                <td>
+                    @Html.DisplayFor(model => model.daily.tendl)
+                </td>
+            </tr>
+            <tr>
+                <th>Địa chỉ:</th>
+                <td>
+                    @Html.DisplayFor(model => model.daily.dchi)
+                </td>
+            </tr>
+            <tr>
+                <th>Số điện thoại:</th>
+                <td>
+                    @Html.DisplayFor(model => model.daily.sdt)
+                </td>
+            </tr>
+        </table>
 
-<div>
-    <h4>phieuxuat</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nguoinhan)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nguoinhan)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tgian)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tgian)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tongtien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tongtien)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.daily.tendl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.daily.tendl)
-        </dd>
-
-    </dl>
+        <table>
+            <thead>
+                <tr>
+                    <td colspan="4" class="text-center"><h4>Danh sách sách</h4></td>
+                </tr>
+                <tr>
+                    <th width="25%">Mã sách</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody id="ds-sach">
+                @foreach (var item in Model.ctphieuxuat)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.masach)</td>
+                        <td>@Html.DisplayFor(modelItem => item.soluong)</td>
+                        <td>@Html.DisplayFor(modelItem => item.gia)</td>
+                        <td>@Html.DisplayFor(modelItem => item.thanhtien)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <table>
+            <tr>
+                <td><h2>Tổng tiền:</h2></td>
+                <td>
+                    <h2 id="tongtien">
+                        <script>
+                                $('#tongtien').text($.number(@Html.DisplayFor(model => model.phieuxuat.tongtien)))</script>
+                    </h2>
+                </td>
+                <td><h2>VND</h2></td>
+            </tr>
+        </table>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maso }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

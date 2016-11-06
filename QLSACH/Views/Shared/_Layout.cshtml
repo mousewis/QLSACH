@@ -14,6 +14,7 @@
     @Scripts.Render("~/Scripts/Autocomplete.js")
     @Scripts.Render("~/Scripts/Accordion.js")
     @Scripts.Render("~/Scripts/user.js")
+    @Scripts.Render("~/Scripts/jquery.number.min.js")
     @*@Scripts.Render("~/Scripts/jquery.stickyheader.js")*@
     @*@Scripts.Render("~/bundles/bootstrap")*@
     <meta name="description" content="The description of my page" />
@@ -22,10 +23,13 @@
     <div class="container">
         <!-- Top Navigation -->
         <header>
-            <h1>Quản lý công ty phát hành sách</h1>
+            <a href="/Home/Index" style="font-size:50px">Quản lý công ty phát hành sách</a>
             <nav class="codrops-demos">
-                @Html.ActionLink("Phiếu nhập", "Phieunhap", "Home");
-                @Html.ActionLink("Phiếu xuất", "Phieuxuat", "Home");
+                @Html.ActionLink("Phiếu nhập", "Index", "phieunhaps")
+                @Html.ActionLink("Phiếu xuất", "Index", "phieuxuats")
+                @Html.ActionLink("Sách", "Index", "saches")
+                @Html.ActionLink("Nhà xuất bản", "Index", "nxbs")
+                @Html.ActionLink("Đại lý", "Index", "dailes")
             </nav>
         </header>
         @RenderBody()
