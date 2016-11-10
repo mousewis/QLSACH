@@ -63,7 +63,6 @@ namespace QLSACH_WinForm
                 MessageBox.Show("Không được chọn nhiều sách để sửa");
             else
             {
-                
                 AddorEdit f2 = new AddorEdit(sachDataGridView.CurrentRow.Cells[0].Value.ToString().Trim(), sachDataGridView.CurrentRow.Cells[1].Value.ToString().Trim(), sachDataGridView.CurrentRow.Cells[2].Value.ToString().Trim());
                 f2.ShowDialog();
                 OnLoad(null);
