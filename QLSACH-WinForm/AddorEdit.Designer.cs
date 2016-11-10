@@ -36,10 +36,10 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.Save_btn = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.linhvucBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.linhvucBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.linhvucBindingSource)).BeginInit();
+            this.linhvucBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.linhvucBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.linhvucBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -95,8 +95,12 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.linhvucBindingSource, "tenlv", true));
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.linhvucBindingSource, "tenlv", true));
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.linhvucBindingSource, "tenlv", true));
             this.comboBox1.DataSource = this.linhvucBindingSource1;
             this.comboBox1.DisplayMember = "tenlv";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(104, 100);
             this.comboBox1.Name = "comboBox1";
@@ -104,13 +108,13 @@
             this.comboBox1.TabIndex = 7;
             this.comboBox1.ValueMember = "malv";
             // 
-            // linhvucBindingSource
-            // 
-            this.linhvucBindingSource.DataSource = typeof(Models.linhvuc);
-            // 
             // linhvucBindingSource1
             // 
             this.linhvucBindingSource1.DataSource = typeof(Models.linhvuc);
+            // 
+            // linhvucBindingSource
+            // 
+            this.linhvucBindingSource.DataSource = typeof(Models.linhvuc);
             // 
             // AddorEdit
             // 
@@ -127,8 +131,8 @@
             this.Name = "AddorEdit";
             this.Text = "AddorEdit";
             this.Load += new System.EventHandler(this.AddorEdit_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.linhvucBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.linhvucBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.linhvucBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
