@@ -25,7 +25,7 @@ namespace QLSACH_WinForm
                 textBox1.Text = masach.Trim();
             sach sach = db.saches.Find(masach.Trim());
             textBox3.Text = sach.tensach;
-            comboBox1.SelectedValue = malinhvuc.Trim();
+            comboBox1.SelectedValue = sach.linhvuc1.malv;
             ///comboBox1.SelectedText.Equals(malinhvuc);
             ///comboBox1.SelectedValue.Equals(malinhvuc);
             
