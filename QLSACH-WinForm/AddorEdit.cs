@@ -19,13 +19,15 @@ namespace QLSACH_WinForm
         {
             InitializeComponent();
         }
-        public AddorEdit(string masach, string tensach, string malinhvuc)
+        public AddorEdit(string masach, string tensach, string linhvuc)
         {
+            
             InitializeComponent();
                 textBox1.Text = masach;
                 textBox3.Text = tensach;
-            comboBox1.SelectedText.Equals(malinhvuc);
-            
+            var lv = db.linhvucs.Where(c=>c.tenlv.Equals(linhvuc));
+            foreach (var a in lv)
+                comboBox1.SelectedValue = a.malv;
         }
 
         private void AddorEdit_Load(object sender, EventArgs e)
@@ -37,8 +39,8 @@ namespace QLSACH_WinForm
         private void Save_btn_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(comboBox1.SelectedValue.ToString());
-            SachDAL.ADD_Sach(textBox1.Text,textBox3.Text,comboBox1.SelectedValue.ToString());
-            this.Close();
+            //SachDAL.ADD_Sach(textBox1.Text,textBox3.Text,comboBox1.SelectedValue.ToString());
+            //this.Close();
         }
     }
 }

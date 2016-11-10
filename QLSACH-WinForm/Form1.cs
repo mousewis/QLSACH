@@ -63,8 +63,13 @@ namespace QLSACH_WinForm
                 MessageBox.Show("Không được chọn nhiều sách để sửa");
             else
             {
-                
-                AddorEdit f2 = new AddorEdit(sachDataGridView.CurrentRow.Cells[0].Value.ToString().Trim(), sachDataGridView.CurrentRow.Cells[1].Value.ToString().Trim(), sachDataGridView.CurrentRow.Cells[2].Value.ToString().Trim());
+                //foreach (var entity in db.saches.Local.ToBindingList())
+                //{
+                //    string description = entity.linhvuc1.tenlv;
+                //    sachDataGridView.Rows[row].Cells[2].Value = description;
+                //    row++;
+                //}
+                AddorEdit f2 = new AddorEdit(sachDataGridView.CurrentRow.Cells[0].Value.ToString(), sachDataGridView.CurrentRow.Cells[1].Value.ToString(), sachDataGridView.CurrentRow.Cells[2].Value.ToString());
                 f2.ShowDialog();
                 OnLoad(null);
             }
