@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSACH", "QLSACH\QLSACH.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{13648887-9714-4C01-9BAC-5A21C808EE70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSACH-WinForm", "QLSACH-WinForm\QLSACH-WinForm.csproj", "{30703F8F-90F3-4027-9886-8ED071457853}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{13648887-9714-4C01-9BAC-5A21C808EE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13648887-9714-4C01-9BAC-5A21C808EE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13648887-9714-4C01-9BAC-5A21C808EE70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30703F8F-90F3-4027-9886-8ED071457853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30703F8F-90F3-4027-9886-8ED071457853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30703F8F-90F3-4027-9886-8ED071457853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30703F8F-90F3-4027-9886-8ED071457853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
