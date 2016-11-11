@@ -28,13 +28,14 @@ namespace QLSACH_WinForm
             db.saches.Load();
             this.sachBindingSource.DataSource = db.saches.Local.ToBindingList();
             int row = 0;
-            foreach(var entity in db.saches.Local.ToBindingList())
+            foreach (var entity in db.saches.Local.ToBindingList())
             {
                 string description = entity.linhvuc1.tenlv;
                 sachDataGridView.Rows[row].Cells[2].Value = description;
                 row++;
             }
-        }
+            dataGridView2.DataSource = db.saches.Local.ToBindingList();
+         }
 
         private void Add_btn_Click(object sender, EventArgs e)
         {
@@ -50,8 +51,9 @@ namespace QLSACH_WinForm
             {
                 foreach (DataGridViewRow row in sachDataGridView.SelectedRows)
                 {
-                    SachDAL.DEL_Sach(row.Cells[0].Value.ToString());
+                    string value = row.Cells[0].Value.ToString();
                     sachDataGridView.Rows.Remove(row);
+                    SachDAL.DEL_Sach(value);
                 }
             }
 
@@ -63,16 +65,16 @@ namespace QLSACH_WinForm
                 MessageBox.Show("Không được chọn nhiều sách để sửa");
             else
             {
-                //foreach (var entity in db.saches.Local.ToBindingList())
-                //{
-                //    string description = entity.linhvuc1.tenlv;
-                //    sachDataGridView.Rows[row].Cells[2].Value = description;
-                //    row++;
-                //}
                 AddorEdit f2 = new AddorEdit(sachDataGridView.CurrentRow.Cells[0].Value.ToString(), sachDataGridView.CurrentRow.Cells[1].Value.ToString(), sachDataGridView.CurrentRow.Cells[2].Value.ToString());
                 f2.ShowDialog();
                 OnLoad(null);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DateTime date = new DateTime(2016, 10, 20);
+            SachDAL.Thong("dfsd",date,DateTime.Now);
         }
     }
 }

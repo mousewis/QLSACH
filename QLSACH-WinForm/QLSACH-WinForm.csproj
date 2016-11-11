@@ -142,7 +142,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:\Documents\Education\XDPMTHEOMHPL\QLSACH\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Models.csproj">
       <Project>{13648887-9714-4c01-9bac-5a21c808ee70}</Project>
       <Name>Models</Name>
     </ProjectReference>
