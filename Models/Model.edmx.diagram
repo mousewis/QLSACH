@@ -4,20 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6847698549824df48a684e67b33d6b63" Name="Diagram1">
-        <EntityTypeShape EntityType="QLSACHModel.ctphieunhap" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.ctphieuxuat" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.cttkdl" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.daily" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.hdondl" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.hdonnxb" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.linhvuc" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.nxb" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.phieunhap" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.phieuxuat" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.sach" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLSACHModel.tkdl" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="QLSACHModel.FK_ctphieunhap_phieunhap" ManuallyRouted="false" />
+      <Diagram DiagramId="f4c1cf8c25844437b1ca0788606d0683" Name="Diagram1">
+        <EntityTypeShape EntityType="QLSACHModel.ctphieunhap" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.ctphieuxuat" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.cttkdl" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.daily" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.hdondl" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.hdonnxb" Width="1.5" PointX="10" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.linhvuc" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.nxb" Width="1.5" PointX="7" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.phieunhap" Width="1.5" PointX="10" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.phieuxuat" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.sach" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.tkdl" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
         <AssociationConnector Association="QLSACHModel.FK_ctphieunhap_sach" ManuallyRouted="false" />
         <AssociationConnector Association="QLSACHModel.FK_ctphieuxuat_phieuxuat" ManuallyRouted="false" />
         <AssociationConnector Association="QLSACHModel.FK_ctphieuxuat_sach" ManuallyRouted="false" />
@@ -29,6 +28,8 @@
         <AssociationConnector Association="QLSACHModel.FK_hdonnxb_nxb" ManuallyRouted="false" />
         <AssociationConnector Association="QLSACHModel.FK_sach_linhvuc" ManuallyRouted="false" />
         <AssociationConnector Association="QLSACHModel.FK_phieunhap_nxb" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLSACHModel.sysdiagram" Width="1.5" PointX="7.375" PointY="7.75" />
+        <AssociationConnector Association="QLSACHModel.FK_ctphieunhap_phieunhap" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

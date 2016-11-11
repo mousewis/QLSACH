@@ -26,8 +26,8 @@ namespace Models
         public System.DateTime tgian { get; set; }
         public int tongtien { get; set; }
     
+        public virtual nxb nxb { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ctphieunhap> ctphieunhaps { get; set; }
-        public virtual nxb nxb { get; set; }
     }
 }

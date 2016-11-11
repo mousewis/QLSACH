@@ -12,13 +12,12 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class cttkdl
+    public partial class sysdiagram
     {
-        public string maso { get; set; }
-        public string masach { get; set; }
-        public int sluong { get; set; }
-    
-        public virtual sach sach { get; set; }
-        public virtual tkdl tkdl { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

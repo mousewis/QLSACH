@@ -10,15 +10,13 @@
 namespace Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class cttkdl
+    public partial class sp_helpdiagrams_Result
     {
-        public string maso { get; set; }
-        public string masach { get; set; }
-        public int sluong { get; set; }
-    
-        public virtual sach sach { get; set; }
-        public virtual tkdl tkdl { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }
