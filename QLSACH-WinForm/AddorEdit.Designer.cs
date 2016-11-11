@@ -133,6 +133,7 @@
             this.Cancel.TabIndex = 8;
             this.Cancel.Text = "Hủy";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // AddorEdit
             // 

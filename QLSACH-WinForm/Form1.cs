@@ -73,8 +73,17 @@ namespace QLSACH_WinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime date = new DateTime(2016, 10, 20);
-            SachDAL.Thong("dfsd",date,DateTime.Now);
+            dataGridView1.DataSource= SachDAL.Thongkekhoangthoigian(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value, dateTimePicker2.Value);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = SachDAL.Thongketaithoidiem(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value);
         }
     }
 }

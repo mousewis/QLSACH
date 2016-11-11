@@ -45,10 +45,15 @@
             this.Edit_btn = new System.Windows.Forms.Button();
             this.Add_btn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.Detail = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,8 +69,8 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sachDataGridView)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sachBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sachBindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -201,6 +206,7 @@
             this.button2.TabIndex = 14;
             this.button2.Text = "Tìm";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 
@@ -243,6 +249,11 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.button1);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.dateTimePicker2);
+            this.tabPage3.Controls.Add(this.dateTimePicker1);
+            this.tabPage3.Controls.Add(this.Detail);
             this.tabPage3.Controls.Add(this.dataGridView2);
             this.tabPage3.Controls.Add(this.label8);
             this.tabPage3.Controls.Add(this.dataGridView1);
@@ -253,6 +264,32 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thống kê tồn kho";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // Detail
+            // 
+            this.Detail.Location = new System.Drawing.Point(400, 269);
+            this.Detail.Name = "Detail";
+            this.Detail.Size = new System.Drawing.Size(74, 63);
+            this.Detail.TabIndex = 4;
+            this.Detail.Text = "Chi Tiết";
+            this.Detail.UseVisualStyleBackColor = true;
+            this.Detail.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.masachDataGridViewTextBoxColumn,
+            this.tensachDataGridViewTextBoxColumn,
+            this.sluongDataGridViewTextBoxColumn});
+            this.dataGridView2.DataSource = this.sachBindingSource;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 184);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(394, 260);
+            this.dataGridView2.TabIndex = 3;
             // 
             // label8
             // 
@@ -267,10 +304,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(435, 184);
+            this.dataGridView1.Location = new System.Drawing.Point(480, 184);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(464, 260);
+            this.dataGridView1.Size = new System.Drawing.Size(448, 260);
             this.dataGridView1.TabIndex = 1;
             // 
             // label2
@@ -284,21 +321,37 @@
             this.label2.Text = "XÂY DỰNG PHẦN MỀM\r\nTHEO MÔ HÌNH PHÂN LỚP\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // dataGridView2
+            // dateTimePicker1
             // 
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.masachDataGridViewTextBoxColumn,
-            this.tensachDataGridViewTextBoxColumn,
-            this.sluongDataGridViewTextBoxColumn});
-            this.dataGridView2.DataSource = this.sachBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(27, 184);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(378, 260);
-            this.dataGridView2.TabIndex = 3;
+            this.dateTimePicker1.Location = new System.Drawing.Point(206, 86);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 5;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(538, 86);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker2.TabIndex = 6;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(152, 91);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 17);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "From :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(499, 91);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(33, 17);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "To :";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -362,13 +415,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(27, 56);
+            this.button1.Location = new System.Drawing.Point(400, 222);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
+            this.button1.TabIndex = 9;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Form1
             // 
@@ -388,8 +441,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.sachDataGridView)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sachBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sachBindingSource1)).EndInit();
             this.ResumeLayout(false);
@@ -428,6 +481,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn masachDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tensachDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sluongDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button Detail;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button1;
     }
 }

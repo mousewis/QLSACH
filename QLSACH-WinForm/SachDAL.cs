@@ -44,17 +44,17 @@ namespace QLSACH_WinForm
                 db.SaveChanges();
             }
         }
-        public static void Thong(string id,DateTime from,DateTime to)
+        public static List<Thongke> Thongkekhoangthoigian(string id,DateTime from,DateTime to)
         {
             List<Thongke> thongke = new List<Thongke>();
             int[] b = new int[100];
             DateTime[] date = new DateTime[100];
             int a = 0;
-            foreach(var nhap in db.phieunhaps.Where(s=>s.tgian> from))
+            foreach(var nhap in db.phieunhaps.Where(s=>s.tgian > from))
             {
                 foreach (var ctn in db.ctphieunhaps.Where(c=>c.maso.Equals(nhap.maso)))
                 {
-                    if (ctn.masach.Equals("8934974135593"))
+                    if (ctn.masach.Equals(id))
                     {
                         b[a] = ctn.soluong;
                         date[a] = nhap.tgian;
@@ -82,8 +82,54 @@ namespace QLSACH_WinForm
                 t.ngnhap = date[i];
                 thongke.Add(t);
             }
-            foreach (var j in thongke)
-                Debug.WriteLine(j.ngnhap + " " + j.ctphieunhap);
+            return thongke;
+        }
+        public static List<Thongke> Thongketaithoidiem(string id, DateTime at)
+        {
+            List<Thongke> thongke = new List<Thongke>();
+            int[] b = new int[100];
+            DateTime[] date = new DateTime[100];
+            int a = 0;
+            int sum = 0;
+            foreach (var nhap in db.phieunhaps.Where(s => s.tgian > at))
+            {
+                foreach (var ctn in db.ctphieunhaps.Where(c => c.maso.Equals(nhap.maso)))
+                {
+                    if (ctn.masach.Equals(id))
+                    {
+                        sum += ctn.soluong;
+                        if(nhap.tgian == at)
+                        {
+                            b[a] = ctn.soluong;
+                        }
+                    }
+                }
+            }
+            //a = 0;
+            //foreach (var nhap in db.phieuxuats.Where(s => s.tgian < from))
+            //{
+            //    foreach (var ctn in db.ctphieuxuats.Where(c => c.maso.Equals(nhap.maso)))
+            //    {
+            //        if (ctn.masach.Equals("8934974135593"))
+            //        {
+            //            thongke[a].ctphieuxuat = ctn.soluong;
+            //            thongke[a].ngxuat = nhap.tgian;
+            //            a++;
+            //        }
+            //    }
+            //}
+         
+                Thongke t = new Thongke();
+                t.ctphieunhap = b[0];
+                t.ngnhap = at;
+           int solg = db.saches.Find(id).sluong - sum;
+                thongke.Add(t);
+            Debug.WriteLine(solg + "");
+            return thongke;
+        }
+        public static void Search_Sach(string searchstring)
+        {
+            var sach = db.TimkiemSach(searchstring);
         }
     }
 }
