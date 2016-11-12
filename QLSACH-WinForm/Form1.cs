@@ -10,13 +10,12 @@ using System.Windows.Forms;
 using Models;
 using System.Data.Entity;
 
+
 namespace QLSACH_WinForm
 {
     public partial class Form1 : Form
     {
         QLSACHEntities db;
-        public static string[] entity;
-
         public Form1()
         {
             InitializeComponent();
@@ -24,19 +23,18 @@ namespace QLSACH_WinForm
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            db = new QLSACHEntities();
-            db.saches.Load();
-            this.sachBindingSource.DataSource = db.saches.Local.ToBindingList();
+            this.sachBindingSource.DataSource = SachDAL.LoadAll(db);
             int row = 0;
-            foreach (var entity in db.saches.Local.ToBindingList())
+            foreach (var entity in SachDAL.LoadAll())
             {
                 string description = entity.linhvuc1.tenlv;
                 sachDataGridView.Rows[row].Cells[2].Value = description;
                 row++;
             }
-            dataGridView2.DataSource = db.saches.Local.ToBindingList();
+            dataGridView2.DataSource = SachDAL.LoadAll();
+            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
          }
-
+       
         private void Add_btn_Click(object sender, EventArgs e)
         {
             AddorEdit f2 = new AddorEdit();
@@ -51,14 +49,12 @@ namespace QLSACH_WinForm
             {
                 foreach (DataGridViewRow row in sachDataGridView.SelectedRows)
                 {
-                    string value = row.Cells[0].Value.ToString();
+                    SachDAL.DEL_Sach(row.Cells[0].Value.ToString());
                     sachDataGridView.Rows.Remove(row);
-                    SachDAL.DEL_Sach(value);
                 }
             }
 
         }
-
         private void Edit_btn_Click(object sender, EventArgs e)
         {
             if (sachDataGridView.SelectedRows.Count > 1)
@@ -73,17 +69,40 @@ namespace QLSACH_WinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource= SachDAL.Thongkekhoangthoigian(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value, dateTimePicker2.Value);
+                if (dateTimePicker2.Enabled == true)
+                    dataGridView1.DataSource = SachDAL.Thongkekhoangthoigian(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value, dateTimePicker2.Value);
+                else
+                    dataGridView1.DataSource = SachDAL.Thongketaithoidiem(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            sachBindingSource.DataSource = SachDAL.Search_Sach(textBox1.Text,db);
+            int row = 0;
+            foreach (var entity in SachDAL.Search_Sach(textBox1.Text))
+            {
+                string description = entity.linhvuc1.tenlv;
+                sachDataGridView.Rows[row].Cells[2].Value = description;
+                row++;
+            }
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private void Active_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = SachDAL.Thongketaithoidiem(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value);
+            if (dateTimePicker2.Enabled == false)
+            {
+                dateTimePicker2.Enabled = true;
+                label9.Text = "Từ :";
+            }
+            else
+            {
+                dateTimePicker2.Enabled = false;
+                label9.Text = "Tại :";
+            }
+            }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker2.MinDate = dateTimePicker1.Value;
         }
     }
 }

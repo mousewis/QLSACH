@@ -14,10 +14,27 @@ namespace QLSACH_WinForm
     class SachDAL
     {
         protected static QLSACHEntities db = new QLSACHEntities();
-        //public static void LoadAll()
-        //{
-        //    db.saches.Load();
-        //}
+        public static BindingList<sach> LoadAll()
+        {
+            db.saches.Load();
+            return db.saches.Local.ToBindingList();
+        }
+        public static BindingList<sach> LoadAll(QLSACHEntities db)
+        {
+            db = new QLSACHEntities();
+            db.saches.Load();
+            return db.saches.Local.ToBindingList();
+        }
+        public static List<sach> Search_Sach(string searchstring)
+        {
+            return db.saches.Where(s => s.tensach.Contains(searchstring)).ToList();
+        }
+        public static List<sach> Search_Sach(string searchstring,QLSACHEntities db)
+        {
+            db = new QLSACHEntities();
+            db.saches.Load();
+            return db.saches.Where(s => s.tensach.Contains(searchstring)).ToList();
+        }
         public static void ADD_Sach(string masach,string tensach,string malinhvuc)
         {
             sach addsach = new sach();
@@ -91,7 +108,8 @@ namespace QLSACH_WinForm
             }
             int i = 0;
             int j = 0;
-            while(i<a || j<b)
+            int solg = db.saches.Find(id).sluong - sum;
+            while (i<a || j<b)
             {
                 if (datenhap[i] > to || datexuat[j] > to && !to.Equals(""))
                     break;
@@ -100,6 +118,8 @@ namespace QLSACH_WinForm
                     {
                         t.ngnhap = datenhap[i];
                         t.ctphieunhap = soluongnhap[i];
+                        t.sluong = solg + soluongnhap[i];
+                        solg += soluongnhap[i];
                         i++;
                     }
                     else
@@ -108,6 +128,8 @@ namespace QLSACH_WinForm
                     {
                         t.ngxuat = datexuat[j];
                         t.ctphieuxuat = soluongxuat[j];
+                        t.sluong = solg - soluongxuat[j];
+                        solg -= soluongxuat[j];
                         j++;
                     }
                     else
@@ -116,6 +138,7 @@ namespace QLSACH_WinForm
                         t.ctphieunhap = soluongnhap[i];
                         t.ngxuat = datexuat[j];
                         t.ctphieuxuat = soluongxuat[j];
+                        t.sluong = solg + soluongnhap[i] - soluongxuat[j];
                         i++; j++;
                     }
                 }
@@ -164,15 +187,12 @@ namespace QLSACH_WinForm
                     t.ngnhap = at;
                     t.ctphieuxuat = soluongxuat;
                     t.ngxuat = at;
-                    t.sluong = db.saches.Find(id).sluong - sum;
+                    t.sluong = db.saches.Find(id).sluong - sum + soluongnhap - soluongxuat;
                 thongke.Add(t);
             
             return thongke;
         }
-        public static void Search_Sach(string searchstring)
-        {
-            var sach = db.TimkiemSach(searchstring);
-        }
+       
        
     }
 }
