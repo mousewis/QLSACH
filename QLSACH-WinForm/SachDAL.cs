@@ -47,89 +47,132 @@ namespace QLSACH_WinForm
         public static List<Thongke> Thongkekhoangthoigian(string id,DateTime from,DateTime to)
         {
             List<Thongke> thongke = new List<Thongke>();
-            int[] b = new int[100];
-            DateTime[] date = new DateTime[100];
-            int a = 0;
-            foreach(var nhap in db.phieunhaps.Where(s=>s.tgian > from))
+            int[] soluongnhap = new int[100];
+            DateTime[] datenhap = new DateTime[100];
+            int a = 0;int sum = 0;
+            foreach(var nhap in db.phieunhaps.Where(s=>s.tgian.Day >= from.Day).OrderBy(c=>c.tgian))
             {
                 foreach (var ctn in db.ctphieunhaps.Where(c=>c.maso.Equals(nhap.maso)))
                 {
                     if (ctn.masach.Equals(id))
                     {
-                        b[a] = ctn.soluong;
-                        date[a] = nhap.tgian;
-                        a++;
+                        sum += ctn.soluong;
+                        if (datenhap.Contains(nhap.tgian))
+                            soluongnhap[a] += ctn.soluong;
+                        else
+                        {
+                            soluongnhap[a] = ctn.soluong;
+                            datenhap[a] = nhap.tgian;
+                            a++;
+                        }
                     }
                 }
             }
-            //a = 0;
-            //foreach (var nhap in db.phieuxuats.Where(s => s.tgian < from))
-            //{
-            //    foreach (var ctn in db.ctphieuxuats.Where(c => c.maso.Equals(nhap.maso)))
-            //    {
-            //        if (ctn.masach.Equals("8934974135593"))
-            //        {
-            //            thongke[a].ctphieuxuat = ctn.soluong;
-            //            thongke[a].ngxuat = nhap.tgian;
-            //            a++;
-            //        }
-            //    }
-            //}
-            for (int i = 0; i < a; i++)
+            int b = 0;
+            int[] soluongxuat = new int[100];
+            DateTime[] datexuat = new DateTime[100];
+            foreach (var xuat in db.phieuxuats.Where(s => s.tgian.Day >= from.Day).OrderBy(c => c.tgian))
             {
+                foreach (var ctx in db.ctphieuxuats.Where(c => c.maso.Equals(xuat.maso)))
+                {
+                    if (ctx.masach.Equals(id))
+                    {
+                        sum -= ctx.soluong;
+                        if (datexuat.Contains(xuat.tgian))
+                            soluongxuat[b] += ctx.soluong;
+                        else
+                        {
+                            soluongxuat[b] = ctx.soluong;
+                            datexuat[b] = xuat.tgian;
+                            b++;
+                        }
+                    }
+                }
+            }
+            int i = 0;
+            int j = 0;
+            while(i<a || j<b)
+            {
+                if (datenhap[i] > to || datexuat[j] > to && !to.Equals(""))
+                    break;
                 Thongke t = new Thongke();
-                t.ctphieunhap = b[i];
-                t.ngnhap = date[i];
+                    if(datenhap[i] > datexuat[j])
+                    {
+                        t.ngnhap = datenhap[i];
+                        t.ctphieunhap = soluongnhap[i];
+                        i++;
+                    }
+                    else
+                    {
+                    if (datenhap[i] < datexuat[j])
+                    {
+                        t.ngxuat = datexuat[j];
+                        t.ctphieuxuat = soluongxuat[j];
+                        j++;
+                    }
+                    else
+                    {
+                        t.ngnhap = datenhap[i];
+                        t.ctphieunhap = soluongnhap[i];
+                        t.ngxuat = datexuat[j];
+                        t.ctphieuxuat = soluongxuat[j];
+                        i++; j++;
+                    }
+                }
                 thongke.Add(t);
+              
             }
             return thongke;
         }
         public static List<Thongke> Thongketaithoidiem(string id, DateTime at)
         {
             List<Thongke> thongke = new List<Thongke>();
-            int[] b = new int[100];
-            DateTime[] date = new DateTime[100];
-            int a = 0;
+            int soluongnhap = 0;
             int sum = 0;
-            foreach (var nhap in db.phieunhaps.Where(s => s.tgian > at))
+             foreach (var nhap in db.phieunhaps.Where(s => s.tgian.Day >= at.Day))
             {
                 foreach (var ctn in db.ctphieunhaps.Where(c => c.maso.Equals(nhap.maso)))
                 {
                     if (ctn.masach.Equals(id))
                     {
                         sum += ctn.soluong;
-                        if(nhap.tgian == at)
+                        if (nhap.tgian.Day == at.Day)
                         {
-                            b[a] = ctn.soluong;
+                            soluongnhap += ctn.soluong;
                         }
                     }
                 }
             }
-            //a = 0;
-            //foreach (var nhap in db.phieuxuats.Where(s => s.tgian < from))
-            //{
-            //    foreach (var ctn in db.ctphieuxuats.Where(c => c.maso.Equals(nhap.maso)))
-            //    {
-            //        if (ctn.masach.Equals("8934974135593"))
-            //        {
-            //            thongke[a].ctphieuxuat = ctn.soluong;
-            //            thongke[a].ngxuat = nhap.tgian;
-            //            a++;
-            //        }
-            //    }
-            //}
-         
+            int b = 0;
+            int soluongxuat = 0;
+            foreach (var xuat in db.phieuxuats.Where(s => s.tgian.Day >= at.Day))
+            {
+                foreach (var ctx in db.ctphieuxuats.Where(c => c.maso.Equals(xuat.maso)))
+                {
+                    if (ctx.masach.Equals(id))
+                    {
+                        sum -= ctx.soluong;
+                        if (xuat.tgian == at)
+                        {
+                            soluongxuat += ctx.soluong;
+                        }
+                    }
+                }
+            }
                 Thongke t = new Thongke();
-                t.ctphieunhap = b[0];
-                t.ngnhap = at;
-           int solg = db.saches.Find(id).sluong - sum;
+                    t.ctphieunhap = soluongnhap;
+                    t.ngnhap = at;
+                    t.ctphieuxuat = soluongxuat;
+                    t.ngxuat = at;
+                    t.sluong = db.saches.Find(id).sluong - sum;
                 thongke.Add(t);
-            Debug.WriteLine(solg + "");
+            
             return thongke;
         }
         public static void Search_Sach(string searchstring)
         {
             var sach = db.TimkiemSach(searchstring);
         }
+       
     }
 }
