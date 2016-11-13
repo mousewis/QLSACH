@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QLSACHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ctphieunhap">
           <Key>
             <PropertyRef Name="maso" />
@@ -109,16 +109,6 @@
           <Property Name="tensach" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="linhvuc" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="sluong" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="tkdl">
           <Key>
@@ -272,37 +262,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="TimkiemDaily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="s" Type="nvarchar" Mode="In" />
         </Function>
@@ -312,7 +271,7 @@
         <Function Name="TimkiemSach" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="s" Type="nvarchar" Mode="In" />
         </Function>
-        <EntityContainer Name="QLSACHModelStoreContainer">
+        <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="ctphieunhap" EntityType="Self.ctphieunhap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctphieuxuat" EntityType="Self.ctphieuxuat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cttkdl" EntityType="Self.cttkdl" Schema="dbo" store:Type="Tables" />
@@ -324,7 +283,6 @@
           <EntitySet Name="phieunhap" EntityType="Self.phieunhap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="phieuxuat" EntityType="Self.phieuxuat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sach" EntityType="Self.sach" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tkdl" EntityType="Self.tkdl" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ctphieunhap_phieunhap" Association="Self.FK_ctphieunhap_phieunhap">
             <End Role="phieunhap" EntitySet="phieunhap" />
@@ -375,10 +333,11 @@
             <End Role="sach" EntitySet="sach" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QLSACHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ctphieunhap">
           <Key>
             <PropertyRef Name="maso" />
@@ -389,8 +348,8 @@
           <Property Name="soluong" Type="Int32" Nullable="false" />
           <Property Name="gia" Type="Int32" Nullable="false" />
           <Property Name="thanhtien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="phieunhap" Relationship="Self.FK_ctphieunhap_phieunhap" FromRole="ctphieunhap" ToRole="phieunhap" />
           <NavigationProperty Name="sach" Relationship="Self.FK_ctphieunhap_sach" FromRole="ctphieunhap" ToRole="sach" />
-          <NavigationProperty Name="phieunhap" Relationship="QLSACHModel.FK_ctphieunhap_phieunhap" FromRole="ctphieunhap" ToRole="phieunhap" />
         </EntityType>
         <EntityType Name="ctphieuxuat">
           <Key>
@@ -478,8 +437,8 @@
           <Property Name="nguoigiao" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="tgian" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="tongtien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ctphieunhaps" Relationship="Self.FK_ctphieunhap_phieunhap" FromRole="phieunhap" ToRole="ctphieunhap" />
           <NavigationProperty Name="nxb" Relationship="Self.FK_phieunhap_nxb" FromRole="phieunhap" ToRole="nxb" />
-          <NavigationProperty Name="ctphieunhaps" Relationship="QLSACHModel.FK_ctphieunhap_phieunhap" FromRole="phieunhap" ToRole="ctphieunhap" />
         </EntityType>
         <EntityType Name="phieuxuat">
           <Key>
@@ -516,6 +475,18 @@
           <NavigationProperty Name="cttkdls" Relationship="Self.FK_cttkdl_tkdl" FromRole="tkdl" ToRole="cttkdl" />
           <NavigationProperty Name="daily" Relationship="Self.FK_daily_tkdl" FromRole="tkdl" ToRole="daily" />
         </EntityType>
+        <Association Name="FK_ctphieunhap_phieunhap">
+          <End Role="phieunhap" Type="Self.phieunhap" Multiplicity="1" />
+          <End Role="ctphieunhap" Type="Self.ctphieunhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieunhap">
+              <PropertyRef Name="maso" />
+            </Principal>
+            <Dependent Role="ctphieunhap">
+              <PropertyRef Name="maso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ctphieunhap_sach">
           <End Role="sach" Type="Self.sach" Multiplicity="1" />
           <End Role="ctphieunhap" Type="Self.ctphieunhap" Multiplicity="*" />
@@ -661,6 +632,10 @@
           <EntitySet Name="phieuxuats" EntityType="Self.phieuxuat" />
           <EntitySet Name="saches" EntityType="Self.sach" />
           <EntitySet Name="tkdls" EntityType="Self.tkdl" />
+          <AssociationSet Name="FK_ctphieunhap_phieunhap" Association="Self.FK_ctphieunhap_phieunhap">
+            <End Role="phieunhap" EntitySet="phieunhaps" />
+            <End Role="ctphieunhap" EntitySet="ctphieunhaps" />
+          </AssociationSet>
           <AssociationSet Name="FK_ctphieunhap_sach" Association="Self.FK_ctphieunhap_sach">
             <End Role="sach" EntitySet="saches" />
             <End Role="ctphieunhap" EntitySet="ctphieunhaps" />
@@ -705,50 +680,15 @@
             <End Role="nxb" EntitySet="nxbs" />
             <End Role="phieunhap" EntitySet="phieunhaps" />
           </AssociationSet>
-          <FunctionImport Name="TimkiemDaily" ReturnType="Collection(QLSACHModel.TimkiemDaily_Result)">
-          <Parameter Name="s" Mode="In" Type="String" />
+          <FunctionImport Name="TimkiemDaily" ReturnType="Collection(Models.TimkiemDaily_Result)">
+            <Parameter Name="s" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="TimkiemNXB" ReturnType="Collection(QLSACHModel.TimkiemNXB_Result)">
-          <Parameter Name="s" Mode="In" Type="String" />
+          <FunctionImport Name="TimkiemNXB" ReturnType="Collection(Models.TimkiemNXB_Result)">
+            <Parameter Name="s" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="TimkiemSach" ReturnType="Collection(QLSACHModel.TimkiemSach_Result)">
-          <Parameter Name="s" Mode="In" Type="String" />
+          <FunctionImport Name="TimkiemSach" ReturnType="Collection(Models.TimkiemSach_Result)">
+            <Parameter Name="s" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="sysdiagrams" EntityType="QLSACHModel.sysdiagram" />
-          <AssociationSet Name="FK_ctphieunhap_phieunhap" Association="QLSACHModel.FK_ctphieunhap_phieunhap">
-            <End Role="phieunhap" EntitySet="phieunhaps" />
-            <End Role="ctphieunhap" EntitySet="ctphieunhaps" />
-          </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLSACHModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLSACHModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
         <ComplexType Name="TimkiemDaily_Result">
           <Property Type="String" Name="madl" Nullable="false" MaxLength="128" />
@@ -770,47 +710,14 @@
           <Property Type="String" Name="linhvuc" Nullable="false" MaxLength="128" />
           <Property Type="Int32" Name="sluong" Nullable="false" />
         </ComplexType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_ctphieunhap_phieunhap">
-          <End Type="QLSACHModel.phieunhap" Role="phieunhap" Multiplicity="1" />
-          <End Type="QLSACHModel.ctphieunhap" Role="ctphieunhap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="phieunhap">
-              <PropertyRef Name="maso" />
-            </Principal>
-            <Dependent Role="ctphieunhap">
-              <PropertyRef Name="maso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QLSACHModelStoreContainer" CdmEntityContainer="QLSACHEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="QLSACHEntities">
           <EntitySetMapping Name="ctphieunhaps">
-            <EntityTypeMapping TypeName="QLSACHModel.ctphieunhap">
+            <EntityTypeMapping TypeName="Models.ctphieunhap">
               <MappingFragment StoreEntitySet="ctphieunhap">
                 <ScalarProperty Name="maso" ColumnName="maso" />
                 <ScalarProperty Name="masach" ColumnName="masach" />
@@ -821,7 +728,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ctphieuxuats">
-            <EntityTypeMapping TypeName="QLSACHModel.ctphieuxuat">
+            <EntityTypeMapping TypeName="Models.ctphieuxuat">
               <MappingFragment StoreEntitySet="ctphieuxuat">
                 <ScalarProperty Name="maso" ColumnName="maso" />
                 <ScalarProperty Name="masach" ColumnName="masach" />
@@ -832,7 +739,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="cttkdls">
-            <EntityTypeMapping TypeName="QLSACHModel.cttkdl">
+            <EntityTypeMapping TypeName="Models.cttkdl">
               <MappingFragment StoreEntitySet="cttkdl">
                 <ScalarProperty Name="maso" ColumnName="maso" />
                 <ScalarProperty Name="masach" ColumnName="masach" />
@@ -841,7 +748,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="dailies">
-            <EntityTypeMapping TypeName="QLSACHModel.daily">
+            <EntityTypeMapping TypeName="Models.daily">
               <MappingFragment StoreEntitySet="daily">
                 <ScalarProperty Name="madl" ColumnName="madl" />
                 <ScalarProperty Name="tendl" ColumnName="tendl" />
@@ -852,7 +759,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="hdondls">
-            <EntityTypeMapping TypeName="QLSACHModel.hdondl">
+            <EntityTypeMapping TypeName="Models.hdondl">
               <MappingFragment StoreEntitySet="hdondl">
                 <ScalarProperty Name="maso" ColumnName="maso" />
                 <ScalarProperty Name="madl" ColumnName="madl" />
@@ -862,7 +769,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="hdonnxbs">
-            <EntityTypeMapping TypeName="QLSACHModel.hdonnxb">
+            <EntityTypeMapping TypeName="Models.hdonnxb">
               <MappingFragment StoreEntitySet="hdonnxb">
                 <ScalarProperty Name="maso" ColumnName="maso" />
                 <ScalarProperty Name="manxb" ColumnName="manxb" />
@@ -872,7 +779,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="linhvucs">
-            <EntityTypeMapping TypeName="QLSACHModel.linhvuc">
+            <EntityTypeMapping TypeName="Models.linhvuc">
               <MappingFragment StoreEntitySet="linhvuc">
                 <ScalarProperty Name="malv" ColumnName="malv" />
                 <ScalarProperty Name="tenlv" ColumnName="tenlv" />
@@ -880,7 +787,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="nxbs">
-            <EntityTypeMapping TypeName="QLSACHModel.nxb">
+            <EntityTypeMapping TypeName="Models.nxb">
               <MappingFragment StoreEntitySet="nxb">
                 <ScalarProperty Name="manxb" ColumnName="manxb" />
                 <ScalarProperty Name="tennxb" ColumnName="tennxb" />
@@ -891,7 +798,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="phieunhaps">
-            <EntityTypeMapping TypeName="QLSACHModel.phieunhap">
+            <EntityTypeMapping TypeName="Models.phieunhap">
               <MappingFragment StoreEntitySet="phieunhap">
                 <ScalarProperty Name="maso" ColumnName="maso" />
                 <ScalarProperty Name="manxb" ColumnName="manxb" />
@@ -902,7 +809,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="phieuxuats">
-            <EntityTypeMapping TypeName="QLSACHModel.phieuxuat">
+            <EntityTypeMapping TypeName="Models.phieuxuat">
               <MappingFragment StoreEntitySet="phieuxuat">
                 <ScalarProperty Name="maso" ColumnName="maso" />
                 <ScalarProperty Name="madl" ColumnName="madl" />
@@ -913,7 +820,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="saches">
-            <EntityTypeMapping TypeName="QLSACHModel.sach">
+            <EntityTypeMapping TypeName="Models.sach">
               <MappingFragment StoreEntitySet="sach">
                 <ScalarProperty Name="masach" ColumnName="masach" />
                 <ScalarProperty Name="tensach" ColumnName="tensach" />
@@ -923,7 +830,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tkdls">
-            <EntityTypeMapping TypeName="QLSACHModel.tkdl">
+            <EntityTypeMapping TypeName="Models.tkdl">
               <MappingFragment StoreEntitySet="tkdl">
                 <ScalarProperty Name="maso" ColumnName="maso" />
                 <ScalarProperty Name="madl" ColumnName="madl" />
@@ -931,9 +838,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="TimkiemDaily" FunctionName="QLSACHModel.Store.TimkiemDaily">
+          <FunctionImportMapping FunctionImportName="TimkiemDaily" FunctionName="Models.Store.TimkiemDaily">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="QLSACHModel.TimkiemDaily_Result">
+              <ComplexTypeMapping TypeName="Models.TimkiemDaily_Result">
                 <ScalarProperty Name="madl" ColumnName="madl" />
                 <ScalarProperty Name="tendl" ColumnName="tendl" />
                 <ScalarProperty Name="dchi" ColumnName="dchi" />
@@ -942,9 +849,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="TimkiemNXB" FunctionName="QLSACHModel.Store.TimkiemNXB">
+          <FunctionImportMapping FunctionImportName="TimkiemNXB" FunctionName="Models.Store.TimkiemNXB">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="QLSACHModel.TimkiemNXB_Result">
+              <ComplexTypeMapping TypeName="Models.TimkiemNXB_Result">
                 <ScalarProperty Name="manxb" ColumnName="manxb" />
                 <ScalarProperty Name="tennxb" ColumnName="tennxb" />
                 <ScalarProperty Name="dchi" ColumnName="dchi" />
@@ -953,9 +860,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="TimkiemSach" FunctionName="QLSACHModel.Store.TimkiemSach">
+          <FunctionImportMapping FunctionImportName="TimkiemSach" FunctionName="Models.Store.TimkiemSach">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="QLSACHModel.TimkiemSach_Result">
+              <ComplexTypeMapping TypeName="Models.TimkiemSach_Result">
                 <ScalarProperty Name="masach" ColumnName="masach" />
                 <ScalarProperty Name="tensach" ColumnName="tensach" />
                 <ScalarProperty Name="linhvuc" ColumnName="linhvuc" />
@@ -963,41 +870,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QLSACHModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QLSACHModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QLSACHModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QLSACHModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLSACHModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLSACHModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLSACHModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLSACHModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLSACHModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLSACHModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

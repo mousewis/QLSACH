@@ -9,9 +9,9 @@ namespace Models
     public class Thongke
     {
         public DateTime? ngnhap { get; set; }
-        //public DateTime? ngxuat { get; set; }
-        //public int? ctphieuxuat { get; set; }
+        public DateTime? ngxuat { get; set; }
+        public int? ctphieuxuat { get; set; }
         public int? ctphieunhap { get; set; }
-        //public int sluong { get; set; }
+        public int sluong { get; set; }
     }
 }

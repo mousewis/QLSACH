@@ -16,12 +16,11 @@ namespace QLSACH_WinForm
         protected static QLSACHEntities db = new QLSACHEntities();
         public static BindingList<sach> LoadAll()
         {
-            db.saches.Load();
-            return db.saches.Local.ToBindingList();
+            return new BindingList<sach>(db.saches.ToList());
         }
         public static BindingList<sach> LoadAll(QLSACHEntities db)
         {
-            db = new QLSACHEntities();
+            
             db.saches.Load();
             return db.saches.Local.ToBindingList();
         }
@@ -166,7 +165,7 @@ namespace QLSACH_WinForm
                     }
                 }
             }
-            int b = 0;
+            //int b = 0;
             int soluongxuat = 0;
             foreach (var xuat in db.phieuxuats.Where(s => s.tgian.Day >= at.Day))
             {

@@ -15,7 +15,7 @@ namespace QLSACH_WinForm
 {
     public partial class Form1 : Form
     {
-        QLSACHEntities db;
+       QLSACHEntities db =  new QLSACHEntities();
         public Form1()
         {
             InitializeComponent();
@@ -77,7 +77,7 @@ namespace QLSACH_WinForm
 
         private void button2_Click(object sender, EventArgs e)
         {
-            sachBindingSource.DataSource = SachDAL.Search_Sach(textBox1.Text,db);
+            //sachBindingSource.DataSource = SachDAL.Search_Sach(textBox1.Text,db);
             int row = 0;
             foreach (var entity in SachDAL.Search_Sach(textBox1.Text))
             {
