@@ -15,10 +15,18 @@ namespace QLSACH_WinForm
 {
     public partial class Form1 : Form
     {
-       QLSACHEntities db =  new QLSACHEntities();
+        QLSACHEntities db = new QLSACHEntities();
         public Form1()
         {
+            
             InitializeComponent();
+            dataGridView2.DataSource = SachDAL.LoadAll();
+            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
+            db.nxbs.Load();
+            comboBox1.DataSource = db.nxbs.Local.ToList();
+            comboBox1.ValueMember = "manxb";
+            comboBox1.DisplayMember = "tennxb";
+            dateTimePicker4.MinDate = dateTimePicker3.Value.AddDays(1);
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -31,8 +39,7 @@ namespace QLSACH_WinForm
                 sachDataGridView.Rows[row].Cells[2].Value = description;
                 row++;
             }
-            dataGridView2.DataSource = SachDAL.LoadAll();
-            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
+          
          }
        
         private void Add_btn_Click(object sender, EventArgs e)
@@ -77,7 +84,7 @@ namespace QLSACH_WinForm
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //sachBindingSource.DataSource = SachDAL.Search_Sach(textBox1.Text,db);
+            sachBindingSource.DataSource = SachDAL.Search_Sach(textBox1.Text,db);
             int row = 0;
             foreach (var entity in SachDAL.Search_Sach(textBox1.Text))
             {
@@ -98,11 +105,16 @@ namespace QLSACH_WinForm
                 dateTimePicker2.Enabled = false;
                 label9.Text = "Tại :";
             }
-            }
+        }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             dateTimePicker2.MinDate = dateTimePicker1.Value;
+        }
+
+        private void XemNo_Click(object sender, EventArgs e)
+        {
+            dataGridView3.DataSource = SachDAL.LoadNo();
         }
     }
 }
