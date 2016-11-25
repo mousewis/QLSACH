@@ -21,7 +21,7 @@ namespace QLSACH_WinForm
         }
         public static BindingList<nxb> LoadNo(string id)
         {
-
+            return null;
         }
         public static BindingList<sach> LoadAll(QLSACHEntities db)
         {

@@ -114,7 +114,7 @@ namespace QLSACH_WinForm
 
         private void XemNo_Click(object sender, EventArgs e)
         {
-            dataGridView3.DataSource = SachDAL.LoadNo();
+            ///dataGridView3.DataSource = SachDAL.LoadNo();
         }
     }
 }

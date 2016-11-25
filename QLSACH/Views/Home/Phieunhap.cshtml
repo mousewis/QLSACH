@@ -81,33 +81,23 @@
                     <td colspan="2" class="text-center">Thông tin sách</td>
                 </tr>
                 <tr>
-                    <th width="25%">Mã sách</th>
-                    <td>
-                        <input type="text" name="masach" id="masach">
-                    </td>
-                </tr>
-                <tr>
-                    <th>Tên sách</th>
-                    <td><input type="text" name="tensach" id="tensach" ></td>
-                </tr>
-                <tr>
-                    <th>Lĩnh vực</th>
+                    <th width="25%">Sách</th>
                     <td>
                         @{
-                            IEnumerable<SelectListItem> linhvucs = (IEnumerable<SelectListItem>)ViewBag.linhvuc;
+                            IEnumerable<SelectListItem> masachs = (IEnumerable<SelectListItem>)ViewBag.masach;
                         }
-                        <select name="linhvuc" id="linhvuc">
-                            @foreach (var i in linhvucs)
+                        <select name="_masach" id="_masach">
+                            <option value="">Chọn sách...</option>
+                            @foreach (var i in masachs)
                             {
-                                <option value="@i.Value.Trim()">@i.Text</option>
+                                <option value="@i.Value.Trim()">@i.Text.Trim()</option>
                             }
                         </select>
                     </td>
-                    @*<td>@Html.DropDownList("linhvuc", linhvucs)</td>*@
                 </tr>
                 <tr>
                     <th>Số lượng</th>
-                    <td><input type="number" name="sluong" id="sluong" min="1"></td>
+                    <td><input type="number" name="_sluong" id="_sluong" min="1"></td>
                 </tr>
                 <tr>
                     <th>Giá</th>

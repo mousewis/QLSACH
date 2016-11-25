@@ -23,6 +23,7 @@ namespace QLSACH.Controllers
             ViewBag.maso = DateTime.Now.ToString("yyyMMddhhmm");
             ViewBag.tgian = DateTime.Now.ToShortDateString();
             ViewBag.linhvuc = new SelectList(db.linhvucs, "malv", "tenlv");
+            ViewBag.masach = new SelectList(db.saches, "masach", "tensach");
             return View();
         }
         [HttpPost]
@@ -41,7 +42,7 @@ namespace QLSACH.Controllers
                     ModelState.AddModelError("nxb.sdt", "Số điện thoại không được để trống");
                 if (string.IsNullOrEmpty(p.nxb.dchi.Trim()))
                     ModelState.AddModelError("nxb.dchi", "Địa chỉ không được để trống");
-                if ((p.ctphieunhap == null) || (p.sach == null))
+                if ((p.ctphieunhap == null))
                     ModelState.AddModelError("ctphieunhap", "Không có dữ liệu để nhập");
                 if (ModelState.IsValid)
                 {
@@ -58,20 +59,20 @@ namespace QLSACH.Controllers
                         db.Entry(_nxb).State = System.Data.Entity.EntityState.Modified;
                     }
                     ////sach
-                    foreach (var i in p.sach)
-                        {
-                            sach _sach = db.saches.Find(i.masach);
-                            if (_sach == null)
-                            {
-                                _sach = new sach { masach = i.masach, tensach = i.tensach, linhvuc = i.linhvuc, sluong = i.sluong };
-                                db.saches.Add(_sach);
-                            }
-                            else
-                            {
-                                _sach = new sach { masach = i.masach, tensach = i.tensach, linhvuc = i.linhvuc, sluong = i.sluong + _sach.sluong };
-                                db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
-                            }
-                        }
+                    //foreach (var i in p.sach)
+                    //    {
+                    //        sach _sach = db.saches.Find(i.masach);
+                    //        if (_sach != null)
+                    //        //{
+                    //            //_sach = new sach { masach = i.masach, tensach = i.tensach, linhvuc = i.linhvuc, sluong = i.sluong };
+                    //            //db.saches.Add(_sach);
+                    //        //}
+                    //        //else
+                    //        {
+                    //            _sach = new sach { masach = i.masach, tensach = i.tensach, linhvuc = i.linhvuc, sluong = i.sluong + _sach.sluong };
+                    //            db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
+                    //        }
+                    //    }
                     
                     ///phieunhap
                     phieunhap _phieunhap = new phieunhap { maso = p.phieunhap.maso.Trim(), manxb = p.phieunhap.manxb.Trim(), nguoigiao = p.phieunhap.nguoigiao.Trim(), tgian = p.phieunhap.tgian, tongtien = p.phieunhap.tongtien };
@@ -79,6 +80,9 @@ namespace QLSACH.Controllers
                         foreach (var j in p.ctphieunhap)
                         {
                             db.ctphieunhaps.Add(j);
+                            sach _sach = db.saches.Find(j.masach);
+                            _sach = new sach { masach = _sach.masach, tensach = _sach.tensach, linhvuc = _sach.linhvuc, sluong = j.soluong + _sach.sluong };
+                            db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
                         }
                     db.SaveChanges();
                     return RedirectToAction("Success");
@@ -86,6 +90,7 @@ namespace QLSACH.Controllers
                 ViewBag.maso = DateTime.Now.ToString("yyyMMddhhmm");
                 ViewBag.tgian = DateTime.Now.ToShortDateString();
                 ViewBag.linhvuc = new SelectList(db.linhvucs, "malv", "tenlv");
+                ViewBag.masach = new SelectList(db.saches, "masach", "tensach");
                 return View(p);
             }
             catch (Exception e)
