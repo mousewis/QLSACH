@@ -26,7 +26,7 @@ namespace QLSACH_WinForm
             comboBox1.DataSource = db.nxbs.Local.ToList();
             comboBox1.ValueMember = "manxb";
             comboBox1.DisplayMember = "tennxb";
-            dateTimePicker4.MinDate = dateTimePicker3.Value.AddDays(1);
+            
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -111,10 +111,28 @@ namespace QLSACH_WinForm
         {
             dateTimePicker2.MinDate = dateTimePicker1.Value;
         }
-
+        public static void AdjustView(DataGridView data,List<ctphieunhap> phieunhap)
+        {
+            data.Columns["maso"].Visible = false;
+            data.Columns["phieunhap"].Visible = false;
+            data.Columns["sach"].Visible = false;
+            data.Columns.Add("TenSach", "Tên Sách");
+            data.Columns["TenSach"].DisplayIndex = 2;
+            int i = 0;
+            foreach (var item in phieunhap)
+            {
+                string value = item.sach.tensach;
+                data.Rows[i++].Cells["TenSach"].Value = value;
+            }
+        }
         private void XemNo_Click(object sender, EventArgs e)
         {
-            ///dataGridView3.DataSource = SachDAL.LoadNo();
+            List<ctphieunhap> phieunhap = new List<ctphieunhap>();
+            phieunhap = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), int.Parse(comboBox2.SelectedItem.ToString()), int.Parse(comboBox3.SelectedItem.ToString()));
+            dataGridView3.DataSource = phieunhap;
+            AdjustView(dataGridView3, phieunhap);
+            for (int i = 0; i < dataGridView3.ColumnCount; i++)
+                dataGridView3.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
     }
 }

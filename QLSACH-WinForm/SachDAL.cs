@@ -19,10 +19,6 @@ namespace QLSACH_WinForm
             db.saches.Load();
             return db.saches.Local.ToBindingList();
         }
-        public static BindingList<nxb> LoadNo(string id)
-        {
-            return null;
-        }
         public static BindingList<sach> LoadAll(QLSACHEntities db)
         {
             db = new QLSACHEntities();
@@ -39,6 +35,8 @@ namespace QLSACH_WinForm
             db.saches.Load();
             return db.saches.Where(s => s.tensach.Contains(searchstring)).ToList();
         }
+        public static sach SearchID(string id)
+        { return db.saches.Find(id); }
         public static void ADD_Sach(string masach,string tensach,string malinhvuc)
         {
             sach addsach = new sach();
@@ -196,7 +194,13 @@ namespace QLSACH_WinForm
             
             return thongke;
         }
-       
-       
+        public static List<ctphieunhap> LoadNo(string id, int Year, int month)
+        {
+            db.ctphieunhaps.Load();
+            List<ctphieunhap> phieunhap = new List<ctphieunhap>();
+                phieunhap = db.ctphieunhaps.Where(s => s.phieunhap.tgian.Year == Year && s.phieunhap.tgian.Month == month && s.phieunhap.manxb.Equals(id)).ToList();
+            return phieunhap;
+        }
+
     }
 }
