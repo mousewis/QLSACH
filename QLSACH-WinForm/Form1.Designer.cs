@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
@@ -39,11 +38,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.sachDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Linhvuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sachBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Delete_btn = new System.Windows.Forms.Button();
@@ -56,9 +50,6 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.Detail = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.masachDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tensachDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sluongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -71,18 +62,16 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.sachBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.label13 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sachDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sachBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sachBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -195,14 +184,7 @@
             // 
             // sachDataGridView
             // 
-            this.sachDataGridView.AutoGenerateColumns = false;
             this.sachDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sachDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.Linhvuc,
-            this.dataGridViewTextBoxColumn4});
-            this.sachDataGridView.DataSource = this.sachBindingSource;
             this.sachDataGridView.Location = new System.Drawing.Point(30, 92);
             this.sachDataGridView.Name = "sachDataGridView";
             this.sachDataGridView.RowTemplate.Height = 24;
@@ -210,44 +192,9 @@
             this.sachDataGridView.Size = new System.Drawing.Size(1048, 312);
             this.sachDataGridView.TabIndex = 14;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "masach";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mã Sách";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "tensach";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Tên Sách";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // Linhvuc
-            // 
-            this.Linhvuc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Linhvuc.DataPropertyName = "linhvuc";
-            this.Linhvuc.HeaderText = "Lĩnh vực";
-            this.Linhvuc.Name = "Linhvuc";
-            this.Linhvuc.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "sluong";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Số Lượng";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // sachBindingSource
-            // 
-            this.sachBindingSource.DataSource = typeof(Models.sach);
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(941, 52);
+            this.button2.Location = new System.Drawing.Point(941, 48);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(137, 34);
             this.button2.TabIndex = 14;
@@ -357,7 +304,7 @@
             // 
             this.Detail.Location = new System.Drawing.Point(425, 269);
             this.Detail.Name = "Detail";
-            this.Detail.Size = new System.Drawing.Size(74, 63);
+            this.Detail.Size = new System.Drawing.Size(100, 80);
             this.Detail.TabIndex = 4;
             this.Detail.Text = "Chi Tiết";
             this.Detail.UseVisualStyleBackColor = true;
@@ -365,41 +312,13 @@
             // 
             // dataGridView2
             // 
-            this.dataGridView2.AutoGenerateColumns = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.masachDataGridViewTextBoxColumn,
-            this.tensachDataGridViewTextBoxColumn,
-            this.sluongDataGridViewTextBoxColumn});
-            this.dataGridView2.DataSource = this.sachBindingSource;
             this.dataGridView2.Location = new System.Drawing.Point(0, 184);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(418, 260);
             this.dataGridView2.TabIndex = 3;
-            // 
-            // masachDataGridViewTextBoxColumn
-            // 
-            this.masachDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.masachDataGridViewTextBoxColumn.DataPropertyName = "masach";
-            this.masachDataGridViewTextBoxColumn.HeaderText = "masach";
-            this.masachDataGridViewTextBoxColumn.Name = "masachDataGridViewTextBoxColumn";
-            this.masachDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tensachDataGridViewTextBoxColumn
-            // 
-            this.tensachDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tensachDataGridViewTextBoxColumn.DataPropertyName = "tensach";
-            this.tensachDataGridViewTextBoxColumn.HeaderText = "tensach";
-            this.tensachDataGridViewTextBoxColumn.Name = "tensachDataGridViewTextBoxColumn";
-            // 
-            // sluongDataGridViewTextBoxColumn
-            // 
-            this.sluongDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sluongDataGridViewTextBoxColumn.DataPropertyName = "sluong";
-            this.sluongDataGridViewTextBoxColumn.HeaderText = "sluong";
-            this.sluongDataGridViewTextBoxColumn.Name = "sluongDataGridViewTextBoxColumn";
             // 
             // label8
             // 
@@ -414,14 +333,15 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(505, 184);
+            this.dataGridView1.Location = new System.Drawing.Point(531, 184);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(573, 260);
+            this.dataGridView1.Size = new System.Drawing.Size(555, 260);
             this.dataGridView1.TabIndex = 1;
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.label12);
             this.tabPage4.Controls.Add(this.comboBox3);
             this.tabPage4.Controls.Add(this.comboBox2);
@@ -487,7 +407,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(127, 157);
+            this.label11.Location = new System.Drawing.Point(107, 157);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 29);
             this.label11.TabIndex = 6;
@@ -515,7 +435,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(124, 104);
+            this.label10.Location = new System.Drawing.Point(107, 104);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(160, 29);
             this.label10.TabIndex = 1;
@@ -540,9 +460,15 @@
             this.label2.Text = "XÂY DỰNG PHẦN MỀM\r\nTHEO MÔ HÌNH PHÂN LỚP\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // sachBindingSource1
+            // label13
             // 
-            this.sachBindingSource1.DataSource = typeof(Models.sach);
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(8, 21);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(238, 38);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "TIỀN NỢ NXB";
             // 
             // Form1
             // 
@@ -560,7 +486,6 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sachDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sachBindingSource)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -568,7 +493,6 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sachBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -591,25 +515,16 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.BindingSource sachBindingSource;
         private System.Windows.Forms.DataGridView sachDataGridView;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.BindingSource sachBindingSource1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn masachDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tensachDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sluongDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button Detail;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button Active;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Linhvuc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Label label10;
@@ -619,6 +534,7 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
     }
 }
 

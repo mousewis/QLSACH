@@ -8,22 +8,23 @@ using System.Text.RegularExpressions;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Data;
 
 namespace QLSACH_WinForm
 {
     class SachDAL
     {
         protected static QLSACHEntities db = new QLSACHEntities();
-        public static BindingList<sach> LoadAll()
+        public static List<sach> LoadAll()
         {
             db.saches.Load();
-            return db.saches.Local.ToBindingList();
+            return db.saches.Local.ToList();
         }
-        public static BindingList<sach> LoadAll(QLSACHEntities db)
+        public static List<sach> LoadAll(QLSACHEntities db)
         {
             db = new QLSACHEntities();
             db.saches.Load();
-            return db.saches.Local.ToBindingList();
+            return db.saches.Local.ToList();
         }
         public static List<sach> Search_Sach(string searchstring)
         {
@@ -49,7 +50,7 @@ namespace QLSACH_WinForm
         }
         public static void DEL_Sach(string masach)
         {
-                sach delsach = db.saches.Find(masach);
+            sach delsach = db.saches.Find(masach);
             db.saches.Remove(delsach);
             db.SaveChanges();
         }

@@ -21,27 +21,39 @@ namespace QLSACH_WinForm
             
             InitializeComponent();
             dataGridView2.DataSource = SachDAL.LoadAll();
+            AdjSachTab(dataGridView2);
+            dataGridView2.Columns["linhvuc"].Visible = false;
             dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
             db.nxbs.Load();
             comboBox1.DataSource = db.nxbs.Local.ToList();
             comboBox1.ValueMember = "manxb";
             comboBox1.DisplayMember = "tennxb";
-            
+            dataGridView3.Columns.Add("TenSach", "Tên Sách");
+            dataGridView3.Columns["TenSach"].Visible = false;
+
         }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            this.sachBindingSource.DataSource = SachDAL.LoadAll(db);
+            sachDataGridView.DataSource = SachDAL.LoadAll(db);
             int row = 0;
-            foreach (var entity in SachDAL.LoadAll())
+            foreach (sach entity in SachDAL.LoadAll())
             {
                 string description = entity.linhvuc1.tenlv;
                 sachDataGridView.Rows[row].Cells[2].Value = description;
                 row++;
             }
-          
-         }
-       
+            AdjSachTab(sachDataGridView);
+       }
+       public void AdjSachTab(DataGridView data)
+        {
+            data.Columns["ctphieunhaps"].Visible = false;
+            data.Columns["cttkdls"].Visible = false;
+            data.Columns["ctphieuxuats"].Visible = false;
+            data.Columns["linhvuc1"].Visible = false;
+            for (int i = 0; i < data.ColumnCount; i++)
+                data.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
         private void Add_btn_Click(object sender, EventArgs e)
         {
             AddorEdit f2 = new AddorEdit();
@@ -71,6 +83,7 @@ namespace QLSACH_WinForm
                 AddorEdit f2 = new AddorEdit(sachDataGridView.CurrentRow.Cells[0].Value.ToString(), sachDataGridView.CurrentRow.Cells[1].Value.ToString(), sachDataGridView.CurrentRow.Cells[2].Value.ToString());
                 f2.ShowDialog();
                 OnLoad(null);
+                AdjSachTab(sachDataGridView);
             }
         }
 
@@ -84,7 +97,7 @@ namespace QLSACH_WinForm
 
         private void button2_Click(object sender, EventArgs e)
         {
-            sachBindingSource.DataSource = SachDAL.Search_Sach(textBox1.Text,db);
+            sachDataGridView.DataSource = SachDAL.Search_Sach(textBox1.Text,db);
             int row = 0;
             foreach (var entity in SachDAL.Search_Sach(textBox1.Text))
             {
@@ -116,7 +129,7 @@ namespace QLSACH_WinForm
             data.Columns["maso"].Visible = false;
             data.Columns["phieunhap"].Visible = false;
             data.Columns["sach"].Visible = false;
-            data.Columns.Add("TenSach", "Tên Sách");
+            data.Columns["TenSach"].Visible = true;
             data.Columns["TenSach"].DisplayIndex = 2;
             int i = 0;
             foreach (var item in phieunhap)
@@ -132,7 +145,7 @@ namespace QLSACH_WinForm
             dataGridView3.DataSource = phieunhap;
             AdjustView(dataGridView3, phieunhap);
             for (int i = 0; i < dataGridView3.ColumnCount; i++)
-                dataGridView3.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridView3.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }

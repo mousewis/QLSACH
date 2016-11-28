@@ -110,24 +110,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Properties\DataSources\Models.ctphieunhap.datasource" />
-    <None Include="Properties\DataSources\Models.ctphieuxuat.datasource" />
-    <None Include="Properties\DataSources\Models.cttkdl.datasource" />
-    <None Include="Properties\DataSources\Models.daily.datasource" />
-    <None Include="Properties\DataSources\Models.hdondl.datasource" />
-    <None Include="Properties\DataSources\Models.hdonnxb.datasource" />
-    <None Include="Properties\DataSources\Models.linhvuc.datasource" />
-    <None Include="Properties\DataSources\Models.nxb.datasource" />
-    <None Include="Properties\DataSources\Models.phieunhap.datasource" />
-    <None Include="Properties\DataSources\Models.phieunhapVM.datasource" />
-    <None Include="Properties\DataSources\Models.phieuxuat.datasource" />
-    <None Include="Properties\DataSources\Models.phieuxuatVM.datasource" />
-    <None Include="Properties\DataSources\Models.QLSACHEntities.datasource" />
-    <None Include="Properties\DataSources\Models.sach.datasource" />
-    <None Include="Properties\DataSources\Models.TimkiemDaily_Result.datasource" />
-    <None Include="Properties\DataSources\Models.TimkiemNXB_Result.datasource" />
-    <None Include="Properties\DataSources\Models.TimkiemSach_Result.datasource" />
-    <None Include="Properties\DataSources\Models.tkdl.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -139,7 +121,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

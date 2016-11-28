@@ -42,13 +42,9 @@ namespace QLSACH_WinForm
         private void Save_btn_Click(object sender, EventArgs e)
         {
             if (IsNew == true)
-            {
                 SachDAL.ADD_Sach(textBox1.Text, textBox3.Text,comboBox1.SelectedValue.ToString());
-            }
             else
-            {
-                SachDAL.Edit_Sach(Regex.Replace(textBox1.Text, @"\s+", ""), textBox3.Text, Regex.Replace(comboBox1.SelectedValue.ToString(), @"\s+", ""));
-            }
+                SachDAL.Edit_Sach(textBox1.Text, textBox3.Text,comboBox1.SelectedValue.ToString());
                 this.Close();
         }
 
