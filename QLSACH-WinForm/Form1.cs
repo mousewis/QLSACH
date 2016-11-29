@@ -147,5 +147,12 @@ namespace QLSACH_WinForm
             for (int i = 0; i < dataGridView3.ColumnCount; i++)
                 dataGridView3.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
+
+        private void UpdateDebt_Click(object sender, EventArgs e)
+        {
+            DebtUpdate debt = new DebtUpdate(dataGridView3.CurrentRow.Cells["maso"].Value.ToString(),dataGridView3.CurrentRow.Cells["masach"].Value.ToString(), dataGridView3.CurrentRow.Cells["TenSach"].Value.ToString(), int.Parse(dataGridView3.CurrentRow.Cells["gia"].Value.ToString()),int.Parse(dataGridView3.CurrentRow.Cells["soluong"].Value.ToString()));
+            debt.ShowDialog();
+            XemNo_Click(null, null);
+        }
     }
 }

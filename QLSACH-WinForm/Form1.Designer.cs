@@ -53,6 +53,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -62,7 +63,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.UpdateDebt = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -341,6 +342,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.UpdateDebt);
             this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.label12);
             this.tabPage4.Controls.Add(this.comboBox3);
@@ -359,6 +361,16 @@
             this.tabPage4.Text = "Tiền nợ cho Nhà Xuất Bản";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(8, 21);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(238, 38);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "TIỀN NỢ NXB";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -370,6 +382,7 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "1",
@@ -391,6 +404,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "2014",
@@ -429,6 +443,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(6, 207);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 24;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(1070, 217);
             this.dataGridView3.TabIndex = 2;
             // 
@@ -443,6 +458,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(290, 96);
             this.comboBox1.Name = "comboBox1";
@@ -460,15 +476,15 @@
             this.label2.Text = "XÂY DỰNG PHẦN MỀM\r\nTHEO MÔ HÌNH PHÂN LỚP\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label13
+            // UpdateDebt
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(8, 21);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(238, 38);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "TIỀN NỢ NXB";
+            this.UpdateDebt.Location = new System.Drawing.Point(783, 441);
+            this.UpdateDebt.Name = "UpdateDebt";
+            this.UpdateDebt.Size = new System.Drawing.Size(133, 38);
+            this.UpdateDebt.TabIndex = 11;
+            this.UpdateDebt.Text = "Cập nhật ";
+            this.UpdateDebt.UseVisualStyleBackColor = true;
+            this.UpdateDebt.Click += new System.EventHandler(this.UpdateDebt_Click);
             // 
             // Form1
             // 
@@ -535,6 +551,7 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button UpdateDebt;
     }
 }
 

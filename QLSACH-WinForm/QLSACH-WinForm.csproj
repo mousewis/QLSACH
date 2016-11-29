@@ -85,6 +85,12 @@
     <Compile Include="AddorEdit.Designer.cs">
       <DependentUpon>AddorEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="DebtUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DebtUpdate.Designer.cs">
+      <DependentUpon>DebtUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     <Compile Include="SachDAL.cs" />
     <EmbeddedResource Include="AddorEdit.resx">
       <DependentUpon>AddorEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DebtUpdate.resx">
+      <DependentUpon>DebtUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

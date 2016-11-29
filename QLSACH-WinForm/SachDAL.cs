@@ -15,26 +15,29 @@ namespace QLSACH_WinForm
     class SachDAL
     {
         protected static QLSACHEntities db = new QLSACHEntities();
-        public static List<sach> LoadAll()
+        public static BindingList<sach> LoadAll()
         {
-            db.saches.Load();
-            return db.saches.Local.ToList();
+            BindingList<sach> sach = new BindingList<Models.sach>(db.saches.OrderBy(s=>s.masach).ToList());
+            return sach;
         }
-        public static List<sach> LoadAll(QLSACHEntities db)
+        public static BindingList<sach> LoadAll(QLSACHEntities db)
         {
             db = new QLSACHEntities();
             db.saches.Load();
-            return db.saches.Local.ToList();
+            BindingList<sach> sach = new BindingList<Models.sach>(db.saches.OrderBy(s => s.masach).ToList());
+            return sach;
         }
-        public static List<sach> Search_Sach(string searchstring)
+        public static BindingList<sach> Search_Sach(string searchstring)
         {
-            return db.saches.Where(s => s.tensach.Contains(searchstring)).ToList();
+            BindingList<sach> sach = new BindingList<Models.sach>(db.saches.Where(s => s.tensach.Contains(searchstring)).OrderBy(s=>s.masach).ToList());
+            return sach;
         }
-        public static List<sach> Search_Sach(string searchstring,QLSACHEntities db)
+        public static BindingList<sach> Search_Sach(string searchstring,QLSACHEntities db)
         {
             db = new QLSACHEntities();
             db.saches.Load();
-            return db.saches.Where(s => s.tensach.Contains(searchstring)).ToList();
+            BindingList<sach> sach = new BindingList<Models.sach>(db.saches.Where(s => s.tensach.Contains(searchstring)).OrderBy(s => s.masach).ToList());
+            return sach;
         }
         public static sach SearchID(string id)
         { return db.saches.Find(id); }
@@ -201,6 +204,15 @@ namespace QLSACH_WinForm
             List<ctphieunhap> phieunhap = new List<ctphieunhap>();
                 phieunhap = db.ctphieunhaps.Where(s => s.phieunhap.tgian.Year == Year && s.phieunhap.tgian.Month == month && s.phieunhap.manxb.Equals(id)).ToList();
             return phieunhap;
+        }
+        public static void UpdateNo(string id,int soluong)
+        {
+            ctphieunhap original = db.ctphieunhaps.Where(s=>s.maso.Equals(id)).Single();
+            if(original != null)
+            {
+                original.tienno = original.tienno - (soluong * original.gia);
+                db.SaveChanges();
+            }
         }
 
     }
