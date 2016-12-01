@@ -39,7 +39,7 @@ namespace QLSACH_WinForm
             int row = 0;
             foreach (sach entity in SachDAL.LoadAll())
             {
-                string description = entity.linhvuc1.tenlv;
+                string description = SachDAL.TenSach(entity.linhvuc);
                 sachDataGridView.Rows[row].Cells[2].Value = description;
                 row++;
             }

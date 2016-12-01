@@ -15,6 +15,10 @@ namespace QLSACH_WinForm
     class SachDAL
     {
         protected static QLSACHEntities db = new QLSACHEntities();
+        public static string TenSach(string id)
+        {
+            return db.linhvucs.Find(id).tenlv;
+        }
         public static BindingList<sach> LoadAll()
         {
             BindingList<sach> sach = new BindingList<Models.sach>(db.saches.OrderBy(s=>s.masach).ToList());
