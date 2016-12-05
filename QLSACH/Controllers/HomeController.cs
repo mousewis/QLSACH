@@ -47,7 +47,7 @@ namespace QLSACH.Controllers
                 if (ModelState.IsValid)
                 {
                     ///nxb
-                    nxb _nxb = db.nxbs.Find(p.nxb.manxb);
+                    nxb _nxb = db.nxbs.FirstOrDefault<nxb>(nxb => nxb.manxb == p.nxb.manxb.Trim());
                     if (_nxb == null)
                     {
                         _nxb = new nxb { manxb = p.nxb.manxb.Trim(), tennxb = p.nxb.tennxb.Trim(), sdt = p.nxb.sdt.Trim(), dchi = p.nxb.dchi.Trim(), tonkho = p.nxb.tonkho };
@@ -55,6 +55,9 @@ namespace QLSACH.Controllers
                     }
                     else
                     {
+                        _nxb.tennxb = p.nxb.tennxb.Trim();
+                        _nxb.sdt = p.nxb.sdt.Trim();
+                        _nxb.dchi = p.nxb.dchi.Trim();
                         _nxb.tonkho = p.nxb.tonkho + _nxb.tonkho ;
                         db.Entry(_nxb).State = System.Data.Entity.EntityState.Modified;
                     }
@@ -79,9 +82,9 @@ namespace QLSACH.Controllers
                     db.phieunhaps.Add(_phieunhap);
                         foreach (var j in p.ctphieunhap)
                         {
-                        j.tienno = j.thanhtien;
+                            j.tienno = j.thanhtien;
                             db.ctphieunhaps.Add(j);
-                            sach _sach = db.saches.Find(j.masach);
+                            sach _sach = db.saches.FirstOrDefault<sach>(sach => sach.masach == j.masach.Trim());
                             _sach.sluong = j.soluong + _sach.sluong ;
                             db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
                         }
@@ -96,8 +99,7 @@ namespace QLSACH.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.error = e.ToString();
-                return RedirectToAction("Success");
+                return RedirectToAction("Error");
             }
             
         }
@@ -131,7 +133,7 @@ namespace QLSACH.Controllers
                 if (ModelState.IsValid)
                 {
                     ///daily
-                    daily _daily = db.dailies.Find(p.daily.madl);
+                    daily _daily = db.dailies.FirstOrDefault<daily>(daily => daily.madl == p.daily.madl.Trim());
                     if (_daily == null)
                     {
                         _daily = new daily { madl = p.daily.madl.Trim(), tendl = p.daily.tendl.Trim(), sdt = p.daily.sdt.Trim(), dchi = p.daily.dchi.Trim(), tonkho = p.daily.tonkho };
@@ -139,7 +141,10 @@ namespace QLSACH.Controllers
                     }
                     else
                     {
-                        _daily = new daily { madl = p.daily.madl.Trim(), tendl = p.daily.tendl.Trim(), sdt = p.daily.sdt.Trim(), dchi = p.daily.dchi.Trim(), tonkho = p.daily.tonkho + _daily.tonkho };
+                        _daily.tendl = p.daily.tendl.Trim();
+                        _daily.sdt = p.daily.sdt.Trim();
+                        _daily.dchi = p.daily.dchi.Trim();
+                        _daily.tonkho = p.daily.tonkho + _daily.tonkho;
                         db.Entry(_daily).State = System.Data.Entity.EntityState.Modified;
                     }
                     ///phieuxuat
@@ -148,8 +153,8 @@ namespace QLSACH.Controllers
                     foreach (var j in p.ctphieuxuat)
                     {
                         db.ctphieuxuats.Add(j);
-                        sach _sach = db.saches.Find(j.masach);
-                        _sach = new sach { masach = _sach.masach, tensach = _sach.tensach, linhvuc = _sach.linhvuc, sluong = _sach.sluong - j.soluong }; 
+                        sach _sach = db.saches.FirstOrDefault<sach>(sach=>sach.masach==j.masach);
+                        _sach.sluong = _sach.sluong - j.soluong; 
                          db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
                     }
                     db.SaveChanges();
@@ -158,12 +163,12 @@ namespace QLSACH.Controllers
                 ViewBag.maso = DateTime.Now.ToString("yyyMMddhhmm");
                 ViewBag.tgian = DateTime.Now.ToShortDateString();
                 ViewBag.linhvuc = new SelectList(db.linhvucs, "malv", "tenlv");
+                ViewBag.masach = new SelectList(db.saches, "masach", "tensach");
                 return View(p);
             }
             catch (Exception e)
             {
-                ViewBag.error = e.ToString();
-                return RedirectToAction("Success");
+                return RedirectToAction("Error");
             }
 
         }
