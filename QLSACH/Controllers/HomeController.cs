@@ -55,7 +55,7 @@ namespace QLSACH.Controllers
                     }
                     else
                     {
-                        _nxb = new nxb { manxb = p.nxb.manxb.Trim(), tennxb = p.nxb.tennxb.Trim(), sdt = p.nxb.sdt.Trim(), dchi = p.nxb.dchi.Trim(), tonkho = p.nxb.tonkho + _nxb.tonkho };
+                        _nxb.tonkho = p.nxb.tonkho + _nxb.tonkho ;
                         db.Entry(_nxb).State = System.Data.Entity.EntityState.Modified;
                     }
                     ////sach
@@ -79,9 +79,10 @@ namespace QLSACH.Controllers
                     db.phieunhaps.Add(_phieunhap);
                         foreach (var j in p.ctphieunhap)
                         {
+                        j.tienno = j.thanhtien;
                             db.ctphieunhaps.Add(j);
                             sach _sach = db.saches.Find(j.masach);
-                            _sach = new sach { masach = _sach.masach, tensach = _sach.tensach, linhvuc = _sach.linhvuc, sluong = j.soluong + _sach.sluong };
+                            _sach.sluong = j.soluong + _sach.sluong ;
                             db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
                         }
                     db.SaveChanges();

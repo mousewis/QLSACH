@@ -35,7 +35,7 @@ namespace QLSACH.Controllers
             }
             phieunhapVM phieunhapVM = new phieunhapVM();
             phieunhapVM.phieunhap = phieunhap;
-            var ctphieunhaps = db.ctphieunhaps.Include(p => p.phieunhap);
+            var ctphieunhaps = db.ctphieunhaps.Include(p => p.phieunhap).Where(s=>s.maso == id);
             phieunhapVM.ctphieunhap = ctphieunhaps.ToList();
             phieunhapVM.nxb = db.nxbs.Find(phieunhapVM.phieunhap.manxb);
             return View(phieunhapVM);
