@@ -12,23 +12,23 @@
 namespace Models
 {
 
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class sach
-{
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public sach()
+    public partial class sach
     {
 
-        this.ctphieunhaps = new HashSet<ctphieunhap>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public sach()
+        {
 
-        this.ctphieuxuats = new HashSet<ctphieuxuat>();
+            this.ctphieunhaps = new HashSet<ctphieunhap>();
 
-        this.cttkdls = new HashSet<cttkdl>();
+            this.ctphieuxuats = new HashSet<ctphieuxuat>();
 
-    }
+            this.cttkdls = new HashSet<cttkdl>();
+
+        }
 
         [System.ComponentModel.DisplayName("Mã Sách")]
         public string masach { get; set; }
@@ -41,20 +41,20 @@ public partial class sach
 
 
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<ctphieunhap> ctphieunhaps { get; set; }
+        public virtual ICollection<ctphieunhap> ctphieunhaps { get; set; }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<ctphieuxuat> ctphieuxuats { get; set; }
+        public virtual ICollection<ctphieuxuat> ctphieuxuats { get; set; }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<cttkdl> cttkdls { get; set; }
+        public virtual ICollection<cttkdl> cttkdls { get; set; }
 
-    public virtual linhvuc linhvuc1 { get; set; }
+        public virtual linhvuc linhvuc1 { get; set; }
 
-}
+    }
 
 }

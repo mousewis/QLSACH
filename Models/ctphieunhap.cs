@@ -12,13 +12,13 @@
 namespace Models
 {
 
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class ctphieunhap
-{
 
-    public string maso { get; set; }
+    public partial class ctphieunhap
+    {
+
+        public string maso { get; set; }
         [System.ComponentModel.DisplayName("Mã Sách")]
         public string masach { get; set; }
         [System.ComponentModel.DisplayName("Số Lượng")]
@@ -32,10 +32,10 @@ public partial class ctphieunhap
 
 
 
-    public virtual phieunhap phieunhap { get; set; }
+        public virtual phieunhap phieunhap { get; set; }
 
-    public virtual sach sach { get; set; }
+        public virtual sach sach { get; set; }
 
-}
+    }
 
 }
