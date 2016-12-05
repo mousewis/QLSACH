@@ -35,7 +35,7 @@ namespace QLSACH.Controllers
             }
             phieuxuatVM phieuxuatVM = new phieuxuatVM();
             phieuxuatVM.phieuxuat = phieuxuat;
-            var ctphieuxuats = db.ctphieuxuats.Include(p => p.phieuxuat);
+            var ctphieuxuats = db.ctphieuxuats.Include(p => p.phieuxuat).Where(s => s.maso == id);
             phieuxuatVM.ctphieuxuat = ctphieuxuats.ToList();
             phieuxuatVM.daily = db.dailies.Find(phieuxuatVM.phieuxuat.madl);
             return View(phieuxuatVM);
