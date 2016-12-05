@@ -109,8 +109,15 @@ namespace QLSACH.Controllers
             ViewBag.maso = DateTime.Now.ToString("yyyMMddhhmm");
             ViewBag.tgian = DateTime.Now.ToShortDateString();
             ViewBag.linhvuc = new SelectList(db.linhvucs, "malv", "tenlv");
-            ViewBag.masach = new SelectList(db.saches, "masach", "tensach");
-            return View();
+            //ViewBag.masach = new SelectList(db.saches, "masach", "tensach");
+            ViewBag.masach = from ct in db.ctphieunhaps
+                             join s in db.saches on ct.masach equals s.masach
+                             select new SelectListItem
+                             {
+                                 Text = s.tensach + "|" + ct.maso,
+                                 Value = ct.masach + "|" + ct.maso + "|" + ct.gia
+                             }; 
+                return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -152,6 +159,7 @@ namespace QLSACH.Controllers
                     db.phieuxuats.Add(_phieuxuat);
                     foreach (var j in p.ctphieuxuat)
                     {
+                        j.tienno = j.thanhtien;
                         db.ctphieuxuats.Add(j);
                         sach _sach = db.saches.FirstOrDefault<sach>(sach=>sach.masach==j.masach);
                         _sach.sluong = _sach.sluong - j.soluong; 
@@ -163,8 +171,13 @@ namespace QLSACH.Controllers
                 ViewBag.maso = DateTime.Now.ToString("yyyMMddhhmm");
                 ViewBag.tgian = DateTime.Now.ToShortDateString();
                 ViewBag.linhvuc = new SelectList(db.linhvucs, "malv", "tenlv");
-                ViewBag.masach = new SelectList(db.saches, "masach", "tensach");
-                return View(p);
+                ViewBag.masach = from ct in db.ctphieunhaps
+                                 join s in db.saches on ct.masach equals s.masach
+                                 select new SelectListItem
+                                 {
+                                     Text = s.tensach + "|" + ct.maso,
+                                     Value = ct.masach + "|" + ct.maso + "|" + ct.gia
+                                 }; return View(p);
             }
             catch (Exception e)
             {
@@ -214,6 +227,11 @@ namespace QLSACH.Controllers
             string _sachs =  _sach.sluong.ToString().Trim();
             
             return Json(_sachs, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Gia_Min(string masach, string maphieunhap)
+        {
+            ctphieunhap _cts = db.ctphieunhaps.Where(ct => (ct.masach == masach.Trim())&&(ct.maso == maphieunhap.Trim())).FirstOrDefault();
+            return Json(_cts.gia, JsonRequestBehavior.AllowGet);
         }
         //Post action for Save data to database
         //[HttpPost]

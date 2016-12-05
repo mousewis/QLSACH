@@ -12,6 +12,6 @@ namespace Models
         public phieuxuat phieuxuat { get; set; }
         public daily daily { get; set; }
         public List<ctphieuxuat> ctphieuxuat { get; set; }
-
+       
     }
 }

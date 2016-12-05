@@ -29,6 +29,7 @@
         <AssociationConnector Association="Models.FK_hdonnxb_nxb" ManuallyRouted="false" />
         <AssociationConnector Association="Models.FK_sach_linhvuc" ManuallyRouted="false" />
         <AssociationConnector Association="Models.FK_phieunhap_nxb" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_ctphieuxuat_phieunhap" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

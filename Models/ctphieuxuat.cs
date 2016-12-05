@@ -19,8 +19,11 @@ namespace Models
         public int soluong { get; set; }
         public int gia { get; set; }
         public int thanhtien { get; set; }
+        public string maphieunhap { get; set; }
+        public Nullable<int> tienno { get; set; }
     
         public virtual phieuxuat phieuxuat { get; set; }
         public virtual sach sach { get; set; }
+        public virtual phieunhap phieunhap { get; set; }
     }
 }

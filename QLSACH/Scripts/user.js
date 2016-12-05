@@ -319,15 +319,15 @@ function themctphieuxuat() {
     ///themctphieuxuat
     if (!checkctphieuxuat())
         return false;
-    var masach = document.getElementById("_masach");
-    var temp = masach.value;
-    
+    var sach = document.getElementById("_masach").value.split("|");
+    var masach = sach[0];
+    var maphieunhap = sach[1];
     if (document.getElementsByClassName("ctphieuxuatIndex").length > 0) {
         //alert(document.getElementsByClassName("sachIndex").length);
         for (var j = 0; j < document.getElementsByClassName("ctphieuxuatIndex").length; j++) {
             var r = document.getElementsByClassName("ctphieuxuatIndex")[j].value;
             ////alert(r);
-            if (document.getElementById("ctphieuxuat[" + r + "].masach").value == temp) {
+            if (document.getElementById("ctphieuxuat[" + r + "].masach").value == masach) {
                 alert("Thông tin sách đã tồn tại!");
                 return false;
             }
@@ -344,13 +344,19 @@ function themctphieuxuat() {
     inp1.name = "ctphieuxuat[" + i + "].masach";
     inp1.id = "ctphieuxuat[" + i + "].masach";
     inp1.readOnly = true;
-    inp1.value = document.getElementById("_masach").value;
+    inp1.value = masach;
     ///ctphieuxuat.mapn
     var inpms = document.createElement("input");
     inpms.type = "hidden";
     inpms.name = "ctphieuxuat[" + i + "].maso";
     inpms.id = "ctphieuxuat[" + i + "].maso";
     inpms.value = document.getElementById("phieuxuat.maso").value;
+    ///ctphieunhap
+    var inpn = document.createElement("input");
+    inpn.type = "hidden";
+    inpn.name = "ctphieuxuat[" + i + "].maphieunhap";
+    inpn.id = "ctphieuxuat[" + i + "].maphieunhap";
+    inpn.value = maphieunhap;
     ///index sach
     var inpIds = document.createElement("input");
     inpIds.type = "hidden";
@@ -361,6 +367,7 @@ function themctphieuxuat() {
     ///append
     col1.appendChild(inp1);
     col1.appendChild(inpms);
+    col1.appendChild(inpn);
     col1.appendChild(inpIds);
     row.appendChild(col1);
     ///create input sluong

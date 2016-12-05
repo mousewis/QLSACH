@@ -18,6 +18,7 @@ namespace Models
         public phieunhap()
         {
             this.ctphieunhaps = new HashSet<ctphieunhap>();
+            this.ctphieuxuats = new HashSet<ctphieuxuat>();
         }
     
         public string maso { get; set; }
@@ -29,5 +30,7 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ctphieunhap> ctphieunhaps { get; set; }
         public virtual nxb nxb { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ctphieuxuat> ctphieuxuats { get; set; }
     }
 }
