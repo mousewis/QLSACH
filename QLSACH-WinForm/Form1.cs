@@ -18,19 +18,17 @@ namespace QLSACH_WinForm
         QLSACHEntities db = new QLSACHEntities();
         public Form1()
         {
-            
             InitializeComponent();
             dataGridView2.DataSource = SachDAL.LoadAll();
             AdjSachTab(dataGridView2);
             dataGridView2.Columns["linhvuc"].Visible = false;
             dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
-            db.nxbs.Load();
-            comboBox1.DataSource = db.nxbs.Local.ToList();
-            comboBox1.ValueMember = "manxb";
-            comboBox1.DisplayMember = "tennxb";
+            db.dailies.Load();
+            comboBox1.DataSource = db.dailies.Local.ToList();
+            comboBox1.ValueMember = "madl";
+            comboBox1.DisplayMember = "tendl";
             dataGridView3.Columns.Add("TenSach", "Tên Sách");
             dataGridView3.Columns["TenSach"].Visible = false;
-
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -124,7 +122,7 @@ namespace QLSACH_WinForm
         {
             dateTimePicker2.MinDate = dateTimePicker1.Value;
         }
-        public static void AdjustView(DataGridView data,List<ctphieunhap> phieunhap)
+        public static void AdjustView(DataGridView data,List<ctphieuxuat> phieuxuat)
         {
             data.Columns["maso"].Visible = false;
             data.Columns["phieunhap"].Visible = false;
@@ -132,7 +130,7 @@ namespace QLSACH_WinForm
             data.Columns["TenSach"].Visible = true;
             data.Columns["TenSach"].DisplayIndex = 2;
             int i = 0;
-            foreach (var item in phieunhap)
+            foreach (var item in phieuxuat)
             {
                 string value = item.sach.tensach;
                 data.Rows[i++].Cells["TenSach"].Value = value;
@@ -140,10 +138,10 @@ namespace QLSACH_WinForm
         }
         private void XemNo_Click(object sender, EventArgs e)
         {
-            List<ctphieunhap> phieunhap = new List<ctphieunhap>();
-            phieunhap = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), int.Parse(comboBox2.SelectedItem.ToString()), int.Parse(comboBox3.SelectedItem.ToString()));
-            dataGridView3.DataSource = phieunhap;
-            AdjustView(dataGridView3, phieunhap);
+            List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
+            phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), int.Parse(comboBox2.SelectedItem.ToString()), int.Parse(comboBox3.SelectedItem.ToString()));
+            dataGridView3.DataSource = phieuxuat;
+            AdjustView(dataGridView3, phieuxuat);
             for (int i = 0; i < dataGridView3.ColumnCount; i++)
                 dataGridView3.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }

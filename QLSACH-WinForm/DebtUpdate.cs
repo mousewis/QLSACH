@@ -31,7 +31,7 @@ namespace QLSACH_WinForm
 
         private void save_Click(object sender, EventArgs e)
         {
-            SachDAL.UpdateNo(idphieu, int.Parse(comboBox1.SelectedItem.ToString()));
+            SachDAL.UpdateNo(idphieu,label2.Text, int.Parse(comboBox1.SelectedItem.ToString()));
             this.Close();
         }
     }

@@ -202,19 +202,21 @@ namespace QLSACH_WinForm
             
             return thongke;
         }
-        public static List<ctphieunhap> LoadNo(string id, int Year, int month)
+        public static List<ctphieuxuat> LoadNo(string id, int Year, int month)
         {
-            db.ctphieunhaps.Load();
-            List<ctphieunhap> phieunhap = new List<ctphieunhap>();
-                phieunhap = db.ctphieunhaps.Where(s => s.phieunhap.tgian.Year == Year && s.phieunhap.tgian.Month == month && s.phieunhap.manxb.Equals(id)).ToList();
-            return phieunhap;
+            db.ctphieuxuats.Load();
+            List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
+                phieuxuat = db.ctphieuxuats.Where(s => s.phieuxuat.tgian.Year == Year && s.phieuxuat.tgian.Month == month && s.phieuxuat.madl.Equals(id)).ToList();
+            return phieuxuat;
         }
-        public static void UpdateNo(string id,int soluong)
+        public static void UpdateNo(string id,string masach,int soluong)
         {
-            ctphieunhap original = db.ctphieunhaps.Where(s=>s.maso.Equals(id)).Single();
+            ctphieuxuat original = db.ctphieuxuats.Where(s=>s.maso.Equals(id) && s.masach.Equals(masach)).Single();
             if(original != null)
             {
                 original.tienno = original.tienno - (soluong * original.gia);
+                ctphieunhap ctnhap = db.ctphieunhaps.Where(s => s.maso.Equals(original.maphieunhap) && s.masach.Equals(original.masach)).SingleOrDefault();
+                ctnhap.tienno -= (soluong * ctnhap.gia);
                 db.SaveChanges();
             }
         }
