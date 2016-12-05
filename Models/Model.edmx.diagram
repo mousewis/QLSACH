@@ -29,6 +29,8 @@
         <AssociationConnector Association="Models.FK_hdonnxb_nxb" ManuallyRouted="false" />
         <AssociationConnector Association="Models.FK_sach_linhvuc" ManuallyRouted="false" />
         <AssociationConnector Association="Models.FK_phieunhap_nxb" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Models.sysdiagram" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="Models.FK_ctphieuxuat_ctphieunhap" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
