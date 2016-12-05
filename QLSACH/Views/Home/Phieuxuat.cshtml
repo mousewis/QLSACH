@@ -29,10 +29,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <th width="25%">Người giao:</th>
+                    <th width="25%">Người nhận:</th>
                     <td>
-                        <input type="text" name="phieuxuat.nguoigiao" id="phieuxuat.nguoigiao" required />
-                        @Html.ValidationMessage("phieuxuat.nguoigiao", "", new { @class = "text-danger" })
+                        <input type="text" name="phieuxuat.nguoinhan" id="phieuxuat.nguoinhan" required />
+                        @Html.ValidationMessage("phieuxuat.nguoinhan", "", new { @class = "text-danger" })
                     </td>
                 </tr>
                 <tr>
@@ -106,7 +106,7 @@
                     <td><input type="number" name="gia" id="gia" min="1000"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><a href="#ds-sach" onclick="themctphieunhap()" class="ui-button-text">Thêm sách</a></td>
+                    <td colspan="2"><a href="#ds-sach" onclick="themctphieuxuat()" class="ui-button-text">Thêm sách</a></td>
                 </tr>
             </table>
             <table>

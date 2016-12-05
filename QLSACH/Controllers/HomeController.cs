@@ -32,73 +32,82 @@ namespace QLSACH.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(p.phieunhap.nguoigiao.Trim()))
-                    ModelState.AddModelError("phieunhap.nguoigiao", "Người giao không được để trống");
-                if (string.IsNullOrEmpty(p.nxb.manxb.Trim()))
-                    ModelState.AddModelError("nxb.manxb", "Mã nhà xuất bản không được để trống");
-                if (string.IsNullOrEmpty(p.nxb.tennxb.Trim()))
-                    ModelState.AddModelError("nxb.tennxb", "Tên nhà xuất bản không được để trống");
-                if (string.IsNullOrEmpty(p.nxb.sdt.Trim()))
-                    ModelState.AddModelError("nxb.sdt", "Số điện thoại không được để trống");
-                if (string.IsNullOrEmpty(p.nxb.dchi.Trim()))
-                    ModelState.AddModelError("nxb.dchi", "Địa chỉ không được để trống");
-                if ((p.ctphieunhap == null))
-                    ModelState.AddModelError("ctphieunhap", "Không có dữ liệu để nhập");
-                if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(p.phieunhap.nguoigiao.Trim()))
+                ModelState.AddModelError("phieunhap.nguoigiao", "Người giao không được để trống");
+            if (string.IsNullOrEmpty(p.nxb.manxb.Trim()))
+                ModelState.AddModelError("nxb.manxb", "Mã nhà xuất bản không được để trống");
+            if (string.IsNullOrEmpty(p.nxb.tennxb.Trim()))
+                ModelState.AddModelError("nxb.tennxb", "Tên nhà xuất bản không được để trống");
+            if (string.IsNullOrEmpty(p.nxb.sdt.Trim()))
+                ModelState.AddModelError("nxb.sdt", "Số điện thoại không được để trống");
+            if (string.IsNullOrEmpty(p.nxb.dchi.Trim()))
+                ModelState.AddModelError("nxb.dchi", "Địa chỉ không được để trống");
+            if ((p.ctphieunhap == null))
+                ModelState.AddModelError("ctphieunhap", "Không có dữ liệu để nhập");
+            if (ModelState.IsValid)
+            {
+                ///nxb
+                nxb _nxb = db.nxbs.FirstOrDefault<nxb>(nxb => nxb.manxb == p.nxb.manxb.Trim());
+                if (_nxb == null)
                 {
-                    ///nxb
-                    nxb _nxb = db.nxbs.Find(p.nxb.manxb);
-                    if (_nxb == null)
-                    {
-                        _nxb = new nxb { manxb = p.nxb.manxb.Trim(), tennxb = p.nxb.tennxb.Trim(), sdt = p.nxb.sdt.Trim(), dchi = p.nxb.dchi.Trim(), tonkho = p.nxb.tonkho };
-                        db.nxbs.Add(_nxb);
-                    }
-                    else
-                    {
-                        _nxb = new nxb { manxb = p.nxb.manxb.Trim(), tennxb = p.nxb.tennxb.Trim(), sdt = p.nxb.sdt.Trim(), dchi = p.nxb.dchi.Trim(), tonkho = p.nxb.tonkho + _nxb.tonkho };
-                        db.Entry(_nxb).State = System.Data.Entity.EntityState.Modified;
-                    }
-                    ////sach
-                    //foreach (var i in p.sach)
-                    //    {
-                    //        sach _sach = db.saches.Find(i.masach);
-                    //        if (_sach != null)
-                    //        //{
-                    //            //_sach = new sach { masach = i.masach, tensach = i.tensach, linhvuc = i.linhvuc, sluong = i.sluong };
-                    //            //db.saches.Add(_sach);
-                    //        //}
-                    //        //else
-                    //        {
-                    //            _sach = new sach { masach = i.masach, tensach = i.tensach, linhvuc = i.linhvuc, sluong = i.sluong + _sach.sluong };
-                    //            db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
-                    //        }
-                    //    }
-                    
-                    ///phieunhap
-                    phieunhap _phieunhap = new phieunhap { maso = p.phieunhap.maso.Trim(), manxb = p.phieunhap.manxb.Trim(), nguoigiao = p.phieunhap.nguoigiao.Trim(), tgian = p.phieunhap.tgian, tongtien = p.phieunhap.tongtien };
-                    db.phieunhaps.Add(_phieunhap);
-                        foreach (var j in p.ctphieunhap)
-                        {
-                            db.ctphieunhaps.Add(j);
-                            sach _sach = db.saches.Find(j.masach);
-                            _sach = new sach { masach = _sach.masach, tensach = _sach.tensach, linhvuc = _sach.linhvuc, sluong = j.soluong + _sach.sluong };
-                            db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
-                        }
-                    db.SaveChanges();
-                    return RedirectToAction("Success");
+                    _nxb = new nxb { manxb = p.nxb.manxb.Trim(), tennxb = p.nxb.tennxb.Trim(), sdt = p.nxb.sdt.Trim(), dchi = p.nxb.dchi.Trim(), tonkho = p.nxb.tonkho };
+                    db.nxbs.Add(_nxb);
                 }
-                ViewBag.maso = DateTime.Now.ToString("yyyMMddhhmm");
-                ViewBag.tgian = DateTime.Now.ToShortDateString();
-                ViewBag.linhvuc = new SelectList(db.linhvucs, "malv", "tenlv");
-                ViewBag.masach = new SelectList(db.saches, "masach", "tensach");
-                return View(p);
+                else
+                {
+                    //_nxb = new nxb { manxb = p.nxb.manxb.Trim(), tennxb = p.nxb.tennxb.Trim(), sdt = p.nxb.sdt.Trim(), dchi = p.nxb.dchi.Trim(), tonkho = p.nxb.tonkho + _nxb.tonkho };
+                    _nxb.manxb = p.nxb.manxb.Trim();
+                    _nxb.tennxb = p.nxb.tennxb.Trim();
+                    _nxb.sdt = p.nxb.sdt.Trim();
+                    _nxb.dchi = p.nxb.dchi.Trim();
+                    _nxb.tonkho = p.nxb.tonkho + _nxb.tonkho;
+                    //db.nxbs.Attach(_nxb);
+                    db.Entry(_nxb).State = System.Data.Entity.EntityState.Modified;
+                }
+                ////sach
+                //foreach (var i in p.sach)
+                //    {
+                //        sach _sach = db.saches.Find(i.masach);
+                //        if (_sach != null)
+                //        //{
+                //            //_sach = new sach { masach = i.masach, tensach = i.tensach, linhvuc = i.linhvuc, sluong = i.sluong };
+                //            //db.saches.Add(_sach);
+                //        //}
+                //        //else
+                //        {
+                //            _sach = new sach { masach = i.masach, tensach = i.tensach, linhvuc = i.linhvuc, sluong = i.sluong + _sach.sluong };
+                //            db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
+                //        }
+                //    }
+
+                ///phieunhap
+                phieunhap _phieunhap = new phieunhap { maso = p.phieunhap.maso.Trim(), manxb = p.phieunhap.manxb.Trim(), nguoigiao = p.phieunhap.nguoigiao.Trim(), tgian = p.phieunhap.tgian, tongtien = p.phieunhap.tongtien };
+                db.phieunhaps.Add(_phieunhap);
+                foreach (var j in p.ctphieunhap)
+                {
+                    db.ctphieunhaps.Add(j);
+                    sach _sach = db.saches.FirstOrDefault<sach>(sach => sach.masach == j.masach);
+                    //_sach = new sach { masach = _sach.masach, tensach = _sach.tensach, linhvuc = _sach.linhvuc, sluong = j.soluong + _sach.sluong };
+                    _sach.sluong = j.soluong + _sach.sluong;
+                    //db.saches.Attach(_sach);
+                    db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
+                }
+                db.SaveChanges();
+                return RedirectToAction("Success");
+            }
+            ViewBag.maso = DateTime.Now.ToString("yyyMMddhhmm");
+            ViewBag.tgian = DateTime.Now.ToShortDateString();
+            ViewBag.linhvuc = new SelectList(db.linhvucs, "malv", "tenlv");
+            ViewBag.masach = new SelectList(db.saches, "masach", "tensach");
+            return View(p);
             }
             catch (Exception e)
             {
-                ViewBag.error = e.ToString();
-                return RedirectToAction("Success");
+            string error = e.ToString();
+            return RedirectToAction("Error");
+
             }
-            
+
         }
         ////Phieu xuat
         public ActionResult Phieuxuat()
@@ -130,7 +139,7 @@ namespace QLSACH.Controllers
                 if (ModelState.IsValid)
                 {
                     ///daily
-                    daily _daily = db.dailies.Find(p.daily.madl);
+                    daily _daily = db.dailies.FirstOrDefault<daily>(daily => daily.madl == p.daily.madl.Trim());
                     if (_daily == null)
                     {
                         _daily = new daily { madl = p.daily.madl.Trim(), tendl = p.daily.tendl.Trim(), sdt = p.daily.sdt.Trim(), dchi = p.daily.dchi.Trim(), tonkho = p.daily.tonkho };
@@ -138,7 +147,11 @@ namespace QLSACH.Controllers
                     }
                     else
                     {
-                        _daily = new daily { madl = p.daily.madl.Trim(), tendl = p.daily.tendl.Trim(), sdt = p.daily.sdt.Trim(), dchi = p.daily.dchi.Trim(), tonkho = p.daily.tonkho + _daily.tonkho };
+                        _daily.madl = p.daily.madl.Trim();
+                        _daily.tendl = p.daily.tendl.Trim();
+                        _daily.sdt = p.daily.sdt.Trim();
+                        _daily.dchi = p.daily.dchi.Trim();
+                        _daily.tonkho = p.daily.tonkho + _daily.tonkho;
                         db.Entry(_daily).State = System.Data.Entity.EntityState.Modified;
                     }
                     ///phieuxuat
@@ -147,9 +160,10 @@ namespace QLSACH.Controllers
                     foreach (var j in p.ctphieuxuat)
                     {
                         db.ctphieuxuats.Add(j);
-                        sach _sach = db.saches.Find(j.masach);
-                        _sach = new sach { masach = _sach.masach, tensach = _sach.tensach, linhvuc = _sach.linhvuc, sluong = _sach.sluong - j.soluong }; 
-                         db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
+                        sach _sach = db.saches.FirstOrDefault<sach>(sach => sach.masach == j.masach.Trim());
+                        //_sach = new sach { masach = _sach.masach, tensach = _sach.tensach, linhvuc = _sach.linhvuc, sluong = _sach.sluong - j.soluong };
+                        _sach.sluong = _sach.sluong - j.soluong;
+                        db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
                     }
                     db.SaveChanges();
                     return RedirectToAction("Success");
@@ -157,12 +171,14 @@ namespace QLSACH.Controllers
                 ViewBag.maso = DateTime.Now.ToString("yyyMMddhhmm");
                 ViewBag.tgian = DateTime.Now.ToShortDateString();
                 ViewBag.linhvuc = new SelectList(db.linhvucs, "malv", "tenlv");
+                ViewBag.masach = new SelectList(db.saches, "masach", "tensach");
                 return View(p);
             }
             catch (Exception e)
             {
-                ViewBag.error = e.ToString();
-                return RedirectToAction("Success");
+                string error = e.ToString();
+                return RedirectToAction("Error");
+                //return View("Success");
             }
 
         }
@@ -176,7 +192,7 @@ namespace QLSACH.Controllers
                 array_nxbs[i] = _nxbs[i].manxb.ToString().Trim() + "|" + _nxbs[i].tennxb.ToString().Trim() + "|"
                     + _nxbs[i].sdt.ToString().Trim() + "|" + _nxbs[i].dchi.ToString().Trim();
             }
-            return Json(array_nxbs,JsonRequestBehavior.AllowGet);
+            return Json(array_nxbs, JsonRequestBehavior.AllowGet);
         }
         /// Autocomplete Daily
         public JsonResult Dailies(string madl)
@@ -205,8 +221,8 @@ namespace QLSACH.Controllers
         {
 
             sach _sach = db.saches.Find(masach);
-            string _sachs =  _sach.sluong.ToString().Trim();
-            
+            string _sachs = _sach.sluong.ToString().Trim();
+
             return Json(_sachs, JsonRequestBehavior.AllowGet);
         }
         //Post action for Save data to database
@@ -237,6 +253,10 @@ namespace QLSACH.Controllers
         //    return new JsonResult { Data = new { status = status } };
         //}
         public ActionResult Success()
+        {
+            return View();
+        }
+        public ActionResult Error()
         {
             return View();
         }
