@@ -177,7 +177,8 @@ namespace QLSACH.Controllers
                                  {
                                      Text = s.tensach + "|" + ct.maso,
                                      Value = ct.masach + "|" + ct.maso + "|" + ct.gia
-                                 }; return View(p);
+                                 };
+                return View(p);
             }
             catch (Exception e)
             {
