@@ -175,7 +175,7 @@ namespace QLSACH.Controllers
                                  join s in db.saches on ct.masach equals s.masach
                                  select new SelectListItem
                                  {
-                                     Text = s.tensach + "|" + ct.maso,
+                                     Text = s.tensach,
                                      Value = ct.masach + "|" + ct.maso + "|" + ct.gia
                                  };
                 return View(p);
