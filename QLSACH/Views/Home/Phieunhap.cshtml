@@ -97,11 +97,11 @@
                 </tr>
                 <tr>
                     <th>Số lượng</th>
-                    <td><input type="number" name="_sluong" id="_sluong" min="1"></td>
+                    <td><input type="number" name="_sluong" id="_sluong" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
                 </tr>
                 <tr>
                     <th>Giá</th>
-                    <td><input type="number" name="gia" id="gia" min="1000"></td>
+                    <td><input type="number" name="gia" id="gia" min="1000" step="1000" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
                 </tr>
                 <tr>
                     <td colspan="2"><a href="#ds-sach" onclick="themctphieunhap()" class="ui-button-text">Thêm sách</a></td>
