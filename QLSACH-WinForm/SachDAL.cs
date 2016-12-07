@@ -31,6 +31,16 @@ namespace QLSACH_WinForm
             BindingList<sach> sach = new BindingList<Models.sach>(db.saches.OrderBy(s => s.masach).ToList());
             return sach;
         }
+        public static List<nxb> LoadNXB()
+        {
+            db.nxbs.Load();
+            return db.nxbs.Local.ToList();
+        }
+        public static List<daily> LoadDL()
+        {
+            db.dailies.Load();
+            return db.dailies.Local.ToList();
+        }
         public static BindingList<sach> Search_Sach(string searchstring)
         {
             BindingList<sach> sach = new BindingList<Models.sach>(db.saches.Where(s => s.tensach.Contains(searchstring)).OrderBy(s=>s.masach).ToList());
@@ -214,7 +224,7 @@ namespace QLSACH_WinForm
             ctphieuxuat original = db.ctphieuxuats.Where(s=>s.maso.Equals(id) && s.masach.Equals(masach)).Single();
             if(original != null)
             {
-                original.tienno = original.tienno - (soluong * original.gia);
+                original.tienno -= (soluong * original.gia);
                 ctphieunhap ctnhap = db.ctphieunhaps.Where(s => s.maso.Equals(original.maphieunhap) && s.masach.Equals(original.masach)).SingleOrDefault();
                 ctnhap.tienno -= (soluong * ctnhap.gia);
                 db.SaveChanges();
