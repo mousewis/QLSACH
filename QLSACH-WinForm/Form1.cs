@@ -23,10 +23,12 @@ namespace QLSACH_WinForm
             AdjSachTab(dataGridView2);
             dataGridView2.Columns["linhvuc"].Visible = false;
             dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
-            db.dailies.Load();
-            comboBox1.DataSource = db.dailies.Local.ToList();
+            comboBox1.DataSource = SachDAL.LoadDL();
             comboBox1.ValueMember = "madl";
             comboBox1.DisplayMember = "tendl";
+            comboBox6.DataSource = SachDAL.LoadNXB();
+            comboBox6.ValueMember = "manxb";
+            comboBox6.DisplayMember = "tennxb";
             dataGridView3.Columns.Add("TenSach", "Tên Sách");
             dataGridView3.Columns["TenSach"].Visible = false;
         }
