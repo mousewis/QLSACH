@@ -226,7 +226,7 @@ function themctphieunhap() {
     inp3.name = "ctphieunhap[" + i + "].gia";
     inp3.id = "ctphieunhap[" + i + "].gia";
     inp3.readOnly = true;
-    inp3.value = document.getElementById("gia").value;
+    inp3.value = document.getElementById("_gia").value;
     ///sach.gia
     col3.appendChild(inp3);
     row.appendChild(col3);
@@ -276,7 +276,7 @@ function checkctphieunhap()
         alert("Số lượng không hợp lệ!");
         return false;
     }
-    if ((document.getElementById("gia").value == null) || (Number(document.getElementById("gia").value) <= 0)) {
+    if ((document.getElementById("_gia").value == null) || (Number(document.getElementById("_gia").value) <= 0)) {
         alert("Giá không hợp lệ!");
         return false;
     }

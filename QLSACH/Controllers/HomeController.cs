@@ -82,6 +82,7 @@ namespace QLSACH.Controllers
                     db.phieunhaps.Add(_phieunhap);
                         foreach (var j in p.ctphieunhap)
                         {
+                        j.ton = j.soluong;
                             j.tienno = j.thanhtien;
                             db.ctphieunhaps.Add(j);
                             sach _sach = db.saches.FirstOrDefault<sach>(sach => sach.masach == j.masach.Trim());
@@ -137,6 +138,15 @@ namespace QLSACH.Controllers
                     ModelState.AddModelError("daily.dchi", "Địa chỉ không được để trống");
                 if (p.ctphieuxuat == null)
                     ModelState.AddModelError("ctphieuxuat", "Không có dữ liệu để nhập");
+                foreach (var i in p.ctphieuxuat)
+                {
+                    ctphieunhap temp = db.ctphieunhaps.FirstOrDefault<ctphieunhap>(ct => (ct.masach == i.masach) && (ct.maso == i.maphieunhap));
+                    if ((i.gia < temp.gia)||(i.soluong>temp.ton))
+                    {
+                        ModelState.AddModelError("ctphieuxuat", "Mã sách "+temp.masach+" phải có số lượng nhỏ hơn "+temp.ton+",giá lớn hơn "+temp.gia);
+                    }
+            }
+            
                 if (ModelState.IsValid)
                 {
                     ///daily
@@ -161,6 +171,9 @@ namespace QLSACH.Controllers
                     {
                         j.tienno = j.thanhtien;
                         db.ctphieuxuats.Add(j);
+                        ctphieunhap _ct = db.ctphieunhaps.FirstOrDefault<ctphieunhap>(ct => (ct.masach == j.masach) && (ct.maso == j.maphieunhap));
+                        _ct.ton = _ct.ton - j.soluong;
+                        db.Entry(_ct).State = System.Data.Entity.EntityState.Modified;
                         sach _sach = db.saches.FirstOrDefault<sach>(sach=>sach.masach==j.masach);
                         _sach.sluong = _sach.sluong - j.soluong; 
                          db.Entry(_sach).State = System.Data.Entity.EntityState.Modified;
@@ -217,17 +230,14 @@ namespace QLSACH.Controllers
             for (int i = 0; i < _sachs.Count; i++)
             {
                 array_sachs[i] = _sachs[i].masach.ToString().Trim() + "|" + _sachs[i].tensach.ToString().Trim() + "|"
-                    + _sachs[i].linhvuc.ToString().Trim() + "|" + _sachs[i].sluong.ToString().Trim();
+                    + _sachs[i].linhvuc.ToString().Trim();
             }
             return Json(array_sachs, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult Sach_Max(string masach)
+        public JsonResult Sach_Max(string masach, string maphieunhap)
         {
-
-            sach _sach = db.saches.Find(masach);
-            string _sachs =  _sach.sluong.ToString().Trim();
-            
-            return Json(_sachs, JsonRequestBehavior.AllowGet);
+            ctphieunhap _cts = db.ctphieunhaps.Where(ct => (ct.masach == masach.Trim()) && (ct.maso == maphieunhap.Trim())).FirstOrDefault();
+            return Json(_cts.ton, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Gia_Min(string masach, string maphieunhap)
         {

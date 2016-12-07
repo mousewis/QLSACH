@@ -20,6 +20,7 @@ namespace Models
         public int gia { get; set; }
         public int thanhtien { get; set; }
         public Nullable<int> tienno { get; set; }
+        public Nullable<int> ton { get; set; }
     
         public virtual phieunhap phieunhap { get; set; }
         public virtual sach sach { get; set; }

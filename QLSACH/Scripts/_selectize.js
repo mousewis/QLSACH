@@ -32,7 +32,7 @@
             $('#gia').attr('readonly', 'readonly');
             $.ajax({
                 url: '/Home/Sach_Max',
-                data: { masach:_masach },
+                data: { masach: _masach, maphieunhap: _maphieunhap },
                 dataType: "json",
                 type: "GET",
                 contentType: "application/json; charset=utf-8",

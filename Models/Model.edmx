@@ -16,6 +16,7 @@
           <Property Name="gia" Type="int" Nullable="false" />
           <Property Name="thanhtien" Type="int" Nullable="false" />
           <Property Name="tienno" Type="int" />
+          <Property Name="ton" Type="int" />
         </EntityType>
         <EntityType Name="ctphieuxuat">
           <Key>
@@ -369,6 +370,7 @@
           <NavigationProperty Name="phieunhap" Relationship="Self.FK_ctphieunhap_phieunhap" FromRole="ctphieunhap" ToRole="phieunhap" />
           <NavigationProperty Name="sach" Relationship="Self.FK_ctphieunhap_sach" FromRole="ctphieunhap" ToRole="sach" />
           <Property Name="tienno" Type="Int32" />
+          <Property Name="ton" Type="Int32" />
         </EntityType>
         <EntityType Name="ctphieuxuat">
           <Key>
@@ -758,6 +760,7 @@
           <EntitySetMapping Name="ctphieunhaps">
             <EntityTypeMapping TypeName="Models.ctphieunhap">
               <MappingFragment StoreEntitySet="ctphieunhap">
+                <ScalarProperty Name="ton" ColumnName="ton" />
                 <ScalarProperty Name="tienno" ColumnName="tienno" />
                 <ScalarProperty Name="maso" ColumnName="maso" />
                 <ScalarProperty Name="masach" ColumnName="masach" />
