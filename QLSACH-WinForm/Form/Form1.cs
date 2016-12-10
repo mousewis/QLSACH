@@ -30,6 +30,8 @@ namespace QLSACH_WinForm
             comboBox6.DisplayMember = "tennxb";
             dataGridView3.Columns.Add("TenSach", "Tên Sách");
             dataGridView3.Columns["TenSach"].Visible = false;
+            dataGridView4.Columns.Add("TenSach", "Tên Sách");
+            dataGridView4.Columns["TenSach"].Visible = false;
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -88,8 +90,12 @@ namespace QLSACH_WinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-             
-                    dataGridView1.DataSource = SachDAL.Thongketaithoidiem(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value);
+            label21.Text = dataGridView2.CurrentRow.Cells[0].Value.ToString();
+            label23.Text = dataGridView2.CurrentRow.Cells[1].Value.ToString();
+            label25.Text = SachDAL.TenSach(dataGridView2.CurrentRow.Cells[2].Value.ToString());
+            label28.Text = dataGridView2.CurrentRow.Cells[3].Value.ToString();
+
+            label29.Text = SachDAL.Thongketaithoidiem(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -121,7 +127,7 @@ namespace QLSACH_WinForm
         private void XemNo_Click(object sender, EventArgs e)
         {
             List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
-            phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), int.Parse(comboBox2.SelectedItem.ToString()), int.Parse(comboBox3.SelectedItem.ToString()));
+            phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(),dateTimePicker2.Value.Year,dateTimePicker2.Value.Month );
             dataGridView3.DataSource = phieuxuat;
             AdjustView(dataGridView3, phieuxuat);
             for (int i = 0; i < dataGridView3.ColumnCount; i++)
@@ -131,9 +137,15 @@ namespace QLSACH_WinForm
         private void UpdateDebt_Click(object sender, EventArgs e)
         {
             List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
-            phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), int.Parse(comboBox2.SelectedItem.ToString()), int.Parse(comboBox3.SelectedItem.ToString()));
+            phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), dateTimePicker2.Value.Year, dateTimePicker2.Value.Month);
             foreach (var item in phieuxuat)
                 SachDAL.UpdateNo(item.maso, item.masach);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView4.DataSource = SachDAL.LoadNoNXB(comboBox6.SelectedValue.ToString(), dateTimePicker3.Value.Year, dateTimePicker3.Value.Month);
+            label19.Text = SachDAL.TongNo(comboBox6.SelectedValue.ToString(), dateTimePicker3.Value.Year, dateTimePicker3.Value.Month)+" VNĐ";
         }
     }
 }
