@@ -22,7 +22,6 @@ namespace QLSACH_WinForm
             dataGridView2.DataSource = SachDAL.LoadAll();
             AdjSachTab(dataGridView2);
             dataGridView2.Columns["linhvuc"].Visible = false;
-            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);
             comboBox1.DataSource = SachDAL.LoadDL();
             comboBox1.ValueMember = "madl";
             comboBox1.DisplayMember = "tendl";
@@ -31,6 +30,8 @@ namespace QLSACH_WinForm
             comboBox6.DisplayMember = "tennxb";
             dataGridView3.Columns.Add("TenSach", "Tên Sách");
             dataGridView3.Columns["TenSach"].Visible = false;
+            dataGridView4.Columns.Add("TenSach", "Tên Sách");
+            dataGridView4.Columns["TenSach"].Visible = false;
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -89,10 +90,12 @@ namespace QLSACH_WinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-                if (dateTimePicker2.Enabled == true)
-                    dataGridView1.DataSource = SachDAL.Thongkekhoangthoigian(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value, dateTimePicker2.Value);
-                else
-                    dataGridView1.DataSource = SachDAL.Thongketaithoidiem(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value);
+            label21.Text = dataGridView2.CurrentRow.Cells[0].Value.ToString();
+            label23.Text = dataGridView2.CurrentRow.Cells[1].Value.ToString();
+            label25.Text = SachDAL.TenSach(dataGridView2.CurrentRow.Cells[2].Value.ToString());
+            label28.Text = dataGridView2.CurrentRow.Cells[3].Value.ToString();
+
+            label29.Text = SachDAL.Thongketaithoidiem(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -106,24 +109,7 @@ namespace QLSACH_WinForm
                 row++;
             }
         }
-        private void Active_Click(object sender, EventArgs e)
-        {
-            if (dateTimePicker2.Enabled == false)
-            {
-                dateTimePicker2.Enabled = true;
-                label9.Text = "Từ :";
-            }
-            else
-            {
-                dateTimePicker2.Enabled = false;
-                label9.Text = "Tại :";
-            }
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            dateTimePicker2.MinDate = dateTimePicker1.Value;
-        }
+       
         public static void AdjustView(DataGridView data,List<ctphieuxuat> phieuxuat)
         {
             data.Columns["maso"].Visible = false;
@@ -141,7 +127,7 @@ namespace QLSACH_WinForm
         private void XemNo_Click(object sender, EventArgs e)
         {
             List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
-            phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), int.Parse(comboBox2.SelectedItem.ToString()), int.Parse(comboBox3.SelectedItem.ToString()));
+            phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(),dateTimePicker2.Value.Year,dateTimePicker2.Value.Month );
             dataGridView3.DataSource = phieuxuat;
             AdjustView(dataGridView3, phieuxuat);
             for (int i = 0; i < dataGridView3.ColumnCount; i++)
@@ -150,9 +136,16 @@ namespace QLSACH_WinForm
 
         private void UpdateDebt_Click(object sender, EventArgs e)
         {
-            DebtUpdate debt = new DebtUpdate(dataGridView3.CurrentRow.Cells["maso"].Value.ToString(),dataGridView3.CurrentRow.Cells["masach"].Value.ToString(), dataGridView3.CurrentRow.Cells["TenSach"].Value.ToString(), int.Parse(dataGridView3.CurrentRow.Cells["gia"].Value.ToString()),int.Parse(dataGridView3.CurrentRow.Cells["soluong"].Value.ToString()));
-            debt.ShowDialog();
-            XemNo_Click(null, null);
+            List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
+            phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), dateTimePicker2.Value.Year, dateTimePicker2.Value.Month);
+            foreach (var item in phieuxuat)
+                SachDAL.UpdateNo(item.maso, item.masach);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView4.DataSource = SachDAL.LoadNoNXB(comboBox6.SelectedValue.ToString(), dateTimePicker3.Value.Year, dateTimePicker3.Value.Month);
+            label19.Text = SachDAL.TongNo(comboBox6.SelectedValue.ToString(), dateTimePicker3.Value.Year, dateTimePicker3.Value.Month)+" VNĐ";
         }
     }
 }

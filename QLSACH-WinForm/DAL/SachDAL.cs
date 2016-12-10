@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Metadata.Edm;
 
 namespace QLSACH_WinForm
 {
@@ -81,98 +82,97 @@ namespace QLSACH_WinForm
                 db.SaveChanges();
             }
         }
-        public static List<Thongke> Thongkekhoangthoigian(string id,DateTime from,DateTime to)
-        {
-            List<Thongke> thongke = new List<Thongke>();
-            int[] soluongnhap = new int[100];
-            DateTime[] datenhap = new DateTime[100];
-            int a = 0;int sum = 0;
-            foreach(var nhap in db.phieunhaps.Where(s=>s.tgian.Day >= from.Day).OrderBy(c=>c.tgian))
-            {
-                foreach (var ctn in db.ctphieunhaps.Where(c=>c.maso.Equals(nhap.maso)))
-                {
-                    if (ctn.masach.Equals(id))
-                    {
-                        sum += ctn.soluong;
-                        if (datenhap.Contains(nhap.tgian))
-                            soluongnhap[a] += ctn.soluong;
-                        else
-                        {
-                            soluongnhap[a] = ctn.soluong;
-                            datenhap[a] = nhap.tgian;
-                            a++;
-                        }
-                    }
-                }
-            }
-            int b = 0;
-            int[] soluongxuat = new int[100];
-            DateTime[] datexuat = new DateTime[100];
-            foreach (var xuat in db.phieuxuats.Where(s => s.tgian.Day >= from.Day).OrderBy(c => c.tgian))
-            {
-                foreach (var ctx in db.ctphieuxuats.Where(c => c.maso.Equals(xuat.maso)))
-                {
-                    if (ctx.masach.Equals(id))
-                    {
-                        sum -= ctx.soluong;
-                        if (datexuat.Contains(xuat.tgian))
-                            soluongxuat[b] += ctx.soluong;
-                        else
-                        {
-                            soluongxuat[b] = ctx.soluong;
-                            datexuat[b] = xuat.tgian;
-                            b++;
-                        }
-                    }
-                }
-            }
-            int i = 0;
-            int j = 0;
-            int solg = db.saches.Find(id).sluong - sum;
-            while (i<a || j<b)
-            {
-                if (datenhap[i] > to || datexuat[j] > to && !to.Equals(""))
-                    break;
-                Thongke t = new Thongke();
-                    if(datenhap[i] > datexuat[j])
-                    {
-                        t.ngnhap = datenhap[i];
-                        t.ctphieunhap = soluongnhap[i];
-                        t.sluong = solg + soluongnhap[i];
-                        solg += soluongnhap[i];
-                        i++;
-                    }
-                    else
-                    {
-                    if (datenhap[i] < datexuat[j])
-                    {
-                        t.ngxuat = datexuat[j];
-                        t.ctphieuxuat = soluongxuat[j];
-                        t.sluong = solg - soluongxuat[j];
-                        solg -= soluongxuat[j];
-                        j++;
-                    }
-                    else
-                    {
-                        t.ngnhap = datenhap[i];
-                        t.ctphieunhap = soluongnhap[i];
-                        t.ngxuat = datexuat[j];
-                        t.ctphieuxuat = soluongxuat[j];
-                        t.sluong = solg + soluongnhap[i] - soluongxuat[j];
-                        i++; j++;
-                    }
-                }
-                thongke.Add(t);
+        //public static List<Thongke> Thongkekhoangthoigian(string id,DateTime from,DateTime to)
+        //{
+        //    List<Thongke> thongke = new List<Thongke>();
+        //    int[] soluongnhap = new int[100];
+        //    DateTime[] datenhap = new DateTime[100];
+        //    int a = 0;int sum = 0;
+        //    foreach(var nhap in db.phieunhaps.Where(s=>s.tgian.Day >= from.Day).OrderBy(c=>c.tgian))
+        //    {
+        //        foreach (var ctn in db.ctphieunhaps.Where(c=>c.maso.Equals(nhap.maso)))
+        //        {
+        //            if (ctn.masach.Equals(id))
+        //            {
+        //                sum += ctn.soluong;
+        //                if (datenhap.Contains(nhap.tgian))
+        //                    soluongnhap[a] += ctn.soluong;
+        //                else
+        //                {
+        //                    soluongnhap[a] = ctn.soluong;
+        //                    datenhap[a] = nhap.tgian;
+        //                    a++;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    int b = 0;
+        //    int[] soluongxuat = new int[100];
+        //    DateTime[] datexuat = new DateTime[100];
+        //    foreach (var xuat in db.phieuxuats.Where(s => s.tgian.Day >= from.Day).OrderBy(c => c.tgian))
+        //    {
+        //        foreach (var ctx in db.ctphieuxuats.Where(c => c.maso.Equals(xuat.maso)))
+        //        {
+        //            if (ctx.masach.Equals(id))
+        //            {
+        //                sum -= ctx.soluong;
+        //                if (datexuat.Contains(xuat.tgian))
+        //                    soluongxuat[b] += ctx.soluong;
+        //                else
+        //                {
+        //                    soluongxuat[b] = ctx.soluong;
+        //                    datexuat[b] = xuat.tgian;
+        //                    b++;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    int i = 0;
+        //    int j = 0;
+        //    int solg = db.saches.Find(id).sluong - sum;
+        //    while (i<a || j<b)
+        //    {
+        //        if (datenhap[i] > to || datexuat[j] > to && !to.Equals(""))
+        //            break;
+        //        Thongke t = new Thongke();
+        //            if(datenhap[i] > datexuat[j])
+        //            {
+        //                t.ngnhap = datenhap[i];
+        //                t.ctphieunhap = soluongnhap[i];
+        //                t.sluong = solg + soluongnhap[i];
+        //                solg += soluongnhap[i];
+        //                i++;
+        //            }
+        //            else
+        //            {
+        //            if (datenhap[i] < datexuat[j])
+        //            {
+        //                t.ngxuat = datexuat[j];
+        //                t.ctphieuxuat = soluongxuat[j];
+        //                t.sluong = solg - soluongxuat[j];
+        //                solg -= soluongxuat[j];
+        //                j++;
+        //            }
+        //            else
+        //            {
+        //                t.ngnhap = datenhap[i];
+        //                t.ctphieunhap = soluongnhap[i];
+        //                t.ngxuat = datexuat[j];
+        //                t.ctphieuxuat = soluongxuat[j];
+        //                t.sluong = solg + soluongnhap[i] - soluongxuat[j];
+        //                i++; j++;
+        //            }
+        //        }
+        //        thongke.Add(t);
               
-            }
-            return thongke;
-        }
-        public static List<Thongke> Thongketaithoidiem(string id, DateTime at)
+        //    }
+        //    return thongke;
+        //}
+        public static string Thongketaithoidiem(string id, DateTime at)
         {
-            List<Thongke> thongke = new List<Thongke>();
             int soluongnhap = 0;
             int sum = 0;
-             foreach (var nhap in db.phieunhaps.Where(s => s.tgian.Day >= at.Day))
+             foreach (var nhap in db.phieunhaps.Where(s => DbFunctions.TruncateTime(s.tgian)  >= at.Date))
             {
                 foreach (var ctn in db.ctphieunhaps.Where(c => c.maso.Equals(nhap.maso)))
                 {
@@ -181,14 +181,13 @@ namespace QLSACH_WinForm
                         sum += ctn.soluong;
                         if (nhap.tgian.Day == at.Day)
                         {
-                            soluongnhap += ctn.soluong;
+                            soluongnhap = ctn.soluong;
                         }
                     }
                 }
             }
-            int b = 0;
             int soluongxuat = 0;
-            foreach (var xuat in db.phieuxuats.Where(s => s.tgian.Day >= at.Day))
+            foreach (var xuat in db.phieuxuats.Where(s => DbFunctions.TruncateTime(s.tgian) >= at.Date))
             {
                 foreach (var ctx in db.ctphieuxuats.Where(c => c.maso.Equals(xuat.maso)))
                 {
@@ -197,20 +196,14 @@ namespace QLSACH_WinForm
                         sum -= ctx.soluong;
                         if (xuat.tgian == at)
                         {
-                            soluongxuat += ctx.soluong;
+                            soluongxuat = ctx.soluong;
                         }
                     }
                 }
             }
-                Thongke t = new Thongke();
-                    t.ctphieunhap = soluongnhap;
-                    t.ngnhap = at;
-                    t.ctphieuxuat = soluongxuat;
-                    t.ngxuat = at;
-                    t.sluong = db.saches.Find(id).sluong - sum + soluongnhap - soluongxuat;
-                thongke.Add(t);
+                    return (db.saches.Find(id).sluong - sum + soluongnhap - soluongxuat).ToString();
             
-            return thongke;
+      
         }
         public static List<ctphieuxuat> LoadNo(string id, int Year, int month)
         {
@@ -219,14 +212,50 @@ namespace QLSACH_WinForm
                 phieuxuat = db.ctphieuxuats.Where(s => s.phieuxuat.tgian.Year == Year && s.phieuxuat.tgian.Month == month && s.phieuxuat.madl.Equals(id)).ToList();
             return phieuxuat;
         }
-        public static void UpdateNo(string id,string masach,int soluong)
+        public static List<ctphieunhap> LoadNoNXB(string id, int Year, int month)
+        {
+            db.ctphieunhaps.Load();
+            List<ctphieunhap> phieunhap = new List<ctphieunhap>();
+            phieunhap = db.ctphieunhaps.Where(s => s.phieunhap.tgian.Year == Year && s.phieunhap.tgian.Month == month && s.phieunhap.manxb.Equals(id)).ToList();
+            return phieunhap;
+        }
+        public static string Convert (string x)
+        {
+            string m = x.Substring(x.Length);
+            int count = 0;
+            for (int i = x.Length-1; i >= 0; i--)
+                if (count % 3 == 0 && count >0)
+                {
+                    m += ","+x.Substring(i, 1);
+                    count++;
+                }
+                else
+                {
+                    m += x.Substring(i, 1);
+                    count++;
+                }
+            string Convert = m.Substring(m.Length);
+            for (int j = m.Length-1; j >= 0; j--)
+                Convert += m.Substring(j, 1);
+            return Convert;
+        }
+        public static string TongNo(string id, int Year, int month)
+        {
+            int? tongno = 0;
+            db.ctphieunhaps.Load();
+            List<ctphieunhap> phieunhap = new List<ctphieunhap>();
+            phieunhap = db.ctphieunhaps.Where(s => s.phieunhap.tgian.Year <= Year && s.phieunhap.tgian.Month <= month && s.phieunhap.manxb.Equals(id)).ToList();
+            foreach (var item in phieunhap)
+                tongno += item.tienno;
+            return SachDAL.Convert(tongno.ToString());
+        }
+        public static void UpdateNo(string id,string masach)
         {
             ctphieuxuat original = db.ctphieuxuats.Where(s=>s.maso.Equals(id) && s.masach.Equals(masach)).Single();
             if(original != null)
             {
-                original.tienno -= (soluong * original.gia);
                 ctphieunhap ctnhap = db.ctphieunhaps.Where(s => s.maso.Equals(original.maphieunhap) && s.masach.Equals(original.masach)).SingleOrDefault();
-                ctnhap.tienno -= (soluong * ctnhap.gia);
+                ctnhap.tienno -= (original.soluong * ctnhap.gia);
                 db.SaveChanges();
             }
         }
