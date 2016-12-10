@@ -429,8 +429,8 @@ function checkctphieuxuat() {
         alert("Số lượng không hợp lệ! Số lượng phải nhỏ hơn "+ $('#sluong').attr('max')+"!");
         return false;
     }
-    if ((document.getElementById("gia").value == null) || (Number(document.getElementById("gia").value) <= 0)) {
-        alert("Giá không hợp lệ!");
+    if ((document.getElementById("gia").value == null) || (Number(document.getElementById("gia").value) <= 0) || (Number($('#gia').val()) < (Number($('#gia').attr('min'))))) {
+        alert("Giá không hợp lệ! Giá phải lớn hơn " + $('#gia').attr('min') + "!");
         return false;
     }
     return true;
