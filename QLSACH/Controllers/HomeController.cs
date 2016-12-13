@@ -141,7 +141,7 @@ namespace QLSACH.Controllers
                 foreach (var i in p.ctphieuxuat)
                 {
                     ctphieunhap temp = db.ctphieunhaps.FirstOrDefault<ctphieunhap>(ct => (ct.masach == i.masach) && (ct.maso == i.maphieunhap));
-                    if ((i.gia > temp.gia)||(i.soluong<temp.ton))
+                    if ((i.gia < temp.gia)||(i.soluong>temp.ton))
                     {
                         ModelState.AddModelError("ctphieuxuat", "Mã sách "+temp.masach+" phải có số lượng nhỏ hơn "+temp.ton+",giá lớn hơn "+temp.gia);
                     }
