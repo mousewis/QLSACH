@@ -44,12 +44,24 @@
             this.Edit_btn = new System.Windows.Forms.Button();
             this.Add_btn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.Detail = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.UpdateDebt = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.XemNo = new System.Windows.Forms.Button();
@@ -57,6 +69,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -65,20 +79,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -283,6 +285,91 @@
             this.tabPage3.Text = "Thống kê tồn kho";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label29
+            // 
+            this.label29.Location = new System.Drawing.Point(864, 363);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(163, 29);
+            this.label29.TabIndex = 17;
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label28
+            // 
+            this.label28.Location = new System.Drawing.Point(864, 415);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(163, 29);
+            this.label28.TabIndex = 16;
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(600, 415);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(180, 29);
+            this.label27.TabIndex = 15;
+            this.label27.Text = "Tổng số lượng: ";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(594, 363);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(186, 29);
+            this.label26.TabIndex = 14;
+            this.label26.Text = "Tồn trong ngày: ";
+            // 
+            // label25
+            // 
+            this.label25.Location = new System.Drawing.Point(864, 308);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(163, 29);
+            this.label25.TabIndex = 13;
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(668, 308);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(112, 29);
+            this.label24.TabIndex = 12;
+            this.label24.Text = "Lĩnh vực: ";
+            // 
+            // label23
+            // 
+            this.label23.Location = new System.Drawing.Point(864, 243);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(163, 29);
+            this.label23.TabIndex = 11;
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(656, 243);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(124, 29);
+            this.label22.TabIndex = 10;
+            this.label22.Text = "Tên sách: ";
+            // 
+            // label21
+            // 
+            this.label21.Location = new System.Drawing.Point(864, 184);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(163, 29);
+            this.label21.TabIndex = 9;
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(666, 184);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(114, 29);
+            this.label20.TabIndex = 8;
+            this.label20.Text = "Mã sách: ";
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "";
@@ -352,6 +439,24 @@
             this.tabPage4.Text = "Tiền bán cho Đại lý";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(181, 157);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(88, 29);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "Tháng:";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "MM/yyyy";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(290, 152);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(267, 34);
+            this.dateTimePicker2.TabIndex = 12;
+            // 
             // UpdateDebt
             // 
             this.UpdateDebt.Location = new System.Drawing.Point(783, 441);
@@ -412,6 +517,8 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.label16);
+            this.tabPage5.Controls.Add(this.label15);
             this.tabPage5.Controls.Add(this.label12);
             this.tabPage5.Controls.Add(this.dateTimePicker3);
             this.tabPage5.Controls.Add(this.label19);
@@ -428,6 +535,24 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Tiền Nợ cho Nhà Xuất Bản";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(183, 114);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(88, 29);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Tháng:";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.CustomFormat = "MM/yyyy";
+            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker3.Location = new System.Drawing.Point(292, 114);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(267, 34);
+            this.dateTimePicker3.TabIndex = 24;
             // 
             // label19
             // 
@@ -480,7 +605,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(105, 100);
+            this.label17.Location = new System.Drawing.Point(105, 69);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(166, 29);
             this.label17.TabIndex = 13;
@@ -490,7 +615,7 @@
             // 
             this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(292, 92);
+            this.comboBox6.Location = new System.Drawing.Point(292, 66);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(267, 37);
             this.comboBox6.TabIndex = 12;
@@ -506,126 +631,22 @@
             this.label2.Text = "XÂY DỰNG PHẦN MỀM\r\nTHEO MÔ HÌNH PHÂN LỚP\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label20
+            // label15
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(666, 184);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(114, 29);
-            this.label20.TabIndex = 8;
-            this.label20.Text = "Mã sách: ";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(95, 154);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(176, 29);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "Tháng Còn Nợ:";
             // 
-            // label21
+            // label16
             // 
-            this.label21.Location = new System.Drawing.Point(864, 184);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(163, 29);
-            this.label21.TabIndex = 9;
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(656, 243);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(124, 29);
-            this.label22.TabIndex = 10;
-            this.label22.Text = "Tên sách: ";
-            // 
-            // label23
-            // 
-            this.label23.Location = new System.Drawing.Point(864, 243);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(163, 29);
-            this.label23.TabIndex = 11;
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(668, 308);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(112, 29);
-            this.label24.TabIndex = 12;
-            this.label24.Text = "Lĩnh vực: ";
-            // 
-            // label25
-            // 
-            this.label25.Location = new System.Drawing.Point(864, 308);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(163, 29);
-            this.label25.TabIndex = 13;
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(594, 363);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(186, 29);
-            this.label26.TabIndex = 14;
-            this.label26.Text = "Tồn trong ngày: ";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(600, 415);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(180, 29);
-            this.label27.TabIndex = 15;
-            this.label27.Text = "Tổng số lượng: ";
-            // 
-            // label28
-            // 
-            this.label28.Location = new System.Drawing.Point(864, 415);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(163, 29);
-            this.label28.TabIndex = 16;
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label29
-            // 
-            this.label29.Location = new System.Drawing.Point(864, 363);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(163, 29);
-            this.label29.TabIndex = 17;
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.CustomFormat = "MM/yyyy";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(290, 152);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(267, 34);
-            this.dateTimePicker2.TabIndex = 12;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(181, 157);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(88, 29);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "Tháng:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(183, 154);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(88, 29);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "Tháng:";
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.CustomFormat = "MM/yyyy";
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(292, 149);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(267, 34);
-            this.dateTimePicker3.TabIndex = 24;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(287, 154);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(0, 29);
+            this.label16.TabIndex = 27;
             // 
             // Form1
             // 
@@ -710,6 +731,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
     }
 }
 

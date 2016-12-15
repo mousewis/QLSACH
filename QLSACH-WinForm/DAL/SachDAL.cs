@@ -239,21 +239,43 @@ namespace QLSACH_WinForm
                 Convert += m.Substring(j, 1);
             return Convert;
         }
-        public static string TongNo(string id, int Year, int month)
+        public static string TongNo(string id)
         {
             int? tongno = 0;
+            DateTime t = DateTime.Now;
             db.ctphieunhaps.Load();
             List<ctphieunhap> phieunhap = new List<ctphieunhap>();
-            phieunhap = db.ctphieunhaps.Where(s => s.phieunhap.tgian.Year <= Year && s.phieunhap.tgian.Month <= month && s.phieunhap.manxb.Equals(id)).ToList();
+            phieunhap = db.ctphieunhaps.Where(s => DbFunctions.TruncateTime(s.phieunhap.tgian) <= t.Date && 
+                                                                            s.phieunhap.manxb.Equals(id)).ToList();
             foreach (var item in phieunhap)
                 tongno += item.tienno;
             return SachDAL.Convert(tongno.ToString());
+        }
+        public static string ConNo(string id)
+        {
+            string strg = "";
+            DateTime t = DateTime.Now;
+            int i = 0;
+            string[] No = new string[12];
+            db.ctphieunhaps.Load();
+            List<ctphieunhap> phieunhap = new List<ctphieunhap>();
+            phieunhap = db.ctphieunhaps.Where(s => DbFunctions.TruncateTime(s.phieunhap.tgian) <= t.Date && 
+                                                                            s.phieunhap.manxb.Equals(id) && 
+                                                                            s.tienno > 0).OrderBy(x=>x.phieunhap.tgian).ToList();
+            foreach (var item in phieunhap)
+                if (!No.Contains(item.phieunhap.tgian.ToString("MM/yyyy")))
+                {
+                    No[i] = item.phieunhap.tgian.ToString("MM/yyyy");
+                    strg += No[i++]+", ";
+                }
+            return strg.Substring(0,strg.Length-2);
         }
         public static void UpdateNo(string id,string masach)
         {
             ctphieuxuat original = db.ctphieuxuats.Where(s=>s.maso.Equals(id) && s.masach.Equals(masach)).Single();
             if(original != null)
             {
+                original.tienno = 0;
                 ctphieunhap ctnhap = db.ctphieunhaps.Where(s => s.maso.Equals(original.maphieunhap) && s.masach.Equals(original.masach)).SingleOrDefault();
                 ctnhap.tienno -= (original.soluong * ctnhap.gia);
                 db.SaveChanges();

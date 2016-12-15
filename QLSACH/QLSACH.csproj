@@ -343,9 +343,6 @@
     <Content Include="Scripts\Autocomplete.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\checkform.js" />
     <Content Include="Scripts\checkproduct.js" />

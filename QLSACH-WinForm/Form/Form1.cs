@@ -114,6 +114,8 @@ namespace QLSACH_WinForm
         {
             data.Columns["maso"].Visible = false;
             data.Columns["phieunhap"].Visible = false;
+            data.Columns["maphieunhap"].Visible = false;
+            data.Columns["phieuxuat"].Visible = false;
             data.Columns["sach"].Visible = false;
             data.Columns["TenSach"].Visible = true;
             data.Columns["TenSach"].DisplayIndex = 2;
@@ -138,14 +140,43 @@ namespace QLSACH_WinForm
         {
             List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
             phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), dateTimePicker2.Value.Year, dateTimePicker2.Value.Month);
+            if (phieuxuat.ElementAt(1).tienno == 0)
+                MessageBox.Show("Đã thanh toán");
+            else
+            { 
             foreach (var item in phieuxuat)
                 SachDAL.UpdateNo(item.maso, item.masach);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            dataGridView4.DataSource = SachDAL.LoadNoNXB(comboBox6.SelectedValue.ToString(), dateTimePicker3.Value.Year, dateTimePicker3.Value.Month);
-            label19.Text = SachDAL.TongNo(comboBox6.SelectedValue.ToString(), dateTimePicker3.Value.Year, dateTimePicker3.Value.Month)+" VNĐ";
+            List<ctphieunhap> phieunhap = new List<ctphieunhap>();
+            phieunhap = SachDAL.LoadNoNXB(comboBox6.SelectedValue.ToString(), dateTimePicker3.Value.Year, dateTimePicker3.Value.Month);
+
+            dataGridView4.DataSource = phieunhap;
+            AdjustView2(dataGridView4, phieunhap);
+            for (int i = 0; i < dataGridView4.ColumnCount; i++)
+                dataGridView4.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            label19.Text = SachDAL.TongNo(comboBox6.SelectedValue.ToString())+" VNĐ";
+            label16.Text = SachDAL.ConNo(comboBox6.SelectedValue.ToString());
+
+        }
+        public static void AdjustView2(DataGridView data, List<ctphieunhap> phieunhap)
+        {
+            data.Columns["maso"].Visible = false;
+            data.Columns["sach"].Visible = false;
+            data.Columns["phieunhap"].Visible = false;
+            data.Columns["ton"].Visible = false;
+            data.Columns["TenSach"].Visible = true;
+            data.Columns["TenSach"].DisplayIndex = 2;
+            int i = 0;
+            foreach (var item in phieunhap)
+            {
+                string value = item.sach.tensach;
+                data.Rows[i++].Cells["TenSach"].Value = value;
+            }
         }
     }
 }
