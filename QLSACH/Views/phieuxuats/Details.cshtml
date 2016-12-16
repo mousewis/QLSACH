@@ -22,8 +22,10 @@
             </tr>
             <tr>
                 <th>Ngày giao:</th>
-                <td>
-                    @Html.DisplayFor(model => model.phieuxuat.tgian)
+                <td>@{
+                    var sr =Model.phieuxuat.tgian.ToShortDateString();
+                }
+                @Html.DisplayFor(model => sr)
                 </td>
             </tr>
         </table>

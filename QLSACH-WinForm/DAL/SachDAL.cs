@@ -239,17 +239,16 @@ namespace QLSACH_WinForm
                 Convert += m.Substring(j, 1);
             return Convert;
         }
-        public static string TongNo(string id)
+        public static string TongNo(string id,DateTime at)
         {
-            int? tongno = 0;
-            DateTime t = DateTime.Now;
-            db.ctphieunhaps.Load();
-            List<ctphieunhap> phieunhap = new List<ctphieunhap>();
-            phieunhap = db.ctphieunhaps.Where(s => DbFunctions.TruncateTime(s.phieunhap.tgian) <= t.Date && 
-                                                                            s.phieunhap.manxb.Equals(id)).ToList();
-            foreach (var item in phieunhap)
-                tongno += item.tienno;
-            return SachDAL.Convert(tongno.ToString());
+            long sum = 0;
+            foreach (var nhap in db.phieunhaps.Where(s => (s.tgian.Year*100+s.tgian.Month) <= (at.Year*100+at.Month) && s.manxb.Equals(id)))
+                sum += nhap.tongtien;
+            foreach (var nhap in db.phieunhaps.Where(s => (s.tgian.Year * 100 + s.tgian.Month) <= (at.Year * 100 + at.Month) && s.manxb.Equals(id)))
+                foreach (var ctx in db.ctphieuxuats.Where(c => c.maphieunhap.Equals(nhap.maso)))
+                    sum -= ctx.thanhtien;
+            return Convert(sum.ToString());
+
         }
         public static string ConNo(string id)
         {

@@ -37,8 +37,10 @@
             @Html.DisplayFor(modelItem => item.nguoinhan)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.tgian)
-        </td>
+            @{
+                var sr = item.tgian.ToShortDateString();
+            }
+            @Html.DisplayFor(modelItem => sr)        </td>
         <td>
             @Html.DisplayFor(modelItem => item.tongtien)
         </td>

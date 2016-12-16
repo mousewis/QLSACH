@@ -16,6 +16,7 @@ namespace QLSACH_WinForm
     public partial class Form1 : Form
     {
         QLSACHEntities db = new QLSACHEntities();
+        List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
         public Form1()
         {
             InitializeComponent();
@@ -94,7 +95,6 @@ namespace QLSACH_WinForm
             label23.Text = dataGridView2.CurrentRow.Cells[1].Value.ToString();
             label25.Text = SachDAL.TenSach(dataGridView2.CurrentRow.Cells[2].Value.ToString());
             label28.Text = dataGridView2.CurrentRow.Cells[3].Value.ToString();
-
             label29.Text = SachDAL.Thongketaithoidiem(dataGridView2.CurrentRow.Cells[0].Value.ToString(), dateTimePicker1.Value);
         }
 
@@ -128,25 +128,36 @@ namespace QLSACH_WinForm
         }
         private void XemNo_Click(object sender, EventArgs e)
         {
-            List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
             phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(),dateTimePicker2.Value.Year,dateTimePicker2.Value.Month );
-            dataGridView3.DataSource = phieuxuat;
-            AdjustView(dataGridView3, phieuxuat);
-            for (int i = 0; i < dataGridView3.ColumnCount; i++)
-                dataGridView3.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            if (phieuxuat.Count>0)
+            {
+                    dataGridView3.DataSource = phieuxuat;
+                    AdjustView(dataGridView3, phieuxuat);
+                    for (int i = 0; i < dataGridView3.ColumnCount; i++)
+                        dataGridView3.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                if (phieuxuat.ElementAt(0).tienno != 0)
+                {
+                    label30.Text = "";
+                    UpdateDebt.Enabled = true;
+                }
+                else
+                {
+                    label30.Text = "(Phiếu xuất trong tháng đã được thanh toán)";
+                    UpdateDebt.Enabled = false;
+                }
+            }
+            else
+            {
+                label30.Text = "(Tháng không có phiếu xuất)";
+                UpdateDebt.Enabled = false;
+            }
         }
 
         private void UpdateDebt_Click(object sender, EventArgs e)
         {
-            List<ctphieuxuat> phieuxuat = new List<ctphieuxuat>();
-            phieuxuat = SachDAL.LoadNo(comboBox1.SelectedValue.ToString(), dateTimePicker2.Value.Year, dateTimePicker2.Value.Month);
-            if (phieuxuat.ElementAt(1).tienno == 0)
-                MessageBox.Show("Đã thanh toán");
-            else
-            { 
             foreach (var item in phieuxuat)
                 SachDAL.UpdateNo(item.maso, item.masach);
-            }
+            UpdateDebt.Enabled = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -159,7 +170,7 @@ namespace QLSACH_WinForm
             for (int i = 0; i < dataGridView4.ColumnCount; i++)
                 dataGridView4.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            label19.Text = SachDAL.TongNo(comboBox6.SelectedValue.ToString())+" VNĐ";
+            label19.Text = SachDAL.TongNo(comboBox6.SelectedValue.ToString(), dateTimePicker3.Value) +" VNĐ";
             label16.Text = SachDAL.ConNo(comboBox6.SelectedValue.ToString());
 
         }
@@ -177,6 +188,14 @@ namespace QLSACH_WinForm
                 string value = item.sach.tensach;
                 data.Rows[i++].Cells["TenSach"].Value = value;
             }
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            label30.Text = "";
+            UpdateDebt.Enabled = false;
+            dataGridView3.DataSource = null;
+            dataGridView3.Columns["TenSach"].Visible = false;
         }
     }
 }

@@ -297,6 +297,11 @@ function manxb()
     var manxb = document.getElementById("phieunhap.manxb");
     manxb.value = value;
 }
+function madl() {
+    var value = document.getElementById("daily.madl").value;
+    var manxb = document.getElementById("phieuxuat.madl");
+    manxb.value = value;
+}
 function sluong_ct()
 {
 //    alert(i);

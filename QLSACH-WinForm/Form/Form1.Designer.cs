@@ -60,6 +60,7 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.UpdateDebt = new System.Windows.Forms.Button();
@@ -69,6 +70,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
@@ -79,8 +82,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -422,6 +423,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label30);
             this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.dateTimePicker2);
             this.tabPage4.Controls.Add(this.UpdateDebt);
@@ -438,6 +440,15 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Tiền bán cho Đại lý";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(575, 157);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(0, 29);
+            this.label30.TabIndex = 14;
             // 
             // label11
             // 
@@ -456,14 +467,16 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(267, 34);
             this.dateTimePicker2.TabIndex = 12;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // UpdateDebt
             // 
-            this.UpdateDebt.Location = new System.Drawing.Point(783, 441);
+            this.UpdateDebt.Enabled = false;
+            this.UpdateDebt.Location = new System.Drawing.Point(741, 441);
             this.UpdateDebt.Name = "UpdateDebt";
-            this.UpdateDebt.Size = new System.Drawing.Size(133, 38);
+            this.UpdateDebt.Size = new System.Drawing.Size(175, 38);
             this.UpdateDebt.TabIndex = 11;
-            this.UpdateDebt.Text = "Cập nhật ";
+            this.UpdateDebt.Text = "Thanh toán";
             this.UpdateDebt.UseVisualStyleBackColor = true;
             this.UpdateDebt.Click += new System.EventHandler(this.UpdateDebt_Click);
             // 
@@ -535,6 +548,23 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Tiền Nợ cho Nhà Xuất Bản";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(287, 154);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(0, 29);
+            this.label16.TabIndex = 27;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(95, 154);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(176, 29);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "Tháng Còn Nợ:";
             // 
             // label12
             // 
@@ -631,23 +661,6 @@
             this.label2.Text = "XÂY DỰNG PHẦN MỀM\r\nTHEO MÔ HÌNH PHÂN LỚP\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(95, 154);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(176, 29);
-            this.label15.TabIndex = 26;
-            this.label15.Text = "Tháng Còn Nợ:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(287, 154);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(0, 29);
-            this.label16.TabIndex = 27;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -733,6 +746,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label30;
     }
 }
 
