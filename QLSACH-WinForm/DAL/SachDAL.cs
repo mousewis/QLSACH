@@ -20,16 +20,9 @@ namespace QLSACH_WinForm
         {
             return db.linhvucs.Find(id).tenlv;
         }
-        public static BindingList<sach> LoadAll()
+        public static List<sach> LoadAll()
         {
-            BindingList<sach> sach = new BindingList<Models.sach>(db.saches.OrderBy(s=>s.masach).ToList());
-            return sach;
-        }
-        public static BindingList<sach> LoadAll(QLSACHEntities db)
-        {
-            db = new QLSACHEntities();
-            db.saches.Load();
-            BindingList<sach> sach = new BindingList<Models.sach>(db.saches.OrderBy(s => s.masach).ToList());
+            List<sach> sach = db.saches.OrderBy(s=>s.masach).ToList();
             return sach;
         }
         public static List<nxb> LoadNXB()
@@ -42,17 +35,22 @@ namespace QLSACH_WinForm
             db.dailies.Load();
             return db.dailies.Local.ToList();
         }
-        public static BindingList<sach> Search_Sach(string searchstring)
+        public static List<sach> Search_Sach(string searchstring)
         {
-            BindingList<sach> sach = new BindingList<Models.sach>(db.saches.Where(s => s.tensach.Contains(searchstring)).OrderBy(s=>s.masach).ToList());
+            List<sach> sach = db.saches.Where(s => s.tensach.Contains(searchstring)).OrderBy(s=>s.masach).ToList();
             return sach;
         }
-        public static BindingList<sach> Search_Sach(string searchstring,QLSACHEntities db)
+        public static List<sach> Sort_Sach(int i)
         {
-            db = new QLSACHEntities();
-            db.saches.Load();
-            BindingList<sach> sach = new BindingList<Models.sach>(db.saches.Where(s => s.tensach.Contains(searchstring)).OrderBy(s => s.masach).ToList());
-            return sach;
+            switch(i)
+            {
+                case 0: return db.saches.OrderBy(s => s.linhvuc1.tenlv).ToList();
+                case 1: return db.saches.OrderBy(s => s.masach).ToList();
+                case 2: return db.saches.OrderBy(s => s.tensach).ToList();
+                case 4: return db.saches.OrderBy(s => s.sluong).ToList();
+                default: return db.saches.OrderBy(s => s.masach).ToList();
+            }
+
         }
         public static sach SearchID(string id)
         { return db.saches.Find(id); }
@@ -246,8 +244,12 @@ namespace QLSACH_WinForm
                 sum += nhap.tongtien;
             foreach (var nhap in db.phieunhaps.Where(s => (s.tgian.Year * 100 + s.tgian.Month) <= (at.Year * 100 + at.Month) && s.manxb.Equals(id)))
                 foreach (var ctx in db.ctphieuxuats.Where(c => c.maphieunhap.Equals(nhap.maso)))
-                    sum -= ctx.thanhtien;
-            return Convert(sum.ToString());
+                    foreach (var ctn in db.ctphieunhaps.Where(s => s.maso.Equals(ctx.maphieunhap) && s.masach.Equals(ctx.masach)))
+                        if(ctx.tienno == 0)
+                        sum -= ctx.soluong * ctn.gia;
+               
+                
+                return Convert(sum.ToString());
 
         }
         public static string ConNo(string id)

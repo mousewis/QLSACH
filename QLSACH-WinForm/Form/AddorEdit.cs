@@ -41,11 +41,31 @@ namespace QLSACH_WinForm
 
         private void Save_btn_Click(object sender, EventArgs e)
         {
-            if (IsNew == true)
-                SachDAL.ADD_Sach(textBox1.Text, textBox3.Text,comboBox1.SelectedValue.ToString());
-            else
-                SachDAL.Edit_Sach(textBox1.Text, textBox3.Text,comboBox1.SelectedValue.ToString());
-                this.Close();
+            try
+            {
+                if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBox3.Text))
+                {
+                    if (IsNew == true)
+                        SachDAL.ADD_Sach(textBox1.Text, textBox3.Text, comboBox1.SelectedValue.ToString());
+                    else
+                        SachDAL.Edit_Sach(textBox1.Text, textBox3.Text, comboBox1.SelectedValue.ToString());
+                    this.Close();
+                    MessageBox.Show("Lưu thành công");
+                }
+                else
+                {
+                    string s = "";
+                    if (String.IsNullOrEmpty(textBox1.Text))
+                        s += " Mã sách,";
+                    if (String.IsNullOrEmpty(textBox3.Text))
+                        s += " Tên sách,";
+                    MessageBox.Show("Xin nhập " + s.Substring(0,s.Length-1));
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Lỗi xảy ra khi lưu sách: " + ex);
+            }
         }
 
         private void Cancel_Click(object sender, EventArgs e)
