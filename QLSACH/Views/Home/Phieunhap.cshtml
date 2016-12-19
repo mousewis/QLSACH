@@ -48,7 +48,7 @@
                 <tr>
                     <th width="25%">Mã nhà xuất bản:</th>
                     <td>
-                        <input type="text" name="nxb.manxb" id="nxb.manxb" onchange="manxb()" required>
+                        <input type="text" name="nxb.manxb" id="nxb.manxb" onchange="manxb()" onkeypress="manxb()" required>
                         @Html.ValidationMessage("nxb.manxb", "", new { @class = "text-danger" })
                         @*<a href="#" onclick="checknxb()">Kiểm tra</a>*@
                         <input type="hidden" name="phieunhap.manxb" id="phieunhap.manxb">

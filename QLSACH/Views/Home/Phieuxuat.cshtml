@@ -50,7 +50,7 @@
                 <tr>
                     <th width="25%">Mã đại lý:</th>
                     <td>
-                        <input type="text" name="daily.madl" id="daily.madl" onchange="madl()" required>
+                        <input type="text" name="daily.madl" id="daily.madl" onchange="madl()" onkeypress="madl()" required>
                         @Html.ValidationMessage("daily.madl", "", new { @class = "text-danger" })
                         @*<a href="#" onclick="checkdaily()">Kiểm tra</a>*@
                         <input type="hidden" name="phieuxuat.madl" id="phieuxuat.madl">
