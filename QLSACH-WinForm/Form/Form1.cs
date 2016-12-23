@@ -79,16 +79,22 @@ namespace QLSACH_WinForm
                 {
                     string sach = "";
                     foreach (DataGridViewRow row in dataGridView1.SelectedRows)
-                    {
                         sach += row.Cells["tensach"].Value.ToString()+", ";
-                    }
                     DialogResult result = MessageBox.Show("Bạn có chắc bạn muốn những xóa sách này ?:\n"+sach.Substring(0,sach.Length-2), "Xác nhận xóa", MessageBoxButtons.YesNo);
+                    sach = "";
                     if (result == DialogResult.Yes)
                     {
                         foreach (DataGridViewRow row in dataGridView1.SelectedRows)
                         {
+                            if (SachDAL.SachPhXN(row.Cells["masach"].Value.ToString()))
+                            {
+                                sach += row.Cells["tensach"].Value.ToString() + ", ";
+                                continue;
+                            }
                             SachDAL.DEL_Sach(row.Cells["masach"].Value.ToString());
                         }
+                        if(sach.Length >0)
+                        MessageBox.Show("Không thể xóa các sách sau vì tồn tại trong phiếu nhập,phiếu xuất:\n" + sach.Substring(0, sach.Length - 2));
                         tabControl1_Click(null, null);
                     }
                 }

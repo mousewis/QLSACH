@@ -25,6 +25,14 @@ namespace QLSACH_WinForm
             List<sach> sach = db.saches.OrderBy(s=>s.masach).ToList();
             return sach;
         }
+        public static bool SachPhXN(string id)
+        {
+            db.ctphieunhaps.Load();
+            db.ctphieuxuats.Load();
+            if (db.ctphieunhaps.Count(s => s.masach.Equals(id)) > 0|| db.ctphieuxuats.Count(s => s.masach.Equals(id)) > 0)
+                return true;
+            return false;
+        }
         public static List<nxb> LoadNXB()
         {
             db.nxbs.Load();
@@ -170,35 +178,32 @@ namespace QLSACH_WinForm
         {
             int soluongnhap = 0;
             int sum = 0;
-             foreach (var nhap in db.phieunhaps.Where(s => DbFunctions.TruncateTime(s.tgian)  >= at.Date))
-            {
-                foreach (var ctn in db.ctphieunhaps.Where(c => c.maso.Equals(nhap.maso)))
+                foreach (var ctn in db.ctphieunhaps.Where(c => DbFunctions.TruncateTime(c.phieunhap.tgian) >= at.Date))
                 {
                     if (ctn.masach.Equals(id))
                     {
                         sum += ctn.soluong;
-                        if (nhap.tgian.Day == at.Day)
+                        if (ctn.phieunhap.tgian.Date == at.Date)
                         {
                             soluongnhap = ctn.soluong;
                         }
                     }
                 }
-            }
+            
             int soluongxuat = 0;
-            foreach (var xuat in db.phieuxuats.Where(s => DbFunctions.TruncateTime(s.tgian) >= at.Date))
-            {
-                foreach (var ctx in db.ctphieuxuats.Where(c => c.maso.Equals(xuat.maso)))
+          
+                foreach (var ctx in db.ctphieuxuats.Where(c => DbFunctions.TruncateTime(c.phieuxuat.tgian) >= at.Date))
                 {
                     if (ctx.masach.Equals(id))
                     {
                         sum -= ctx.soluong;
-                        if (xuat.tgian == at)
+                        if (ctx.phieuxuat.tgian.Date == at.Date)
                         {
                             soluongxuat = ctx.soluong;
                         }
                     }
                 }
-            }
+            
                     return (db.saches.Find(id).sluong - sum + soluongnhap - soluongxuat).ToString();
             
       

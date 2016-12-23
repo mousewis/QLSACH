@@ -46,11 +46,22 @@ namespace QLSACH_WinForm
                 if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBox3.Text))
                 {
                     if (IsNew == true)
-                        SachDAL.ADD_Sach(textBox1.Text, textBox3.Text, comboBox1.SelectedValue.ToString());
+                    {
+                        if (SachDAL.SearchID(textBox1.Text).ToString().Length > 0)
+                            MessageBox.Show("Mã sách tồn tại !!!");
+                        else
+                        {
+                            SachDAL.ADD_Sach(textBox1.Text, textBox3.Text, comboBox1.SelectedValue.ToString());
+                            this.Close();
+                            MessageBox.Show("Lưu thành công");
+                        }
+                    }
                     else
+                    {
                         SachDAL.Edit_Sach(textBox1.Text, textBox3.Text, comboBox1.SelectedValue.ToString());
-                    this.Close();
-                    MessageBox.Show("Lưu thành công");
+                        this.Close();
+                        MessageBox.Show("Lưu thành công");
+                    }
                 }
                 else
                 {
